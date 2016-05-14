@@ -1,4 +1,4 @@
 #!/bin/bash
-source /raspie/src/venv/bin/activate
-sudo /raspie/src/venv/bin/python /raspie/src/raspie.py
+source /home/pi/raspie/src/venv/bin/activate
+sudo /home/pi/raspie/src/venv/bin/python /home/pi/raspie/src/raspie.py
 

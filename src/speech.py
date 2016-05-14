@@ -8,6 +8,7 @@ class Speech(object):
     def hello(self, text):
         self.create_speech()
 
+    @staticmethod
     def filter_spaces(self):
         return self.text.replace(" ", "%20")
 

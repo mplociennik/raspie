@@ -3,7 +3,7 @@ import urllib2
 class Speech(object):
     def __init__(self, text):
         self.text = text
-        self.create_speech()
+        self.create_speech(self.text)
         
     def hello(self, text):
         self.create_speech()

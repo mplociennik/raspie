@@ -1,3 +1,6 @@
 #!/bin/sh
-python src/start.py
+cd /
+cd home/pi/raspie/src
+sudo python start.py
+cd /
 

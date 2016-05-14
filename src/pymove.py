@@ -1,4 +1,5 @@
 import pygame
+from speech import Speech
 from pygame.locals import *
 
 

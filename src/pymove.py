@@ -1,5 +1,8 @@
+import os
 import pygame
 from pygame.locals import *
+import time
+import urllib2
 
 
 class PyMove:
@@ -18,21 +21,45 @@ class PyMove:
         while True:
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
-                    print "Up down"
+                    text = "Up down"
+                    self.create_speech(text)
+                    print text
                 elif event.type == pygame.KEYUP and event.key == pygame.K_UP:
-                    print "Up up"
+                    text = "Up up"
+                    self.create_speech(text)
+                    print text
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
-                    print "Down down"
+                    text = "Down down"
+                    self.create_speech(text)
+                    print text
                 elif event.type == pygame.KEYUP and event.key == pygame.K_DOWN:
-                    print "Down up"
+                    text = "Down up"
+                    self.create_speech(text)
+                    print text
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_LEFT:
-                    print "Left down"
+                    text = "Left down"
+                    self.create_speech(text)
+                    print text
                 elif event.type == pygame.KEYUP and event.key == pygame.K_LEFT:
-                    print "Left up"
+                    text = "Left up"
+                    self.create_speech(text)
+                    print text
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_RIGHT:
-                    print "Right down"
+                    text = "Right down"
+                    self.create_speech(text)
+                    print text
                 elif event.type == pygame.KEYUP and event.key == pygame.K_RIGHT:
-                    print "Right up"
+                    text = "Right up"
+                    self.create_speech(text)
+                    print text
+                    
+    def filter_spaces(self, text):
+        return text.replace(" ", "%20")
+
+    def create_speech(self, text):
+        url_speak = "http://127.0.0.1:8000/speech?text=" + filter_spaces(text)
+        response = urllib2.urlopen(url_speak)
+        text = response
 
 if __name__ == '__main__':
     PyMove().start()

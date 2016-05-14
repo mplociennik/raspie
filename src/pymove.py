@@ -25,8 +25,18 @@ class PyMove:
                     speech = Speech()
                     speech.create_voice(text)
                     print text
-                elif event.type == pygame.KEYUP and event.key == pygame.K_UP:
-                    text = "F jeden up"
+                if event.type == pygame.KEYDOWN and event.key == pygame.K_F2:
+                    text = "Sandruśku kocham Cię"
+                    speech = Speech()
+                    speech.create_voice(text)
+                    print text
+                if event.type == pygame.KEYDOWN and event.key == pygame.K_F3:
+                    text = "Oliwcia co zjesz na śniadanko?"
+                    speech = Speech()
+                    speech.create_voice(text)
+                    print text
+                if event.type == pygame.KEYDOWN and event.key == pygame.K_F4:
+                    text = "Co jest kurwa ziomuś?"
                     speech = Speech()
                     speech.create_voice(text)
                     print text

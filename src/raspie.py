@@ -2,7 +2,7 @@ import multiprocessing
 import os
 import time
 import urllib2
-import pymove
+from pymove import PyMove
 
 def filter_spaces(text):
     return text.replace(" ", "%20")

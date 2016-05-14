@@ -19,6 +19,10 @@ class PyMove:
                     print "dupa down"
                 elif event.type == pygame.KEYUP and event.key == pygame.K_d:
                     print "dupa up"
+                if event.type == pygame.KEYDOWN and event.key == pygame.K_F1:
+                    print "dupa down"
+                elif event.type == pygame.KEYUP and event.key == pygame.K_F1:
+                    print "dupa up"
 
 if __name__ == '__main__':
     PyMove().start()

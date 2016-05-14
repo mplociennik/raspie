@@ -9,7 +9,7 @@ class Speech(object):
         return text.replace(" ", "%20")
 
     def create_speech(self, text):
-        url_speak = "http://127.0.0.1:8000/speech?text=" + filter_spaces(text)
+        url_speak = "http://127.0.0.1:8000/speech?text=" + self.filter_spaces(text)
         response = urllib2.urlopen(url_speak)
         print response
     

@@ -1,6 +1,7 @@
 import urllib2
 
 class Speech(object):
+    @staticmethod
     def hello(self, text):
         self.create_speech(text)
 

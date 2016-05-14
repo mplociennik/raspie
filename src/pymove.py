@@ -9,7 +9,7 @@ class PyMove:
 
     def __init__(self):
         self.data = []
-        self.move = false
+        self.move = False
 
     def start(self):
         pygame.init()

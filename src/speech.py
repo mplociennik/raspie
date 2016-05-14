@@ -13,7 +13,7 @@ class Speech(object):
 
     @staticmethod
     def create_speech(self):
-        url_speak = "http://127.0.0.1:8000/speech?text=" + filter_spaces()
+        url_speak = "http://127.0.0.1:8000/speech?text=" + self.filter_spaces()
         response = urllib2.urlopen(url_speak)
         print response
     

@@ -1,8 +1,5 @@
-import os
 import pygame
 from pygame.locals import *
-import time
-import urllib2
 
 
 class PyMove:
@@ -52,9 +49,6 @@ class PyMove:
                     text = "Right up"
                     self.create_speech(text)
                     print text
-                    
-    def filter_spaces(self, text):
-        return text.replace(" ", "%20")
 
     def create_speech(self, text):
         url_speak = "http://127.0.0.1:8000/speech?text=" + filter_spaces(text)

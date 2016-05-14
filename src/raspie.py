@@ -1,16 +1,8 @@
 import multiprocessing
 import os
 import time
-import urllib2
 from pymove import PyMove
-
-def filter_spaces(text):
-    return text.replace(" ", "%20")
-
-def create_speech(text):
-    url_speak = "http://127.0.0.1:8000/speech?text=" + filter_spaces(text)
-    response = urllib2.urlopen(url_speak)
-    print response
+from speech import Speech
 
 def webapi():
     os.system('venv/bin/python webapi/manage.py runserver 0.0.0.0:8000')
@@ -31,7 +23,7 @@ def cam_recording():
 
 def welcome():
     text = "Siemanko to ja Raspi"
-    create_speech(text)
+    Speech.create_speech(text)
 
 if __name__ == '__main__':
     jobs = []

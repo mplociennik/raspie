@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 import pygame
 from speech import Speech
 from pygame.locals import *
@@ -18,6 +20,16 @@ class PyMove:
         pygame.key.set_repeat(100, 100)
         while True:
             for event in pygame.event.get():
+                if event.type == pygame.KEYDOWN and event.key == pygame.K_F1:
+                    text = "Cześć Sandra co tam u Ciebie?"
+                    speech = Speech()
+                    speech.create_voice(text)
+                    print text
+                elif event.type == pygame.KEYUP and event.key == pygame.K_UP:
+                    text = "F jeden up"
+                    speech = Speech()
+                    speech.create_voice(text)
+                    print text
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
                     text = "Up down"
                     speech = Speech()

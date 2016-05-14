@@ -19,35 +19,35 @@ class PyMove:
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
                     text = "Up down"
-                    self.create_speech(text)
+                    Speech.create_speech(text)
                     print text
                 elif event.type == pygame.KEYUP and event.key == pygame.K_UP:
                     text = "Up up"
-                    self.create_speech(text)
+                    Speech.create_speech(text)
                     print text
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
                     text = "Down down"
-                    self.create_speech(text)
+                    Speech.create_speech(text)
                     print text
                 elif event.type == pygame.KEYUP and event.key == pygame.K_DOWN:
                     text = "Down up"
-                    self.create_speech(text)
+                    Speech.create_speech(text)
                     print text
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_LEFT:
                     text = "Left down"
-                    self.create_speech(text)
+                    Speech.create_speech(text)
                     print text
                 elif event.type == pygame.KEYUP and event.key == pygame.K_LEFT:
                     text = "Left up"
-                    self.create_speech(text)
+                    Speech.create_speech(text)
                     print text
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_RIGHT:
                     text = "Right down"
-                    self.create_speech(text)
+                    Speech.create_speech(text)
                     print text
                 elif event.type == pygame.KEYUP and event.key == pygame.K_RIGHT:
                     text = "Right up"
-                    self.create_speech(text)
+                    Speech.create_speech(text)
                     print text
 
     def create_speech(self, text):

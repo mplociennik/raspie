@@ -23,7 +23,8 @@ def cam_recording():
 
 def welcome():
     text = "Siemanko to ja Raspi"
-    Speech(text)
+    speech = Speech()
+    speech.create_voice(text)
 
 if __name__ == '__main__':
     jobs = []

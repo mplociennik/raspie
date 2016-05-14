@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/pi/raspie/src/venv/bin/python
 # -*- coding: utf-8 -*-
 import os
 

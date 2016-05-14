@@ -13,6 +13,7 @@ class PyMove:
 
     def start(self):
         pygame.init()
+        pygame.key.set_repeat(100, 100)
         while True:
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:

@@ -30,7 +30,7 @@ def cam_recording():
     print "cam_recording"
 
 def welcome():
-    text = "Witaj panie"
+    text = "Siemanko to ja Raspi"
     create_speech(text)
 
 if __name__ == '__main__':

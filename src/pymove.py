@@ -11,7 +11,6 @@ class PyMove:
 
     def start(self):
         while 1:
-            screen.fill(0)
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
                     if event.key == K_w:

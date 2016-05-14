@@ -13,6 +13,7 @@ class PyMove:
 
     def start(self):
         pygame.init()
+        pygame.display.set_mode()
         pygame.key.set_repeat(100, 100)
         while True:
             for event in pygame.event.get():

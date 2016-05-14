@@ -9,12 +9,12 @@ class Speech(object):
         self.create_speech()
 
     @staticmethod
-    def filter_spaces(self):
-        return self.text.replace(" ", "%20")
+    def filter_spaces(self, text):
+        return text.replace(" ", "%20")
 
     @staticmethod
     def create_speech(self):
-        url_speak = "http://127.0.0.1:8000/speech?text=" + self.filter_spaces()
+        url_speak = "http://127.0.0.1:8000/speech?text=" + filter_spaces(self.text)
         response = urllib2.urlopen(url_speak)
         print response
     

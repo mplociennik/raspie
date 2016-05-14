@@ -1,3 +1,3 @@
-#!/usr/bin/bash
+#!/bin/sh
 python src/start.py
 

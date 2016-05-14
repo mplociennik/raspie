@@ -19,35 +19,43 @@ class PyMove:
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
                     text = "Up down"
-                    Speech.create_speech(text)
+                   speech = Speech()
+                   speech.create_voice(text)
                     print text
                 elif event.type == pygame.KEYUP and event.key == pygame.K_UP:
                     text = "Up up"
-                    Speech.create_speech(text)
+                   speech = Speech()
+                   speech.create_voice(text)
                     print text
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
                     text = "Down down"
-                    Speech.create_speech(text)
+                   speech = Speech()
+                   speech.create_voice(text)
                     print text
                 elif event.type == pygame.KEYUP and event.key == pygame.K_DOWN:
                     text = "Down up"
-                    Speech.create_speech(text)
+                   speech = Speech()
+                   speech.create_voice(text)
                     print text
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_LEFT:
                     text = "Left down"
-                    Speech.create_speech(text)
+                   speech = Speech()
+                   speech.create_voice(text)
                     print text
                 elif event.type == pygame.KEYUP and event.key == pygame.K_LEFT:
                     text = "Left up"
-                    Speech.create_speech(text)
+                   speech = Speech()
+                   speech.create_voice(text)
                     print text
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_RIGHT:
                     text = "Right down"
-                    Speech.create_speech(text)
+                   speech = Speech()
+                   speech.create_voice(text)
                     print text
                 elif event.type == pygame.KEYUP and event.key == pygame.K_RIGHT:
                     text = "Right up"
-                    Speech.create_speech(text)
+                   speech = Speech()
+                   speech.create_voice(text)
                     print text
 
     def create_speech(self, text):

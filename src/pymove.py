@@ -20,3 +20,6 @@ class PyMove:
                     if event.key == K_w:
                         keys[0]=True
                         print "K up"
+
+if __name__ == '__main__':
+    PyMove().start()

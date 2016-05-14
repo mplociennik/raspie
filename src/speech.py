@@ -19,4 +19,4 @@ class Speech(object):
     
 
 if __name__ == "__main__":
-    Speech.hello('Hello World!')
+    Speech('Hello World!')

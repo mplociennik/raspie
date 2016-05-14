@@ -10,8 +10,11 @@ class Speech(object):
 
     def create_speech(self, text):
         url_speak = "http://127.0.0.1:8000/speech?text=" + self.filter_spaces(text)
-        response = urllib2.urlopen(url_speak)
-        print response
+        try:
+            response = urllib2.urlopen(url_speak)
+            print response
+        except Exception as e:
+            print e
     
 
 if __name__ == "__main__":

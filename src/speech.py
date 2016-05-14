@@ -8,7 +8,7 @@ class Speech(object):
     def filter_spaces(self, text):
         return text.replace(" ", "%20")
 
-    def create_speech(self, text):
+    def create_voice(self, text):
         url_speak = "http://127.0.0.1:8000/speech?text=" + self.filter_spaces(text)
         try:
             response = urllib2.urlopen(url_speak)

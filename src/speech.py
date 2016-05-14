@@ -13,8 +13,8 @@ class Speech(object):
         try:
             response = urllib2.urlopen(url_speak)
             print response
-        except Exception as e:
-            print e
+        except:
+            print "Speech: connection not found!"
     
 
 if __name__ == "__main__":

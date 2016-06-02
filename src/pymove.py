@@ -45,12 +45,12 @@ class PyMove:
 #                    speech.create_voice(text)
 #                    print text
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_F2:
-                    text = "Sandruśku kocham Cię"
+                    text = "Chcesz wpierdol?"
                     speech = Speech()
                     speech.create_voice(text)
                     print text
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_F3:
-                    text = "Oliwcia co zjesz na śniadanko?"
+                    text = "Jot Pe sto procent"
                     speech = Speech()
                     speech.create_voice(text)
                     print text
@@ -59,6 +59,37 @@ class PyMove:
                     speech = Speech()
                     speech.create_voice(text)
                     print text
+                if event.type == pygame.KEYDOWN and event.key == pygame.K_F5:
+                    text = "Dawaj tutej densa"
+                    speech = Speech()
+                    speech.create_voice(text)
+                    print text
+                    gpio.output(13, True)
+                    gpio.output(16, True)
+                    time.sleep(2)
+                    gpio.output(13, False)
+                    gpio.output(16, False)
+                    gpio.output(15, True)
+                    gpio.output(16, True)
+                    time.sleep(1)
+                    gpio.output(15, False)
+                    gpio.output(16, False)
+                    gpio.output(13, True)
+                    gpio.output(18, True)
+                    time.sleep(1)
+                    gpio.output(13, False)
+                    gpio.output(18, False)
+                    gpio.output(13, True)
+                    gpio.output(16, True)
+                    time.sleep(1)
+                    gpio.output(13, False)
+                    gpio.output(16, False)
+                    gpio.output(15, True)
+                    gpio.output(18, True)
+                    time.sleep(1)
+                    gpio.output(15, False)
+                    gpio.output(18, False)
+                    
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
                     text = "Up down"
 #                    speech = Speech()

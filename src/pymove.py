@@ -76,34 +76,42 @@ class PyMove:
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
                     text = "Down down"
                     gpio.output(15, True)
+                    gpio.output(18, True)
 #                    speech = Speech()
 #                    speech.create_voice(text)
                     print text
                 elif event.type == pygame.KEYUP and event.key == pygame.K_DOWN:
                     text = "Down up"
                     gpio.output(15, False)
+                    gpio.output(18, False)
 #                    speech = Speech()
 #                    speech.create_voice(text)
                     print text
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_LEFT:
                     text = "Left down"
-                    gpio.output(7, True)
+                    gpio.output(15, True)
+                    gpio.output(16, True)
 #                    speech = Speech()                
 #                    speech.create_voice(text)
                     print text
                 elif event.type == pygame.KEYUP and event.key == pygame.K_LEFT:
                     text = "Left up"
-                    gpio.output(7, False)
+                    gpio.output(15, False)
+                    gpio.output(16, False)
 #                    speech = Speech()
 #                    speech.create_voice(text)
                     print text
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_RIGHT:
                     text = "Right down"
+                    gpio.output(13, True)
+                    gpio.output(18, True)
 #                    speech = Speech()
 #                    speech.create_voice(text)
                     print text
                 elif event.type == pygame.KEYUP and event.key == pygame.K_RIGHT:
                     text = "Right up"
+                    gpio.output(13, False)
+                    gpio.output(18, False)
 #                    speech = Speech()
 #                    speech.create_voice(text)
                     print text

@@ -33,7 +33,6 @@ class PyMove:
         while True:
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_F1:
-                    print "dupa"
                     gpio.output(13, True)
                     gpio.output(15, False)
                     time.sleep(2)
@@ -67,13 +66,16 @@ class PyMove:
                     print text
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
                     text = "Up down"
-                    speech = Speech()
-                    speech.create_voice(text)
+#                    speech = Speech()
+#                    speech.create_voice(text)
+                    gpio.output(13, True)
+                    gpio.output(15, False)
                     print text
                 elif event.type == pygame.KEYUP and event.key == pygame.K_UP:
                     text = "Up up"
-                    speech = Speech()
-                    speech.create_voice(text)
+                    gpio.cleanup()
+#                    speech = Speech()
+#                    speech.create_voice(text)
                     print text
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
                     text = "Down down"

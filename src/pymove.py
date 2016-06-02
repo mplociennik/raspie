@@ -10,11 +10,15 @@ gpio.setmode(gpio.BOARD)
 gpio.setwarnings(False)
 gpio.setup(7, gpio.OUT)
 gpio.setup(11, gpio.OUT)
+gpio.setup(12, gpio.OUT)
+gpio.setup(22, gpio.OUT)
 gpio.setup(13, gpio.OUT)
 gpio.setup(15, gpio.OUT)
 
 gpio.output(7, True)
 gpio.output(11, True)
+gpio.output(12, True)
+gpio.output(22, True)
 
 
 class PyMove:
@@ -45,6 +49,7 @@ class PyMove:
                     gpio.output(13, False)
                     gpio.output(15, True)
                     time.sleep(2)
+                    gpio.cleanup()
 #                    text = "Cześć Sandra co tam u Ciebie?"
 #                    speech = Speech()
 #                    speech.create_voice(text)
@@ -69,10 +74,12 @@ class PyMove:
 #                    speech = Speech()
 #                    speech.create_voice(text)
                     gpio.output(13, True)
+                    gpio.output(16, True)
                     print text
                 elif event.type == pygame.KEYUP and event.key == pygame.K_UP:
                     text = "Up up"
                     gpio.output(13, False)
+                    gpio.output(16, False)
 #                    speech = Speech()
 #                    speech.create_voice(text)
                     print text

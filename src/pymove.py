@@ -66,7 +66,7 @@ class PyMove:
                     print text
                     gpio.output(13, True)
                     gpio.output(16, True)
-                    time.sleep(2)
+                    time.sleep(1)
                     gpio.output(13, False)
                     gpio.output(16, False)
                     gpio.output(15, True)

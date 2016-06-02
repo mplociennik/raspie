@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import RPI.GPIO as gpio
+import RPi.GPIO as gpio
 import pygame
 from pygame.locals import *
 from speech import Speech

@@ -38,28 +38,28 @@ class PyMove:
         pygame.key.set_repeat(100, 100)
         while True:
             for event in pygame.event.get():
-                if event.type == pygame.KEYDOWN and event.key == pygame.K_F1:
+                if event.type == pygame.KEYDOWN and event.key == pygame.K_1:
                     gpio.cleanup()
 #                    text = "Cześć Sandra co tam u Ciebie?"
 #                    speech = Speech()
 #                    speech.create_voice(text)
 #                    print text
-                if event.type == pygame.KEYDOWN and event.key == pygame.K_F2:
+                if event.type == pygame.KEYDOWN and event.key == pygame.K_2:
                     text = "Chcesz wpierdol?"
                     speech = Speech()
                     speech.create_voice(text)
                     print text
-                if event.type == pygame.KEYDOWN and event.key == pygame.K_F3:
+                if event.type == pygame.KEYDOWN and event.key == pygame.K_3:
                     text = "Jot Pe sto procent"
                     speech = Speech()
                     speech.create_voice(text)
                     print text
-                if event.type == pygame.KEYDOWN and event.key == pygame.K_F4:
+                if event.type == pygame.KEYDOWN and event.key == pygame.K_4:
                     text = "Co jest kurwa ziomuś?"
                     speech = Speech()
                     speech.create_voice(text)
                     print text
-                if event.type == pygame.KEYDOWN and event.key == pygame.K_F5:
+                if event.type == pygame.KEYDOWN and event.key == pygame.K_5:
                     text = "Dawaj tutej densa"
                     speech = Speech()
                     speech.create_voice(text)

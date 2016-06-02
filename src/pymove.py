@@ -99,13 +99,13 @@ class PyMove:
                     print text
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_RIGHT:
                     text = "Right down"
-                    speech = Speech()
-                    speech.create_voice(text)
+#                    speech = Speech()
+#                    speech.create_voice(text)
                     print text
                 elif event.type == pygame.KEYUP and event.key == pygame.K_RIGHT:
                     text = "Right up"
-                    speech = Speech()
-                    speech.create_voice(text)
+#                    speech = Speech()
+#                    speech.create_voice(text)
                     print text
 
     def create_speech(self, text):

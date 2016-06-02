@@ -1,8 +1,20 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import RPI.GPIO as gpio
 import pygame
-from speech import Speech
 from pygame.locals import *
+from speech import Speech
+import time
+
+
+gpio.setmode(gpio.BOARD)
+gpio.setup(7, gpio.OUT)
+gpio.setup(11, gpio.OUT)
+gpio.setup(13, gpio.OUT)
+gpio.setup(15, gpio.OUT)
+
+gpio.output(7, true)
+gpio.output(11, true)
 
 
 class PyMove:
@@ -21,10 +33,22 @@ class PyMove:
         while True:
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_F1:
-                    text = "Cześć Sandra co tam u Ciebie?"
-                    speech = Speech()
-                    speech.create_voice(text)
-                    print text
+                    gpio.output(13, true)
+                    gpio.output(15, false)
+                    time.sleep(2)
+                    gpio.output(13, false)
+                    gpio.output(15, true)
+                    time.sleep(2)
+                    gpio.output(13, true)
+                    gpio.output(15, false)
+                    time.sleep(2)
+                    gpio.output(13, false)
+                    gpio.output(15, true)
+                    time.sleep(2)
+#                    text = "Cześć Sandra co tam u Ciebie?"
+#                    speech = Speech()
+#                    speech.create_voice(text)
+#                    print text
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_F2:
                     text = "Sandruśku kocham Cię"
                     speech = Speech()

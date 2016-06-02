@@ -69,23 +69,24 @@ class PyMove:
 #                    speech = Speech()
 #                    speech.create_voice(text)
                     gpio.output(13, True)
-                    gpio.output(15, False)
                     print text
                 elif event.type == pygame.KEYUP and event.key == pygame.K_UP:
                     text = "Up up"
-                    gpio.cleanup()
+                    gpio.output(13, False)
 #                    speech = Speech()
 #                    speech.create_voice(text)
                     print text
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
                     text = "Down down"
-                    speech = Speech()
-                    speech.create_voice(text)
+                    gpio.output(15, True)
+#                    speech = Speech()
+#                    speech.create_voice(text)
                     print text
                 elif event.type == pygame.KEYUP and event.key == pygame.K_DOWN:
                     text = "Down up"
-                    speech = Speech()
-                    speech.create_voice(text)
+                    gpio.output(15, False)
+#                    speech = Speech()
+#                    speech.create_voice(text)
                     print text
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_LEFT:
                     text = "Left down"

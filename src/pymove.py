@@ -14,6 +14,8 @@ gpio.setup(12, gpio.OUT)
 gpio.setup(22, gpio.OUT)
 gpio.setup(13, gpio.OUT)
 gpio.setup(15, gpio.OUT)
+gpio.setup(16, gpio.OUT)
+gpio.setup(18, gpio.OUT)
 
 gpio.output(7, True)
 gpio.output(11, True)

@@ -13,8 +13,8 @@ gpio.setup(11, gpio.OUT)
 gpio.setup(13, gpio.OUT)
 gpio.setup(15, gpio.OUT)
 
-gpio.output(7, true)
-gpio.output(11, true)
+gpio.output(7, True)
+gpio.output(11, True)
 
 
 class PyMove:
@@ -33,17 +33,17 @@ class PyMove:
         while True:
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_F1:
-                    gpio.output(13, true)
-                    gpio.output(15, false)
+                    gpio.output(13, True)
+                    gpio.output(15, False)
                     time.sleep(2)
-                    gpio.output(13, false)
-                    gpio.output(15, true)
+                    gpio.output(13, False)
+                    gpio.output(15, True)
                     time.sleep(2)
-                    gpio.output(13, true)
-                    gpio.output(15, false)
+                    gpio.output(13, True)
+                    gpio.output(15, False)
                     time.sleep(2)
-                    gpio.output(13, false)
-                    gpio.output(15, true)
+                    gpio.output(13, False)
+                    gpio.output(15, True)
                     time.sleep(2)
 #                    text = "Cześć Sandra co tam u Ciebie?"
 #                    speech = Speech()

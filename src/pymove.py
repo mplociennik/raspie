@@ -90,13 +90,15 @@ class PyMove:
                     print text
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_LEFT:
                     text = "Left down"
-                    speech = Speech()                
-                    speech.create_voice(text)
+                    gpio.output(7, True)
+#                    speech = Speech()                
+#                    speech.create_voice(text)
                     print text
                 elif event.type == pygame.KEYUP and event.key == pygame.K_LEFT:
                     text = "Left up"
-                    speech = Speech()
-                    speech.create_voice(text)
+                    gpio.output(7, False)
+#                    speech = Speech()
+#                    speech.create_voice(text)
                     print text
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_RIGHT:
                     text = "Right down"

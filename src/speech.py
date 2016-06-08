@@ -19,7 +19,7 @@ class Speech(object):
             print response
         except:
             print "Speech: connection not found!"
-    
+
 
 if __name__ == "__main__":
     speech = Speech()

@@ -34,26 +34,21 @@ class PyMove:
 
     def start(self):
         pygame.init()
+        pygame.mixer.init()
         pygame.display.set_mode()
         pygame.key.set_repeat(100, 100)
         while True:
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_1:
                     gpio.cleanup()
-#                    text = "Cześć Sandra co tam u Ciebie?"
-#                    speech = Speech()
-#                    speech.create_voice(text)
-#                    print text
+
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_2:
-                    text = "Chcesz wpierdol?"
-                    speech = Speech()
-                    speech.create_voice(text)
+                    pygame.mixer.music.load('sounds/Very_Excited_R2D2.mp3')
+                    pygame.mixer.music.play()
                     print text
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_3:
-                    text = "Jot Pe sto procent"
-                    speech = Speech()
-                    speech.create_voice(text)
-                    print text
+                    pygame.mixer.music.load('sounds/Unbelievable_R2D2.mp3')
+                    pygame.mixer.music.play()
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_4:
                     text = "Co jest kurwa ziomuś?"
                     speech = Speech()
@@ -64,11 +59,6 @@ class PyMove:
                     speech = Speech()
                     speech.create_voice(text)
                     print text
-                    gpio.output(13, True)
-                    gpio.output(16, True)
-                    time.sleep(1)
-                    gpio.output(13, False)
-                    gpio.output(16, False)
                     gpio.output(15, True)
                     gpio.output(16, True)
                     time.sleep(1)
@@ -91,12 +81,8 @@ class PyMove:
                     gpio.output(18, False)
                     
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
-                    text = "Up down"
-#                    speech = Speech()
-#                    speech.create_voice(text)
                     gpio.output(13, True)
                     gpio.output(16, True)
-                    print text
                 elif event.type == pygame.KEYUP and event.key == pygame.K_UP:
                     text = "Up up"
                     gpio.output(13, False)

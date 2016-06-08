@@ -44,11 +44,11 @@ class PyMove:
 
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_2:
                     pygame.mixer.music.load('sounds/Very_Excited_R2D2.mp3')
-                    pygame.mixer.music.play()
+                    pygame.mixer.music.play(1)
                     print text
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_3:
                     pygame.mixer.music.load('sounds/Unbelievable_R2D2.mp3')
-                    pygame.mixer.music.play()
+                    pygame.mixer.music.play(1)
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_4:
                     text = "Co jest kurwa ziomuś?"
                     speech = Speech()

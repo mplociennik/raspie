@@ -24,9 +24,7 @@ def cam_recording():
     print "cam_recording"
 
 def welcome():
-    text = "Siemanko to ja Raspi"
-    speech = Speech()
-    speech.create_voice(text)
+    print "started..."
 
 if __name__ == '__main__':
     jobs = []

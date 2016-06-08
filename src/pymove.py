@@ -35,6 +35,8 @@ class PyMove:
     def start(self):
         pygame.init()
         pygame.mixer.init()
+        pygame.mixer.load('sounds/Processing_R2D2.mp3')
+        pygame.mixer.play(1)
         pygame.display.set_mode()
         pygame.key.set_repeat(100, 100)
         while True:

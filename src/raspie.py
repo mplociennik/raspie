@@ -5,6 +5,7 @@ import os
 import time
 from pymove import PyMove
 from speech import Speech
+from distance import Distance
 
 def webapi():
     os.system('venv/bin/python webapi/manage.py runserver 0.0.0.0:8000')

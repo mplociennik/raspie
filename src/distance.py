@@ -3,17 +3,16 @@
 import RPi.GPIO as GPIO
 import time
 
+GPIO.setmode(GPIO.BOARD)
+TRIG = 7
+ECHO = 12
+GPIO.setup(TRIG,GPIO.OUT)
+GPIO.output(ECHO.GPIO.IN)
 
 class Distance:
     """
     For detecting distanse.
     """
-
-    GPIO.setmode(GPIO.BOARD)
-    TRIG = 7
-    ECHO = 12
-    GPIO.setup(TRIG,GPIO.OUT)
-    GPIO.output(ECHO.GPIO.IN)
     
     def __init__(self):
         pass

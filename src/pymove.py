@@ -84,8 +84,8 @@ class PyMove:
                     gpio.output(18, False)
                     
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
-                    gpio.output(16, True)
                     gpio.output(13, True)
+                    gpio.output(16, True)
                 elif event.type == pygame.KEYUP and event.key == pygame.K_UP:
                     text = "Up up"
                     gpio.output(13, False)

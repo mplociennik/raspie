@@ -50,7 +50,6 @@ class PyMove:
         gpio.output(MOTOR_RIGHT_DOWN, False)
 
     def distance(self):
-        threading.Timer(2.0, distance).start()
         distance = Distance()
         cm = distance.distance()
         print cm
@@ -60,7 +59,6 @@ class PyMove:
         
     def start(self):
         pygame.init()
-        self.distance()
         #pygame.mixer.init()
         #pygame.mixer.load('sounds/Processing_R2D2.mp3')
         #pygame.mixer.play(1)
@@ -72,7 +70,7 @@ class PyMove:
                     gpio.cleanup()
 
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_2:
-                    self.stop_motors()
+                    self.distance()
                     #pygame.mixer.music.load('sounds/Very_Excited_R2D2.mp3')
                     #pygame.mixer.music.play(1)
                     pass

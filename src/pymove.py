@@ -4,23 +4,33 @@ import RPi.GPIO as gpio
 import pygame
 from pygame.locals import *
 from speech import Speech
+from distance import Distance
 import time
+
+MOTOR_LEFT_EN1 = 7
+MOTOR_LEFT_EN2 = 11
+MOTOR_RIGHT_EN1 = 12
+MOTOR_RIGHT_EN2 = 22
+MOTOR_LEFT_UP = 13
+MOTOR_RIGHT_UP = 16
+MOTOR_LEFT_DOWN = 15
+MOTOR_RIGHT_DOWN = 18
 
 gpio.setmode(gpio.BOARD)
 gpio.setwarnings(False)
-gpio.setup(7, gpio.OUT)
-gpio.setup(11, gpio.OUT)
-gpio.setup(12, gpio.OUT)
-gpio.setup(22, gpio.OUT)
-gpio.setup(13, gpio.OUT)
-gpio.setup(15, gpio.OUT)
-gpio.setup(16, gpio.OUT)
-gpio.setup(18, gpio.OUT)
+gpio.setup(MOTOR_LEFT_EN1, gpio.OUT)
+gpio.setup(MOTOR_LEFT_EN2, gpio.OUT)
+gpio.setup(MOTOR_RIGHT_EN1, gpio.OUT)
+gpio.setup(MOTOR_RIGHT_EN2, gpio.OUT)
+gpio.setup(MOTOR_LEFT_UP, gpio.OUT)
+gpio.setup(MOTOR_LEFT_DOWN, gpio.OUT)
+gpio.setup(MOTOR_RIGHT_UP, gpio.OUT)
+gpio.setup(MOTOR_RIGHT_DOWN, gpio.OUT)
 
-gpio.output(7, True)
-gpio.output(11, True)
-gpio.output(12, True)
-gpio.output(22, True)
+gpio.output(MOTOR_LEFT_EN1, True)
+gpio.output(MOTOR_LEFT_EN2, True)
+gpio.output(MOTOR_RIGHT_EN1, True)
+gpio.output(MOTOR_RIGHT_EN2, True)
 
 
 class PyMove:
@@ -62,76 +72,76 @@ class PyMove:
                     speech = Speech()
                     speech.create_voice(text)
                     print text
-                    gpio.output(15, True)
-                    gpio.output(16, True)
+                    gpio.output(MOTOR_LEFT_DOWN, True)
+                    gpio.output(MOTOR_RIGHT_UP, True)
                     time.sleep(1)
-                    gpio.output(15, False)
-                    gpio.output(16, False)
-                    gpio.output(13, True)
-                    gpio.output(18, True)
+                    gpio.output(MOTOR_LEFT_DOWN, False)
+                    gpio.output(MOTOR_RIGHT_UP, False)
+                    gpio.output(MOTOR_LEFT_UP, True)
+                    gpio.output(MOTOR_RIGHT_DOWN, True)
                     time.sleep(1)
-                    gpio.output(13, False)
-                    gpio.output(18, False)
-                    gpio.output(13, True)
-                    gpio.output(16, True)
+                    gpio.output(MOTOR_LEFT_UP, False)
+                    gpio.output(MOTOR_RIGHT_DOWN, False)
+                    gpio.output(MOTOR_LEFT_UP, True)
+                    gpio.output(MOTOR_RIGHT_UP, True)
                     time.sleep(1)
-                    gpio.output(13, False)
-                    gpio.output(16, False)
-                    gpio.output(15, True)
-                    gpio.output(18, True)
+                    gpio.output(MOTOR_LEFT_UP, False)
+                    gpio.output(MOTOR_RIGHT_UP, False)
+                    gpio.output(MOTOR_LEFT_DOWN, True)
+                    gpio.output(MOTOR_RIGHT_DOWN, True)
                     time.sleep(1)
-                    gpio.output(15, False)
-                    gpio.output(18, False)
+                    gpio.output(MOTOR_LEFT_DOWN, False)
+                    gpio.output(MOTOR_RIGHT_DOWN, False)
                     
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
-                    gpio.output(13, True)
-                    gpio.output(16, True)
+                    gpio.output(MOTOR_LEFT_UP, True)
+                    gpio.output(MOTOR_RIGHT_UP, True)
                 elif event.type == pygame.KEYUP and event.key == pygame.K_UP:
                     text = "Up up"
-                    gpio.output(13, False)
-                    gpio.output(16, False)
+                    gpio.output(MOTOR_LEFT_UP, False)
+                    gpio.output(MOTOR_RIGHT_UP, False)
 #                    speech = Speech()
 #                    speech.create_voice(text)
                     print text
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
                     text = "Down down"
-                    gpio.output(15, True)
-                    gpio.output(18, True)
+                    gpio.output(MOTOR_LEFT_DOWN, True)
+                    gpio.output(MOTOR_RIGHT_DOWN, True)
 #                    speech = Speech()
 #                    speech.create_voice(text)
                     print text
                 elif event.type == pygame.KEYUP and event.key == pygame.K_DOWN:
                     text = "Down up"
-                    gpio.output(15, False)
-                    gpio.output(18, False)
+                    gpio.output(MOTOR_LEFT_DOWN, False)
+                    gpio.output(MOTOR_RIGHT_DOWN, False)
 #                    speech = Speech()
 #                    speech.create_voice(text)
                     print text
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_LEFT:
                     text = "Left down"
-                    gpio.output(15, True)
-                    gpio.output(16, True)
+                    gpio.output(MOTOR_LEFT_DOWN, True)
+                    gpio.output(MOTOR_RIGHT_UP, True)
 #                    speech = Speech()                
 #                    speech.create_voice(text)
                     print text
                 elif event.type == pygame.KEYUP and event.key == pygame.K_LEFT:
                     text = "Left up"
-                    gpio.output(15, False)
-                    gpio.output(16, False)
+                    gpio.output(MOTOR_LEFT_DOWN, False)
+                    gpio.output(MOTOR_RIGHT_UP, False)
 #                    speech = Speech()
 #                    speech.create_voice(text)
                     print text
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_RIGHT:
                     text = "Right down"
-                    gpio.output(13, True)
-                    gpio.output(18, True)
+                    gpio.output(MOTOR_LEFT_UP, True)
+                    gpio.output(MOTOR_RIGHT_DOWN, True)
 #                    speech = Speech()
 #                    speech.create_voice(text)
                     print text
                 elif event.type == pygame.KEYUP and event.key == pygame.K_RIGHT:
                     text = "Right up"
-                    gpio.output(13, False)
-                    gpio.output(18, False)
+                    gpio.output(MOTOR_LEFT_UP, False)
+                    gpio.output(MOTOR_RIGHT_DOWN, False)
 #                    speech = Speech()
 #                    speech.create_voice(text)
                     print text

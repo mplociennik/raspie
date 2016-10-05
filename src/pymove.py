@@ -51,7 +51,7 @@ class PyMove:
 
     def distance(self):
         distance = Distance()
-        cm = distance.distance()
+        cm = distance.detect()
         print cm
         if cm <= 5.00:
             self.stop_motors()

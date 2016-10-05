@@ -67,9 +67,11 @@ class PyMove:
         while True:
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_1:
+                    print 'cleanup...'
                     gpio.cleanup()
 
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_2:
+                    print 'start distance...'
                     self.distance()
                     #pygame.mixer.music.load('sounds/Very_Excited_R2D2.mp3')
                     #pygame.mixer.music.play(1)

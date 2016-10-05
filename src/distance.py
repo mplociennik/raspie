@@ -7,7 +7,8 @@ GPIO.setmode(GPIO.BOARD)
 TRIG = 31
 ECHO = 32
 GPIO.setup(TRIG,GPIO.OUT)
-GPIO.output(ECHO,GPIO.IN)
+GPIO.setup(ECHO, GPIO.IN)
+GPIO.output(TRIG, False)
 
 class Distance:
     """

@@ -44,6 +44,7 @@ class PyMove:
         self.move = False
 
     def stop_motors(self):
+        print 'stoping motors...'
         gpio.output(MOTOR_LEFT_UP, False)
         gpio.output(MOTOR_LEFT_DOWN, False)
         gpio.output(MOTOR_RIGHT_UP, False)
@@ -53,7 +54,7 @@ class PyMove:
         distance = Distance()
         cm = distance.detect()
         print cm
-        if cm <= 5.00:
+        if cm <= 10.00:
             self.stop_motors()
         
         

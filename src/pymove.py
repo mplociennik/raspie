@@ -72,7 +72,7 @@ class PyMove:
                     gpio.cleanup()
 
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_2:
-                    self.distance()
+                    self.stop_motors()
                     #pygame.mixer.music.load('sounds/Very_Excited_R2D2.mp3')
                     #pygame.mixer.music.play(1)
                     pass
@@ -120,49 +120,49 @@ class PyMove:
                     gpio.output(MOTOR_RIGHT_UP, False)
 #                    speech = Speech()
 #                    speech.create_voice(text)
-    print text
-if event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
-    text = "Down down"
-    gpio.output(MOTOR_LEFT_DOWN, True)
-    gpio.output(MOTOR_RIGHT_DOWN, True)
-#                    speech = Speech()
-#                    speech.create_voice(text)
-    print text
-elif event.type == pygame.KEYUP and event.key == pygame.K_DOWN:
-    text = "Down up"
-    gpio.output(MOTOR_LEFT_DOWN, False)
-    gpio.output(MOTOR_RIGHT_DOWN, False)
-#                    speech = Speech()
-#                    speech.create_voice(text)
-    print text
-if event.type == pygame.KEYDOWN and event.key == pygame.K_LEFT:
-    text = "Left down"
-    gpio.output(MOTOR_LEFT_DOWN, True)
-    gpio.output(MOTOR_RIGHT_UP, True)
-#                    speech = Speech()                
-#                    speech.create_voice(text)
-    print text
-elif event.type == pygame.KEYUP and event.key == pygame.K_LEFT:
-    text = "Left up"
-    gpio.output(MOTOR_LEFT_DOWN, False)
-    gpio.output(MOTOR_RIGHT_UP, False)
-#                    speech = Speech()
-#                    speech.create_voice(text)
-    print text
-if event.type == pygame.KEYDOWN and event.key == pygame.K_RIGHT:
-    text = "Right down"
-    gpio.output(MOTOR_LEFT_UP, True)
-    gpio.output(MOTOR_RIGHT_DOWN, True)
-#                    speech = Speech()
-#                    speech.create_voice(text)
-    print text
-elif event.type == pygame.KEYUP and event.key == pygame.K_RIGHT:
-    text = "Right up"
-    gpio.output(MOTOR_LEFT_UP, False)
-    gpio.output(MOTOR_RIGHT_DOWN, False)
-#                    speech = Speech()
-#                    speech.create_voice(text)
-    print text
+                    print text
+                if event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
+                    text = "Down down"
+                    gpio.output(MOTOR_LEFT_DOWN, True)
+                    gpio.output(MOTOR_RIGHT_DOWN, True)
+                #                    speech = Speech()
+                #                    speech.create_voice(text)
+                    print text
+                elif event.type == pygame.KEYUP and event.key == pygame.K_DOWN:
+                    text = "Down up"
+                    gpio.output(MOTOR_LEFT_DOWN, False)
+                    gpio.output(MOTOR_RIGHT_DOWN, False)
+                #                    speech = Speech()
+                #                    speech.create_voice(text)
+                    print text
+                if event.type == pygame.KEYDOWN and event.key == pygame.K_LEFT:
+                    text = "Left down"
+                    gpio.output(MOTOR_LEFT_DOWN, True)
+                    gpio.output(MOTOR_RIGHT_UP, True)
+                #                    speech = Speech()                
+                #                    speech.create_voice(text)
+                    print text
+                elif event.type == pygame.KEYUP and event.key == pygame.K_LEFT:
+                    text = "Left up"
+                    gpio.output(MOTOR_LEFT_DOWN, False)
+                    gpio.output(MOTOR_RIGHT_UP, False)
+                #                    speech = Speech()
+                #                    speech.create_voice(text)
+                    print text
+                if event.type == pygame.KEYDOWN and event.key == pygame.K_RIGHT:
+                    text = "Right down"
+                    gpio.output(MOTOR_LEFT_UP, True)
+                    gpio.output(MOTOR_RIGHT_DOWN, True)
+                #                    speech = Speech()
+                #                    speech.create_voice(text)
+                    print text
+                elif event.type == pygame.KEYUP and event.key == pygame.K_RIGHT:
+                    text = "Right up"
+                    gpio.output(MOTOR_LEFT_UP, False)
+                    gpio.output(MOTOR_RIGHT_DOWN, False)
+                #                    speech = Speech()
+                #                    speech.create_voice(text)
+                    print text
 
 def create_speech(self, text):
     url_speak = "http://127.0.0.1:8000/speech?text=" + filter_spaces(text)

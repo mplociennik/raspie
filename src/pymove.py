@@ -60,7 +60,7 @@ class PyMove:
         
     def start(self):
         pygame.init()
-        self.distance(self)
+        self.distance()
         #pygame.mixer.init()
         #pygame.mixer.load('sounds/Processing_R2D2.mp3')
         #pygame.mixer.play(1)

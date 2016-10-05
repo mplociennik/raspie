@@ -18,6 +18,9 @@ class Distance:
     def __init__(self):
         pass
 
+    def clean_gpio(self):
+        GPIO.cleanup()
+        
     def detect(self):
         time.sleep(0.1)
         print "Starting detection..."
@@ -30,7 +33,6 @@ class Distance:
             pulse_stop = time.time()
         distance = (pulse_stop - pulse_start) * 17150
         distance = round(distance, 2)
-        GPIO.cleanup()
         return distance
 
 if __name__ == "__main__":

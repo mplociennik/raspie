@@ -5,7 +5,7 @@ from distance import Distance
 import pygame
 from pygame.locals import *
 from speech import Speech
-import threading
+import multiprocessing
 import time
 
 MOTOR_LEFT_EN1 = 7
@@ -42,6 +42,7 @@ class PyMove:
     def __init__(self):
         self.data = []
         self.move = False
+        self.autopilot = False;
 
     def stop_motors(self):
         print 'stoping motors...'
@@ -57,8 +58,11 @@ class PyMove:
         if cm <= 10.00:
             self.stop_motors()
         
-        
-    def start(self):
+    def autopilot(self):
+        if self.autopilot:
+            print 'Autopilot here...'
+
+    def key_control(self):
         pygame.init()
         #pygame.mixer.init()
         #pygame.mixer.load('sounds/Processing_R2D2.mp3')
@@ -165,10 +169,25 @@ class PyMove:
                 #                    speech.create_voice(text)
                     print text
 
-def create_speech(self, text):
-    url_speak = "http://127.0.0.1:8000/speech?text=" + filter_spaces(text)
-    response = urllib2.urlopen(url_speak)
-    text = response
+    def create_speech(self, text):
+        url_speak = "http://127.0.0.1:8000/speech?text=" + filter_spaces(text)
+        response = urllib2.urlopen(url_speak)
+        text = response
+
+    def start(self):
+        jobs = []
+        distance = multiprocessing.Process(target=distance)
+        key_control = multiprocessing.Process(target=key_control)
+        autopilot = multiprocessingProcess(target=autopilot)
+
+        jobs.append(distance)
+        jobs.append(key_control)
+        jobs.append(autopilot)
+
+        distance.start()
+        key_control.start()
+        autopilot.start()
+
 
 if __name__ == '__main__':
     PyMove().start()

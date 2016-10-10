@@ -5,7 +5,6 @@ import os
 import time
 from pymove import PyMove
 from speech import Speech
-from distance import Distance
 
 def webapi():
     os.system('venv/bin/python webapi/manage.py runserver 0.0.0.0:8000')
@@ -14,9 +13,6 @@ def move_control():
     move_control = PyMove()
     move_control.start()
     return move_control
-
-def distance_detection():
-    print "distance_detection"
 
 def voice_recording():
     print "voice_recording"

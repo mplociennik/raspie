@@ -23,7 +23,7 @@ class Distance:
         
     def detect(self):
         time.sleep(0.1)
-        print "Starting detection..."
+        print "Distance detection..."
         GPIO.output(TRIG,1)
         time.sleep(0.00001)
         GPIO.output(TRIG,0)

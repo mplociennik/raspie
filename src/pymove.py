@@ -210,9 +210,9 @@ class PyMove:
 
     def start(self):
         jobs = []
-        distance = multiprocessing.Process(target=distance)
         key_control = multiprocessing.Process(target=key_control)
         autopilot = multiprocessingProcess(target=autopilot)
+        distance = multiprocessing.Process(target=distance)
 
         jobs.append(distance)
         jobs.append(key_control)

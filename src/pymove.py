@@ -167,11 +167,9 @@ class PyMove:
                 if event.type == pygame.KEYUP and event.key == pygame.K_2:
                     if self.autopilot:
                         text = 'Stoping autopilot...'
-                        print text
                         self.autopilot = False
                     else:
                         text = 'Starting autopilot...'
-                        print text
                         self.autopilot = True
                     self.display_text(text)
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_3:

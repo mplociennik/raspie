@@ -38,7 +38,6 @@ if __name__ == '__main__':
     jobs.append(cam_recording)
     jobs.append(welcome)
 #    webapi.start()
-    time.sleep(10)
     move_control.start()
     voice_commands.start()
     cam_recording.start()

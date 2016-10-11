@@ -14,8 +14,8 @@ def move_control():
     move_control.start()
     return move_control
 
-def voice_recording():
-    print "voice_recording"
+def voice_commands():
+    print "voice_commands"
 
 def cam_recording():
     print "cam_recording"
@@ -29,17 +29,17 @@ if __name__ == '__main__':
     jobs = []
     webapi = multiprocessing.Process(target=webapi)
     move_control = multiprocessing.Process(target=move_control)
-    voice_recording = multiprocessing.Process(target=voice_recording)
+    voice_commands = multiprocessing.Process(target=voice_commands)
     cam_recording = multiprocessing.Process(target=cam_recording)
     welcome = multiprocessing.Process(target=welcome)
     jobs.append(webapi)
     jobs.append(move_control)
-    jobs.append(voice_recording)
+    jobs.append(voice_commands)
     jobs.append(cam_recording)
     jobs.append(welcome)
     webapi.start()
     time.sleep(10)
     move_control.start()
-    voice_recording.start()
+    voice_commands.start()
     cam_recording.start()
     welcome.start()

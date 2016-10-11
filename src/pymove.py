@@ -47,7 +47,7 @@ class PyMove:
         self.autopilot = False;
         self.obstacle = False;
         pygame.init()
-        pygame.display.set_mode()
+        self.screen = pygame.display.set_mode()
         pygame.key.set_repeat(100, 100)
         self.font = pygame.font.SysFont('monospace', 22)
 
@@ -95,7 +95,7 @@ class PyMove:
 
     def display_text(self, text):
         label = self.font.render(text, 1, (255,255,0))
-        screen.blit(label, 100,100)
+        self.screen.blit(label, 100,100)
         return True
 
     def run_up_start(self):

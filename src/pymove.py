@@ -210,17 +210,17 @@ class PyMove:
 
     def start(self):
         jobs = []
-        self.key_control = multiprocessing.Process(target=key_control)
-        self.autopilot = multiprocessingProcess(target=autopilot)
-        self.distance = multiprocessing.Process(target=distance)
+        key_control = multiprocessing.Process(target=self.key_control)
+        autopilot = multiprocessingProcess(target=self.autopilot)
+        distance = multiprocessing.Process(target=self.distance)
 
-        jobs.append(self.distance)
-        jobs.append(self.key_control)
-        jobs.append(self.autopilot)
+        jobs.append(distance)
+        jobs.append(key_control)
+        jobs.append(autopilot)
 
-        self.distance.start()
-        self.key_control.start()
-        self.autopilot.start()
+        distance.start()
+        key_control.start()
+        autopilot.start()
 
 
 if __name__ == '__main__':

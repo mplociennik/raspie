@@ -94,8 +94,9 @@ class PyMove:
         os.system("shutdown now -h")
 
     def display_text(self, text):
-        label = self.font.render(text, 1, (255,255,0))
-        self.screen.blit(label, 100,100)
+#        label = self.font.render(text, 1, (255,255,0))
+#        self.screen.blit(label, 100,100)
+        print text
         return True
 
     def run_up_start(self):

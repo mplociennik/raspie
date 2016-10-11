@@ -83,6 +83,7 @@ class PyMove:
             time.sleep(1)
 
     def restart_raspie(self):
+        speech = Speech()
         speech.play_sound('sounds/Very_Excited_R2D2.mp3')
         gpio.cleanup()
         python = sys.executable
@@ -90,6 +91,7 @@ class PyMove:
 
     def shutdown(self):
         self.display_text('Shutting down...')
+        speech = Speech()
         speech.play_sound('sounds/Sad_R2D2.mp3')
         os.system("shutdown now -h")
 

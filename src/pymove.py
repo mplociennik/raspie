@@ -159,7 +159,7 @@ class PyMove:
                     self.display_text('Restarting raspie...')
                     self.restart_raspie()
                 if event.type == pygame.KEYUP and event.key == pygame.K_2:
-                    if(self.autopilot):
+                    if self.autopilot:
                         text = 'Stoping autopilot...'
                         print text
                         self.autopilot = False

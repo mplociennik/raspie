@@ -8,6 +8,7 @@ from speech import Speech
 import multiprocessing
 import time
 import os
+import sys
 
 
 MOTOR_LEFT_EN1 = 7

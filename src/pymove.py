@@ -8,6 +8,7 @@ from speech import Speech
 import multiprocessing
 import time
 
+
 MOTOR_LEFT_EN1 = 7
 MOTOR_LEFT_EN2 = 11
 MOTOR_RIGHT_EN1 = 12
@@ -43,6 +44,7 @@ class PyMove:
         self.data = []
         self.move = False
         self.autopilot = False;
+        self.obstacle = False;
 
     def stop_motors(self):
         print 'stoping motors...'
@@ -56,17 +58,26 @@ class PyMove:
         cm = distance.detect()
         print cm
         if cm <= 10.00:
+            self.obstacle = True
             self.stop_motors()
         
     def autopilot(self):
-        if self.autopilot:
-            print 'Autopilot here...'
+        while True:
+            if self.autopilot:
+                print 'Autopilot starting...'
+                if self.obstacle:
+                    gpio.output(MOTOR_LEFT_UP, True)
+                    gpio.output(MOTOR_RIGHT_DOWN, True)
+                    time.sleep(1)
+                    gpio.output(MOTOR_LEFT_UP, False)
+                    gpio.output(MOTOR_RIGHT_DOWN, False)
+                else:
+                    gpio.output(MOTOR_LEFT_UP, True)
+                    gpio.output(MOTOR_RIGHT_UP, True)
+            time.sleep(1)
 
     def key_control(self):
         pygame.init()
-        #pygame.mixer.init()
-        #pygame.mixer.load('sounds/Processing_R2D2.mp3')
-        #pygame.mixer.play(1)
         pygame.display.set_mode()
         pygame.key.set_repeat(100, 100)
         while True:

@@ -49,7 +49,7 @@ class PyMove:
         pygame.init()
         pygame.display.set_mode()
         pygame.key.set_repeat(100, 100)
-        font = pygame.font.SysFont('monospace', 22)
+        self.font = pygame.font.SysFont('monospace', 22)
 
     def stop_motors(self):
         self.display_text('stoping motors...')
@@ -94,7 +94,7 @@ class PyMove:
         os.system("shutdown now -h")
 
     def display_text(self, text):
-        label = font.render(text, 1, (255,255,0))
+        label = self.font.render(text, 1, (255,255,0))
         screen.blit(label, 100,100)
         return True
 
@@ -153,7 +153,7 @@ class PyMove:
                     self.shutdown()
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_1:
                     self.display_text('Restarting raspie...')
-                   self.restart_raspie()
+                    self.restart_raspie()
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_2:
                     if(self.autopilot):
                         text = 'Stoping autopilot...'

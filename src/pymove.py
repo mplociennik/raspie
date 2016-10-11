@@ -169,7 +169,8 @@ class PyMove:
                         self.autopilot = True
                     self.display_text(text)
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_3:
-                    pass
+                    print 'Cleaning up gpio'
+                    gpio.cleanup()
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_4:
                     text = "Co słychać?"
                     speech = Speech()

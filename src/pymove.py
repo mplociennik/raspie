@@ -68,10 +68,13 @@ class PyMove:
         
     def autopilot(self):
         while True:
+            print 'dupa'
             if self.autopilot:
+                print 'dupa2'
                 speech.play_sound('sounds/Very_Excited_R2D2.mp3')
                 self.display_text('Autopilot starting...')
                 if self.obstacle:
+                    print 'dupa3'
                     speech.play_sound()
                     gpio.output(MOTOR_LEFT_UP, True)
                     gpio.output(MOTOR_RIGHT_DOWN, True)
@@ -79,6 +82,7 @@ class PyMove:
                     gpio.output(MOTOR_LEFT_UP, False)
                     gpio.output(MOTOR_RIGHT_DOWN, False)
                 else:
+                    print 'dupa4'
                     gpio.output(MOTOR_LEFT_UP, True)
                     gpio.output(MOTOR_RIGHT_UP, True)
             time.sleep(1)

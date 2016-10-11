@@ -54,8 +54,7 @@ class PyMove:
     def distance(self):
         distance = Distance()
         cm = distance.detect()
-        print cm
-        if cm <= 10.00:
+        if cm <= 10:
             self.stop_motors()
         
     def autopilot(self):

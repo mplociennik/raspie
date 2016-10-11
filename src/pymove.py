@@ -60,11 +60,13 @@ class PyMove:
         gpio.output(MOTOR_RIGHT_DOWN, False)
 
     def distance(self):
-        distance = Distance()
-        cm = distance.detect()
-        if cm <= 10:
-            self.obstacle = True
-            self.stop_motors()
+        while True:
+            distance = Distance()
+            cm = distance.detect()
+            print cm
+            if cm <= 10:
+                self.obstacle = True
+                self.stop_motors()
         
     def autopilot(self):
         while True:

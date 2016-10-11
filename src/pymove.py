@@ -168,12 +168,12 @@ class PyMove:
                     text = "Co słychać?"
                     speech = Speech()
                     speech.create_voice(text)
-                    self.display_text(text
+                    self.display_text(text)
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_5:
                     text = "Let's dance!"
                     speech = Speech()
                     speech.create_voice(text)
-                    self.display_text(text
+                    self.display_text(text)
                     self.run_left_start()
                     time.sleep(1)
                     self.run_left_stop()

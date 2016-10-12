@@ -51,6 +51,9 @@ class PyMove:
         pygame.key.set_repeat(100, 100)
         self.font = pygame.font.SysFont('monospace', 22)
 
+    def toggle_autopilot(self):
+        self.autopilot = self.autopilot if True else False
+        
     def stop_motors(self):
         self.display_text('stoping motors...')
         gpio.output(MOTOR_LEFT_UP, False)
@@ -165,10 +168,10 @@ class PyMove:
                 if event.type == pygame.KEYUP and event.key == pygame.K_2:
                     if self.autopilot:
                         text = 'Stoping autopilot...'
-                        self.autopilot = False
+                        self.toggle_autopilot()
                     else:
                         text = 'Starting autopilot...'
-                        self.autopilot = True
+                        self.toggle_autopilot()
                     self.display_text(text)
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_3:
                     print 'Cleaning up gpio'

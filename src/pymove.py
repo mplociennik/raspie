@@ -223,7 +223,8 @@ class PyMove:
 
     def start(self):
         jobs = []
-        autopilot_process = multiprocessing.Process(target=self.autopilot_process)
+        autopilot = Value('autopilot', self.autopilot)
+        autopilot_process = multiprocessing.Process(target=self.autopilot_process, args=(autopilot))
         key_control = multiprocessing.Process(target=self.key_control)
         distance = multiprocessing.Process(target=self.distance)
 

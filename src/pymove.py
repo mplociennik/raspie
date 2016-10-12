@@ -5,7 +5,7 @@ from distance import Distance
 import pygame
 from pygame.locals import *
 from speech import Speech
-import multiprocessing
+from multiprocessing import Process, Value
 import time
 import os
 import sys
@@ -224,9 +224,9 @@ class PyMove:
     def start(self):
         jobs = []
         autopilot = Value('autopilot', self.autopilot)
-        autopilot_process = multiprocessing.Process(target=self.autopilot_process, args=(autopilot))
-        key_control = multiprocessing.Process(target=self.key_control)
-        distance = multiprocessing.Process(target=self.distance)
+        autopilot_process = Process(target=self.autopilot_process, args=(autopilot))
+        key_control = Process(target=self.key_control)
+        distance = Process(target=self.distance)
 
         jobs.append(distance)
         jobs.append(key_control)

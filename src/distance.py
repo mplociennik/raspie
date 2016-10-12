@@ -22,7 +22,6 @@ class Distance:
         GPIO.cleanup()
         
     def detect(self):
-        print "Waiting for sensor..."
         time.sleep(1)
         GPIO.output(TRIG,1)
         time.sleep(0.00001)

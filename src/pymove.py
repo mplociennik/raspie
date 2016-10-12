@@ -63,7 +63,6 @@ class PyMove:
         while True:
             distance = Distance()
             cm = distance.detect()
-            print cm
             if cm <= 10:
                 self.obstacle = True
                 self.stop_motors()
@@ -222,16 +221,16 @@ class PyMove:
 
     def start(self):
         jobs = []
-        key_control = multiprocessing.Process(target=self.key_control)
         autopilot = multiprocessing.Process(target=self.autopilot)
+        key_control = multiprocessing.Process(target=self.key_control)
         distance = multiprocessing.Process(target=self.distance)
 
         jobs.append(distance)
         jobs.append(key_control)
 
+        autopilot.start()
         distance.start()
         key_control.start()
-        autopilot.start()
 
 
 if __name__ == '__main__':

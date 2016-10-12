@@ -43,9 +43,9 @@ class PyMove:
     """
 
     def __init__(self):
+        self.autopilotProcess = multiprocessing.Process(target=self.autopilot)
         self.data = []
         self.move = False
-        self.autopilot = False;
         self.obstacle = False;
         pygame.init()
         self.screen = pygame.display.set_mode()
@@ -167,10 +167,10 @@ class PyMove:
                 if event.type == pygame.KEYUP and event.key == pygame.K_2:
                     if self.autopilot:
                         text = 'Stoping autopilot...'
-                        self.autopilot = False
+                        self.autopilotProcess.stop()
                     else:
                         text = 'Starting autopilot...'
-                        self.autopilot = True
+                        self.autopilotProcess.start()
                     self.display_text(text)
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_3:
                     print 'Cleaning up gpio'
@@ -222,16 +222,13 @@ class PyMove:
     def start(self):
         jobs = []
         key_control = multiprocessing.Process(target=self.key_control)
-        autopilot = multiprocessing.Process(target=self.autopilot)
         distance = multiprocessing.Process(target=self.distance)
 
         jobs.append(distance)
         jobs.append(key_control)
-        jobs.append(autopilot)
 
         distance.start()
         key_control.start()
-        autopilot.start()
 
 
 if __name__ == '__main__':

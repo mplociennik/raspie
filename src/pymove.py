@@ -164,10 +164,10 @@ class PyMove:
                 if event.type == pygame.KEYUP and event.key == pygame.K_2:
                     if self.autopilot:
                         text = 'Stoping autopilot...'
-                        autopilot = False
+                        self.autopilot = False
                     else:
                         text = 'Starting autopilot...'
-                        autopilot = True
+                        self.autopilot = True
                     self.display_text(text)
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_3:
                     print 'Cleaning up gpio'

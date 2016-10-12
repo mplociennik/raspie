@@ -124,31 +124,31 @@ class PyMove:
         gpio.output(MOTOR_LEFT_DOWN, True)
         gpio.output(MOTOR_RIGHT_DOWN, True)
 
-    def run_down_stop():
+    def run_down_stop(self):
         text = "DOWN Stop"
         self.display_text(text)
         gpio.output(MOTOR_LEFT_DOWN, False)
         gpio.output(MOTOR_RIGHT_DOWN, False)
 
-    def run_left_start():
+    def run_left_start(self):
         text = "LEFT Start"
         self.display_text(text)
         gpio.output(MOTOR_LEFT_DOWN, True)
         gpio.output(MOTOR_RIGHT_UP, True)
 
-    def run_left_stop():
+    def run_left_stop(self):
         text = "LEFT Stop"
         self.display_text(text)
         gpio.output(MOTOR_LEFT_DOWN, False)
         gpio.output(MOTOR_RIGHT_UP, False)
 
-    def run_right_start():
+    def run_right_start(self):
         text = "RIGHT Start"
         self.display_text(text)
         gpio.output(MOTOR_LEFT_UP, True)
         gpio.output(MOTOR_RIGHT_DOWN, True)
 
-    def run_right_stop():
+    def run_right_stop(self):
         text = "RIGHT Stop"
         self.display_text(text)
         gpio.output(MOTOR_LEFT_UP, False)

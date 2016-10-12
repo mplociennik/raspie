@@ -41,11 +41,10 @@ class PyMove:
     """
     For controlling motors by gpio raspberry and keyboard.
     """
-
+    autopilot = False
     def __init__(self):
         self.data = []
         self.move = False
-        self.autopilot = False;
         self.obstacle = False;
         pygame.init()
         self.screen = pygame.display.set_mode()
@@ -69,7 +68,7 @@ class PyMove:
         
     def autopilot_process(self):
         while True:
-            if self.autopilot == True:
+            if autopilot == True:
                 print 'dupa2'
                 speech.play_sound('sounds/Very_Excited_R2D2.mp3')
                 self.display_text('Autopilot starting...')
@@ -165,10 +164,10 @@ class PyMove:
                 if event.type == pygame.KEYUP and event.key == pygame.K_2:
                     if self.autopilot:
                         text = 'Stoping autopilot...'
-                        self.autopilot = False
+                        autopilot = False
                     else:
                         text = 'Starting autopilot...'
-                        self.autopilot = True
+                        autopilot = True
                     self.display_text(text)
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_3:
                     print 'Cleaning up gpio'

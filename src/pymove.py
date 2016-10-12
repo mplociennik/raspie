@@ -41,11 +41,11 @@ class PyMove:
     """
     For controlling motors by gpio raspberry and keyboard.
     """
-    autopilot = False
     def __init__(self):
         self.data = []
         self.move = False
-        self.obstacle = False;
+        self.obstacle = False
+        self.autopilot = False
         pygame.init()
         self.screen = pygame.display.set_mode()
         pygame.key.set_repeat(100, 100)

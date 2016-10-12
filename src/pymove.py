@@ -41,7 +41,7 @@ class PyMove:
     """
     For controlling motors by gpio raspberry and keyboard.
     """
-    autopilot = multiprocessing.Value('autopilot', False)
+    autopilot = False
     def __init__(self):
         self.data = []
         self.move = False

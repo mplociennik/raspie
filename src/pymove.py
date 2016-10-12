@@ -68,7 +68,7 @@ class PyMove:
         
     def autopilot_process(self):
         while True:
-            if autopilot == True:
+            if self.autopilot == True:
                 print 'dupa2'
                 speech.play_sound('sounds/Very_Excited_R2D2.mp3')
                 self.display_text('Autopilot starting...')

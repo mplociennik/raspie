@@ -53,6 +53,7 @@ class PyMove:
 
     def toggle_autopilot(self):
         self.autopilot = self.autopilot if True else False
+        print self.autopilot
         
     def stop_motors(self):
         self.display_text('stoping motors...')

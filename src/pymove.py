@@ -68,21 +68,23 @@ class PyMove:
                 self.stop_motors()
         
     def autopilot_process(self):
-        while self.autopilot:
-            speech.play_sound('sounds/Very_Excited_R2D2.mp3')
-            self.display_text('Autopilot starting...')
-            if self.obstacle:
-                print 'dupa3'
-                speech.play_sound()
-                gpio.output(MOTOR_LEFT_UP, True)
-                gpio.output(MOTOR_RIGHT_DOWN, True)
-                time.sleep(1)
-                gpio.output(MOTOR_LEFT_UP, False)
-                gpio.output(MOTOR_RIGHT_DOWN, False)
-            else:
-                print 'dupa4'
-                gpio.output(MOTOR_LEFT_UP, True)
-                gpio.output(MOTOR_RIGHT_UP, True)
+        while True:
+            if self.autopilot == True:
+                print 'dupa2'
+                speech.play_sound('sounds/Very_Excited_R2D2.mp3')
+                self.display_text('Autopilot starting...')
+                if self.obstacle == True:
+                    print 'dupa3'
+                    speech.play_sound()
+                    gpio.output(MOTOR_LEFT_UP, True)
+                    gpio.output(MOTOR_RIGHT_DOWN, True)
+                    time.sleep(1)
+                    gpio.output(MOTOR_LEFT_UP, False)
+                    gpio.output(MOTOR_RIGHT_DOWN, False)
+                else:
+                    print 'dupa4'
+                    gpio.output(MOTOR_LEFT_UP, True)
+                    gpio.output(MOTOR_RIGHT_UP, True)
             time.sleep(1)
 
     def restart_raspie(self):

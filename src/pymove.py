@@ -69,6 +69,7 @@ class PyMove:
                 self.stop_motors()
         
     def autopilot(self):
+        print 'dupa1'
         while True:
             print 'dupa'
             if self.autopilot:

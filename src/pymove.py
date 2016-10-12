@@ -5,7 +5,7 @@ from distance import Distance
 import pygame
 from pygame.locals import *
 from speech import Speech
-from multiprocessing import Process, Value
+import multiprocessing
 import time
 import os
 import sys
@@ -41,7 +41,7 @@ class PyMove:
     """
     For controlling motors by gpio raspberry and keyboard.
     """
-    autopilot = True
+    autopilot = multiprocessing.Event()
     def __init__(self):
         self.data = []
         self.move = False
@@ -74,12 +74,13 @@ class PyMove:
         while True:
             print self.autopilot
             if self.autopilot:
-                print 'dupa2'
+                speech = Speech()
                 speech.play_sound('sounds/Very_Excited_R2D2.mp3')
                 self.display_text('Autopilot starting...')
                 if self.obstacle:
                     print 'dupa3'
-                    speech.play_sound()
+                    speech = Speech()
+                    speech.play_sound('sounds/Very_Excited_R2D2.mp3')
                     gpio.output(MOTOR_LEFT_UP, True)
                     gpio.output(MOTOR_RIGHT_DOWN, True)
                     time.sleep(1)
@@ -223,10 +224,9 @@ class PyMove:
 
     def start(self):
         jobs = []
-#        autopilot = Value('autopilot', self.autopilot)
-        autopilot_process = Process(target=self.autopilot_process)
-        key_control = Process(target=self.key_control)
-        distance = Process(target=self.distance)
+        autopilot_process = multiprocessing.Process(target=self.autopilot_process)
+        key_control = multiprocessing.Process(target=self.key_control)
+        distance = multiprocessing.Process(target=self.distance)
 
         jobs.append(distance)
         jobs.append(key_control)

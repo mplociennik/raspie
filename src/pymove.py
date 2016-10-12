@@ -67,8 +67,7 @@ class PyMove:
                 self.obstacle = True
                 self.stop_motors()
         
-    def autopilot(self):
-        print 'dupa1'
+    def autopilot_process(self):
         while True:
             print 'dupa'
             if self.autopilot:
@@ -221,14 +220,15 @@ class PyMove:
 
     def start(self):
         jobs = []
-        autopilot = multiprocessing.Process(target=self.autopilot)
+        autopilot_process = multiprocessing.Process(target=self.autopilot_process)
         key_control = multiprocessing.Process(target=self.key_control)
         distance = multiprocessing.Process(target=self.distance)
 
         jobs.append(distance)
         jobs.append(key_control)
+        jobs.append(autopilot_process)
 
-        autopilot.start()
+        autopilot_process.start()
         distance.start()
         key_control.start()
 

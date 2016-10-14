@@ -154,10 +154,12 @@ class PyMove:
         q_start.put(False)
         close_program.put('open')
         while True:
-            close = close_program.get()
-            if close == 'exit':
-                print 'exiting key_control...'
-                break
+            if not close_program.empty():
+                print 'test'
+                close = close_program.get()
+                if close == 'exit':
+                    print 'exiting key_control...'
+                    break
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_POWER:
                     self.shutdown()

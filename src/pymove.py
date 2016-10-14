@@ -169,6 +169,7 @@ class PyMove:
                     sys.exit()
                 if event.type == pygame.KEYUP and event.key == pygame.K_2:
                     qstate = q_state.get()
+                    print qstate
                     if qstate == 'autopilot_stop':
                         autopilot_process = Process(target=self.autopilot_process, args=(q_state,))
                         autopilot_process.start()

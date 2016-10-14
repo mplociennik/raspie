@@ -63,7 +63,6 @@ class PyMove:
         self.display_text('stoped!')
         
     def autopilot_process(self, q_start):
-        obstacle = False
         while True:
             if not q_start.empty():
                 start = q_start.get()
@@ -73,15 +72,11 @@ class PyMove:
                     if int(cm) <= 20:
                         self.display_text('Distance:')
                         self.display_text(cm)
-                        obstacle = True
-                    else:
-                        obstacle = False
-                    if obstacle:
                         self.display_text('obstacle!')
                         self.stop_motors()
-                        time.sleep(3)
+                        time.sleep(1)
                         self.run_right_start()
-                        time.sleep(2)
+                        time.sleep(1)
                         self.run_right_stop()
                     else:
                         self.display_text('run!')

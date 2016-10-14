@@ -141,7 +141,6 @@ class PyMove:
             else:
                 self.display_text('run!')
                 self.run_up_start()
-                self.run_up_stop()
                 
             if not close_program.empty():
                 exit = close_program.get()

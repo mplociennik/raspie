@@ -141,11 +141,11 @@ class PyMove:
                     if int(cm) <= 20:
                         self.display_text('Distance:')
                         self.display_text(cm)
-                        self.display_text('obstacle!')
+                        self.display_text('Obstacle!')
                         self.stop_motors()
                         time.sleep(1)
                         self.run_right_start()
-                        time.sleep(1)
+                        time.sleep(3)
                         self.run_right_stop()
                     else:
                         self.display_text('run!')

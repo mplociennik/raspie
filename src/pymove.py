@@ -125,31 +125,30 @@ class PyMove:
         
     def autopilot_process(self, close_program):
         while True:
+            distance = Distance()
+            cm = distance.detect()
+            self.display_text('Distance:')
+            self.display_text(cm)
+            print int(cm)
+            if int(cm) <= 20:
+                self.display_text('Obstacle!')
+                self.stop_motors()
+                time.sleep(1)
+                self.run_right_start()
+                time.sleep(1)
+                self.run_right_stop()
+                print 'end obstacle'
+            else:
+                self.display_text('run!')
+                self.run_up_start()
+                time.sleep(1)
+                self.run_up_stop()
+                
             if not close_program.empty():
                 exit = close_program.get()
                 if exit == 'exit':
                     print 'exiting autopilot...'
                     break
-                else:      
-                    print 'not exit'
-                    distance = Distance()
-                    cm = distance.detect()
-                    self.display_text('Distance:')
-                    self.display_text(cm)
-                    print int(cm)
-                    if int(cm) <= 20:
-                        self.display_text('Obstacle!')
-                        self.stop_motors()
-                        time.sleep(1)
-                        self.run_right_start()
-                        time.sleep(1)
-                        self.run_right_stop()
-                        print 'end obstacle'
-                    else:
-                        self.display_text('run!')
-                        self.run_up_start()
-                        time.sleep(1)
-                        self.run_up_stop()
             
     def key_control(self, close_program):
         close_program.put('open')

@@ -130,7 +130,8 @@ class PyMove:
                 if exit == 'exit':
                     print 'exiting autopilot...'
                     break
-                else:                    
+                else:      
+                    print 'not exit'
                     if not q_start.empty():
                         print 'If q_start not empty'
                         start = q_start.get()

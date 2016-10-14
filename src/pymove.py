@@ -69,6 +69,7 @@ class PyMove:
                 if start:
                     distance = Distance()
                     cm = distance.detect()
+                    print int(cm)
                     if int(cm) <= 20:
                         self.display_text('Distance:')
                         self.display_text(cm)
@@ -157,8 +158,8 @@ class PyMove:
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_POWER:
                     self.shutdown()
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_1:
-                    self.display_text('Restarting raspie...')
-                    self.restart_raspie()
+                    self.display_text('Closing raspie...')
+                    sys.exit()
                 if event.type == pygame.KEYUP and event.key == pygame.K_2:
                     if not q_start.empty():
                         start = q_start.get()

@@ -123,7 +123,7 @@ class PyMove:
         gpio.output(MOTOR_LEFT_UP, False)
         gpio.output(MOTOR_RIGHT_DOWN, False)
         
-    def autopilot_process(self, q_start, close_program):
+    def autopilot_process(self, close_program):
         while True:
             if not close_program.empty():
                 exit = close_program.get()

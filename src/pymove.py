@@ -61,39 +61,31 @@ class PyMove:
         gpio.output(MOTOR_RIGHT_UP, False)
         gpio.output(MOTOR_RIGHT_DOWN, False)
 
-    def distance(self, q_obstacle):
+           
+        
+    def autopilot_process(self, q_start):
         while True:
+            obstacle = False
             distance = Distance()
             cm = distance.detect()
             if cm <= 20:
-                self.stop_motors()
-                q_obstacle.put(True)
-            else:
-                q_obstacle.put(False)
-        
-    def autopilot_process(self, q_start, q_obstacle):
-        while True:
+                obstacle = True
             if not q_start.empty():
                 start = q_start.get()
                 if start:
-                    speech = Speech()
-                    speech.play_sound('sounds/Very_Excited_R2D2.mp3')
-                    self.display_text('Autopilot starting...')
-                    if not q_obstacle.empty():
-                        obstacle = q_obstacle.get()
-                        if obstacle:
-                            print 'dupa3'
-                            speech = Speech()
-                            speech.play_sound('sounds/Very_Excited_R2D2.mp3')
-                            gpio.output(MOTOR_LEFT_UP, True)
-                            gpio.output(MOTOR_RIGHT_DOWN, True)
-                            time.sleep(1)
-                            gpio.output(MOTOR_LEFT_UP, False)
-                            gpio.output(MOTOR_RIGHT_DOWN, False)
-                        else:
-                            print 'dupa4'
-                            gpio.output(MOTOR_LEFT_UP, True)
-                            gpio.output(MOTOR_RIGHT_UP, True)
+                    if obstacle:
+                        print 'dupa3'
+                        speech = Speech()
+                        speech.play_sound('sounds/Very_Excited_R2D2.mp3')
+                        gpio.output(MOTOR_LEFT_UP, True)
+                        gpio.output(MOTOR_RIGHT_DOWN, True)
+                        time.sleep(1)
+                        gpio.output(MOTOR_LEFT_UP, False)
+                        gpio.output(MOTOR_RIGHT_DOWN, False)
+                    else:
+                        print 'dupa4'
+                        gpio.output(MOTOR_LEFT_UP, True)
+                        gpio.output(MOTOR_RIGHT_UP, True)
             time.sleep(1)
 
     def restart_raspie(self):
@@ -112,140 +104,136 @@ class PyMove:
     def display_text(self, text):
 #        label = self.font.render(text, 1, (255,255,0))
 #        self.screen.blit(label, 100,100)
-        print text
-        return True
+    print text
+    return True
 
-    def run_up_start(self):
-        text = "UP Start"
-        self.display_text(text)
-        gpio.output(MOTOR_LEFT_UP, True)
-        gpio.output(MOTOR_RIGHT_UP, True)
+def run_up_start(self):
+    text = "UP Start"
+    self.display_text(text)
+    gpio.output(MOTOR_LEFT_UP, True)
+    gpio.output(MOTOR_RIGHT_UP, True)
 
-    def run_up_stop(self):
-        text = "UP Stop"
-        self.display_text(text)
-        gpio.output(MOTOR_LEFT_UP, False)
-        gpio.output(MOTOR_RIGHT_UP, False)
+def run_up_stop(self):
+    text = "UP Stop"
+    self.display_text(text)
+    gpio.output(MOTOR_LEFT_UP, False)
+    gpio.output(MOTOR_RIGHT_UP, False)
 
-    def run_down_start(self):
-        text = "DOWN Start"
-        self.display_text(text)
-        gpio.output(MOTOR_LEFT_DOWN, True)
-        gpio.output(MOTOR_RIGHT_DOWN, True)
+def run_down_start(self):
+    text = "DOWN Start"
+    self.display_text(text)
+    gpio.output(MOTOR_LEFT_DOWN, True)
+    gpio.output(MOTOR_RIGHT_DOWN, True)
 
-    def run_down_stop(self):
-        text = "DOWN Stop"
-        self.display_text(text)
-        gpio.output(MOTOR_LEFT_DOWN, False)
-        gpio.output(MOTOR_RIGHT_DOWN, False)
+def run_down_stop(self):
+    text = "DOWN Stop"
+    self.display_text(text)
+    gpio.output(MOTOR_LEFT_DOWN, False)
+    gpio.output(MOTOR_RIGHT_DOWN, False)
 
-    def run_left_start(self):
-        text = "LEFT Start"
-        self.display_text(text)
-        gpio.output(MOTOR_LEFT_DOWN, True)
-        gpio.output(MOTOR_RIGHT_UP, True)
+def run_left_start(self):
+    text = "LEFT Start"
+    self.display_text(text)
+    gpio.output(MOTOR_LEFT_DOWN, True)
+    gpio.output(MOTOR_RIGHT_UP, True)
 
-    def run_left_stop(self):
-        text = "LEFT Stop"
-        self.display_text(text)
-        gpio.output(MOTOR_LEFT_DOWN, False)
-        gpio.output(MOTOR_RIGHT_UP, False)
+def run_left_stop(self):
+    text = "LEFT Stop"
+    self.display_text(text)
+    gpio.output(MOTOR_LEFT_DOWN, False)
+    gpio.output(MOTOR_RIGHT_UP, False)
 
-    def run_right_start(self):
-        text = "RIGHT Start"
-        self.display_text(text)
-        gpio.output(MOTOR_LEFT_UP, True)
-        gpio.output(MOTOR_RIGHT_DOWN, True)
+def run_right_start(self):
+    text = "RIGHT Start"
+    self.display_text(text)
+    gpio.output(MOTOR_LEFT_UP, True)
+    gpio.output(MOTOR_RIGHT_DOWN, True)
 
-    def run_right_stop(self):
-        text = "RIGHT Stop"
-        self.display_text(text)
-        gpio.output(MOTOR_LEFT_UP, False)
-        gpio.output(MOTOR_RIGHT_DOWN, False)
+def run_right_stop(self):
+    text = "RIGHT Stop"
+    self.display_text(text)
+    gpio.output(MOTOR_LEFT_UP, False)
+    gpio.output(MOTOR_RIGHT_DOWN, False)
         
-    def key_control(self, q_start):
-        while True:
-            for event in pygame.event.get():
-                if event.type == pygame.KEYDOWN and event.key == pygame.K_POWER:
-                    self.shutdown()
-                if event.type == pygame.KEYDOWN and event.key == pygame.K_1:
-                    self.display_text('Restarting raspie...')
-                    self.restart_raspie()
-                if event.type == pygame.KEYUP and event.key == pygame.K_2:
-                    if not q_start.empty():
-                        start = q_start.get()
-                        if start:
-                            text = 'Stoping autopilot...'
-                            q_start.put(False)
-                        else:
-                            text = 'Starting autopilot...'
-                            q_start.put(True)
+def key_control(self, q_start):
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_POWER:
+                self.shutdown()
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_1:
+                self.display_text('Restarting raspie...')
+                self.restart_raspie()
+            if event.type == pygame.KEYUP and event.key == pygame.K_2:
+                if not q_start.empty():
+                    start = q_start.get()
+                    if start:
+                        text = 'Stoping autopilot...'
+                        q_start.put(False)
                     else:
-                        q_start.put(True)
                         text = 'Starting autopilot...'
-                    self.display_text(text)
-                if event.type == pygame.KEYDOWN and event.key == pygame.K_3:
-                    print 'Cleaning up gpio'
-                    gpio.cleanup()
-                if event.type == pygame.KEYDOWN and event.key == pygame.K_4:
-                    text = "Co słychać?"
-                    speech = Speech()
-                    speech.create_voice(text)
-                    self.display_text(text)
-                if event.type == pygame.KEYDOWN and event.key == pygame.K_5:
-                    text = "Let's dance!"
-                    speech = Speech()
-                    speech.create_voice(text)
-                    self.display_text(text)
-                    self.run_left_start()
-                    time.sleep(1)
-                    self.run_left_stop()
-                    self.run_right_start()
-                    time.sleep(1)
-                    self.run_right_stop()
-                    self.run_up_start()
-                    time.sleep(1)
-                    self.run_up_stop()
-                    self.run_down_start()
-                    time.sleep(1)
-                    self.run_down_stop()
-                if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
-                    self.run_up_start()
-                elif event.type == pygame.KEYUP and event.key == pygame.K_UP:
-                    self.run_up_stop()
-                if event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
-                    self.run_down_start()
-                elif event.type == pygame.KEYUP and event.key == pygame.K_DOWN:
-                    self.run_down_stop()
-                if event.type == pygame.KEYDOWN and event.key == pygame.K_LEFT:
-                    self.run_left_start()
-                elif event.type == pygame.KEYUP and event.key == pygame.K_LEFT:
-                    self.run_left_stop()
-                if event.type == pygame.KEYDOWN and event.key == pygame.K_RIGHT:
-                    self.run_right_start()
-                elif event.type == pygame.KEYUP and event.key == pygame.K_RIGHT:
-                    self.run_right_stop()
+                        q_start.put(True)
+                else:
+                    q_start.put(True)
+                    text = 'Starting autopilot...'
+                self.display_text(text)
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_3:
+                print 'Cleaning up gpio'
+                gpio.cleanup()
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_4:
+                text = "Co słychać?"
+                speech = Speech()
+                speech.create_voice(text)
+                self.display_text(text)
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_5:
+                text = "Let's dance!"
+                speech = Speech()
+                speech.create_voice(text)
+                self.display_text(text)
+                self.run_left_start()
+                time.sleep(1)
+                self.run_left_stop()
+                self.run_right_start()
+                time.sleep(1)
+                self.run_right_stop()
+                self.run_up_start()
+                time.sleep(1)
+                self.run_up_stop()
+                self.run_down_start()
+                time.sleep(1)
+                self.run_down_stop()
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
+                self.run_up_start()
+            elif event.type == pygame.KEYUP and event.key == pygame.K_UP:
+                self.run_up_stop()
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
+                self.run_down_start()
+            elif event.type == pygame.KEYUP and event.key == pygame.K_DOWN:
+                self.run_down_stop()
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_LEFT:
+                self.run_left_start()
+            elif event.type == pygame.KEYUP and event.key == pygame.K_LEFT:
+                self.run_left_stop()
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_RIGHT:
+                self.run_right_start()
+            elif event.type == pygame.KEYUP and event.key == pygame.K_RIGHT:
+                self.run_right_stop()
 
-    def create_speech(self, text):
-        url_speak = "http://127.0.0.1:8000/speech?text=" + filter_spaces(text)
-        response = urllib2.urlopen(url_speak)
-        text = response
+def create_speech(self, text):
+    url_speak = "http://127.0.0.1:8000/speech?text=" + filter_spaces(text)
+    response = urllib2.urlopen(url_speak)
+    text = response
 
-    def start(self):
-        jobs = []
-        q_start = Queue()
-        q_obstacle = Queue()
-        autopilot_process = Process(target=self.autopilot_process, args=(q_start, q_obstacle,))
-        key_control = Process(target=self.key_control, args=(q_start,))
-        distance = Process(target=self.distance, args=(q_obstacle,))
+def start(self):
+    jobs = []
+    q_start = Queue()
+    autopilot_process = Process(target=self.autopilot_process, args=(q_start))
+    key_control = Process(target=self.key_control, args=(q_start, ))
 
-        jobs.append(distance)
-        jobs.append(key_control)
-        jobs.append(autopilot_process)
+    jobs.append(key_control)
+    jobs.append(autopilot_process)
 
-        autopilot_process.start()
-        distance.start()
-        key_control.start()
+    autopilot_process.start()
+    key_control.start()
 
 
 if __name__ == '__main__':

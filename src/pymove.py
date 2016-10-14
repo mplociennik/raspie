@@ -189,6 +189,7 @@ class PyMove:
                         q_start.put(True)
                         text = 'Starting autopilot...'
                     self.display_text(text)
+                    time.sleep(1)
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_3:
                     print 'Cleaning up gpio'
                     gpio.cleanup()

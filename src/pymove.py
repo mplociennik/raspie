@@ -132,29 +132,29 @@ class PyMove:
                     break
                 else:      
                     print 'not exit'
-                    if not q_start.empty():
-                        print 'If q_start not empty'
-                        start = q_start.get()
-                        print start
-                        if start == 'start':
-                            print 'if start run distance test'
-                            distance = Distance()
-                            cm = distance.detect()
-                            self.display_text('Distance:')
-                            self.display_text(cm)
-                            if int(cm) <= 20:
-                                self.display_text('Obstacle!')
-                                self.stop_motors()
-                                time.sleep(1)
-                                self.run_right_start()
-                                time.sleep(1)
-                                self.run_right_stop()
-                                print 'end obstacle'
-                            else:
-                                self.display_text('run!')
-                                self.run_up_start()
-                                time.sleep(1)
-                                self.run_up_stop()
+                if not q_start.empty():
+                    print 'If q_start not empty'
+                    start = q_start.get()
+                    print start
+                    if start == 'start':
+                        print 'if start run distance test'
+                        distance = Distance()
+                        cm = distance.detect()
+                        self.display_text('Distance:')
+                        self.display_text(cm)
+                        if int(cm) <= 20:
+                            self.display_text('Obstacle!')
+                            self.stop_motors()
+                            time.sleep(1)
+                            self.run_right_start()
+                            time.sleep(1)
+                            self.run_right_stop()
+                            print 'end obstacle'
+                        else:
+                            self.display_text('run!')
+                            self.run_up_start()
+                            time.sleep(1)
+                            self.run_up_stop()
             
     def key_control(self, q_start, close_program):
         q_start.put(False)

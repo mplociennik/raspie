@@ -55,35 +55,6 @@ class PyMove:
         gpio.output(MOTOR_RIGHT_UP, False)
         gpio.output(MOTOR_RIGHT_DOWN, False)   
         self.display_text('stoped!')
-        
-    def autopilot_process(self, q_start, close_program):
-        while True:
-            if not close_program.empty():
-                exit = close_program.get()
-                if exit == 'exit':
-                    print 'exiting autopilot...'
-                    break
-                else:
-                    pass
-            if not q_start.empty():
-                start = q_start.get()
-                if start:
-                    distance = Distance()
-                    cm = distance.detect()
-                    print int(cm)
-                    if int(cm) <= 20:
-                        self.display_text('Distance:')
-                        self.display_text(cm)
-                        self.display_text('obstacle!')
-                        self.stop_motors()
-                        time.sleep(1)
-                        self.run_right_start()
-                        time.sleep(1)
-                        self.run_right_stop()
-                    else:
-                        self.display_text('run!')
-                        self.run_up_start()
-            time.sleep(1)
 
     def restart_raspie(self):
         speech = Speech()
@@ -151,13 +122,41 @@ class PyMove:
         self.display_text(text)
         gpio.output(MOTOR_LEFT_UP, False)
         gpio.output(MOTOR_RIGHT_DOWN, False)
-
+        
+    def autopilot_process(self, q_start, close_program):
+        while True:
+            if not close_program.empty():
+                exit = close_program.get()
+                if exit == 'exit':
+                    print 'exiting autopilot...'
+                    break
+                else:
+                    pass
+            if not q_start.empty():
+                start = q_start.get()
+                if start:
+                    distance = Distance()
+                    cm = distance.detect()
+                    print int(cm)
+                    if int(cm) <= 20:
+                        self.display_text('Distance:')
+                        self.display_text(cm)
+                        self.display_text('obstacle!')
+                        self.stop_motors()
+                        time.sleep(1)
+                        self.run_right_start()
+                        time.sleep(1)
+                        self.run_right_stop()
+                    else:
+                        self.display_text('run!')
+                        self.run_up_start()
+            time.sleep(1)
+            
     def key_control(self, q_start, close_program):
         q_start.put(False)
         close_program.put('open')
         while True:
             if not close_program.empty():
-                print 'test'
                 close = close_program.get()
                 if close == 'exit':
                     print 'exiting key_control...'
@@ -170,6 +169,8 @@ class PyMove:
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_1:
                     self.display_text('Closing raspie...')
                     close_program.put('exit')
+                    time.sleep(2)
+                    sys.exit()
                 if event.type == pygame.KEYUP and event.key == pygame.K_2:
                     if not q_start.empty():
                         start = q_start.get()

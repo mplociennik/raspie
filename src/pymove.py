@@ -172,12 +172,17 @@ class PyMove:
                     self.display_text('Restarting raspie...')
                     self.restart_raspie()
                 if event.type == pygame.KEYUP and event.key == pygame.K_2:
-                    if self.autopilot:
-                        text = 'Stoping autopilot...'
-                        q_start.put(False)
+                    if not q_start.empty():
+                        start = q_start.get()
+                        if start:
+                            text = 'Stoping autopilot...'
+                            q_start.put(False)
+                        else:
+                            text = 'Starting autopilot...'
+                            q_start.put(True)
                     else:
-                        text = 'Starting autopilot...'
                         q_start.put(True)
+                        text = 'Starting autopilot...'
                     self.display_text(text)
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_3:
                     print 'Cleaning up gpio'

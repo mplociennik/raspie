@@ -63,11 +63,11 @@ class PyMove:
         self.display_text('stoped!')
         
     def autopilot_process(self, q_start, close_program):
-        close_program.put(False)
         while True:
-            close = close_program.get()
-            if close:
-                break
+            if not close_program.empty():
+                exit = close_program.get()
+                if exit == 'exit':
+                    break
             if not q_start.empty():
                 start = q_start.get()
                 if start:
@@ -157,17 +157,17 @@ class PyMove:
 
     def key_control(self, q_start, close_program):
         q_start.put(False)
-        close_program.put(False)
+        close_program.put('open')
         while True:
             close = close_program.get()
-            if close:
+            if close == 'exit':
                 break
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_POWER:
                     self.shutdown()
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_1:
                     self.display_text('Closing raspie...')
-                    close_program.put(True)
+                    close_program.put('exit')
                 if event.type == pygame.KEYUP and event.key == pygame.K_2:
                     if not q_start.empty():
                         start = q_start.get()

@@ -123,7 +123,7 @@ class PyMove:
         gpio.output(MOTOR_LEFT_UP, False)
         gpio.output(MOTOR_RIGHT_DOWN, False)
         
-    def autopilot_process(self, close_program):
+    def autopilot_process(self, q_state):
         while True:
             distance = Distance()
             cm = distance.detect()
@@ -142,17 +142,17 @@ class PyMove:
                 self.display_text('run!')
                 self.run_up_start()
                 
-            if not close_program.empty():
-                exit = close_program.get()
-                if exit == 'exit':
-                    print 'exiting autopilot...'
+            if not q_state.empty():
+                exit = q_state.get()
+                if exit == 'exit' or exit == 'autopilot_stop':
+                    print 'stoping autopilot...'
                     break
             
-    def key_control(self, close_program):
-        close_program.put('open')
+    def key_control(self, q_state):
+        q_state.put('open')
         while True:
             if not close_program.empty():
-                close = close_program.get()
+                close = q_state.get()
                 if close == 'exit':
                     print 'exiting key_control...'
                     break
@@ -163,13 +163,18 @@ class PyMove:
                     self.shutdown()
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_1:
                     self.display_text('Closing raspie...')
-                    close_program.put('exit')
-                    time.sleep(2)
+                    q_state.put('exit')
                     gpio.cleanup()
+                    time.sleep(2)
                     sys.exit()
                 if event.type == pygame.KEYUP and event.key == pygame.K_2:
-                    autopilot_process = Process(target=self.autopilot_process, args=(self.close_program,))
-                    autopilot_process.start()
+                    if q_state.get() == 'autopilot_stop':
+                        autopilot_process = Process(target=self.autopilot_process, args=(self.q_state,))
+                        autopilot_process.start()
+                        q_state.put('autopilot_start')
+                    else:
+                        q_state.put('autopilot_stop')
+                        
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_3:
                     print 'Cleaning up gpio'
                     gpio.cleanup()
@@ -218,8 +223,8 @@ class PyMove:
         text = response
 
     def start(self):
-        self.close_program = Queue()
-        key_control = Process(target=self.key_control, args=(self.close_program,))
+        q_state = Queue()
+        key_control = Process(target=self.key_control, args=(self.q_state,))
         key_control.start()
         
 

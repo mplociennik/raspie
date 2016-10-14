@@ -132,32 +132,26 @@ class PyMove:
                     break
                 else:      
                     print 'not exit'
-                if not q_start.empty():
-                    print 'If q_start not empty'
-                    start = q_start.get()
-                    print start
-                    if start == 'start':
-                        print 'if start run distance test'
-                        distance = Distance()
-                        cm = distance.detect()
-                        self.display_text('Distance:')
-                        self.display_text(cm)
-                        if int(cm) <= 20:
-                            self.display_text('Obstacle!')
-                            self.stop_motors()
-                            time.sleep(1)
-                            self.run_right_start()
-                            time.sleep(1)
-                            self.run_right_stop()
-                            print 'end obstacle'
-                        else:
-                            self.display_text('run!')
-                            self.run_up_start()
-                            time.sleep(1)
-                            self.run_up_stop()
+                    distance = Distance()
+                    cm = distance.detect()
+                    self.display_text('Distance:')
+                    self.display_text(cm)
+                    print int(cm)
+                    if int(cm) <= 20:
+                        self.display_text('Obstacle!')
+                        self.stop_motors()
+                        time.sleep(1)
+                        self.run_right_start()
+                        time.sleep(1)
+                        self.run_right_stop()
+                        print 'end obstacle'
+                    else:
+                        self.display_text('run!')
+                        self.run_up_start()
+                        time.sleep(1)
+                        self.run_up_stop()
             
-    def key_control(self, q_start, close_program):
-        q_start.put(False)
+    def key_control(self, close_program):
         close_program.put('open')
         while True:
             if not close_program.empty():
@@ -176,15 +170,8 @@ class PyMove:
                     time.sleep(2)
                     sys.exit()
                 if event.type == pygame.KEYUP and event.key == pygame.K_2:
-                    if not q_start.empty():
-                        start = q_start.get()
-                        if start == 'start':
-                            q_start.put('stop')
-                        else:
-                            q_start.put('start')
-                    else:
-                        q_start.put('stop')
-                    time.sleep(1)
+                    autopilot_process = Process(target=self.autopilot_process, args=(self.close_program,))
+                    autopilot_process.start()
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_3:
                     print 'Cleaning up gpio'
                     gpio.cleanup()
@@ -233,14 +220,10 @@ class PyMove:
         text = response
 
     def start(self):
-        jobs = []
-        close_program = Queue()
+        self.close_program = Queue()
         q_start = Queue()
-        autopilot_process = Process(target=self.autopilot_process, args=(q_start, close_program,))
-        key_control = Process(target=self.key_control, args=(q_start, close_program,))
+        key_control = Process(target=self.key_control, args=(self.close_program,))
 
-        jobs.append(key_control)
-        jobs.append(autopilot_process)
 
         autopilot_process.start()
         key_control.start()

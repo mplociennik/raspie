@@ -224,7 +224,7 @@ class PyMove:
 
     def start(self):
         q_state = Queue()
-        key_control = Process(target=self.key_control, args=(self.q_state,))
+        key_control = Process(target=self.key_control, args=(q_state,))
         key_control.start()
         
 

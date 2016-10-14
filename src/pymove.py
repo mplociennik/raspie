@@ -221,11 +221,7 @@ class PyMove:
 
     def start(self):
         self.close_program = Queue()
-        q_start = Queue()
         key_control = Process(target=self.key_control, args=(self.close_program,))
-
-
-        autopilot_process.start()
         key_control.start()
 
 

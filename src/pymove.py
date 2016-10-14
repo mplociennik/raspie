@@ -151,7 +151,7 @@ class PyMove:
     def key_control(self, q_state):
         q_state.put('open')
         while True:
-            if not close_program.empty():
+            if not q_state.empty():
                 close = q_state.get()
                 if close == 'exit':
                     print 'exiting key_control...'

@@ -125,6 +125,7 @@ class PyMove:
         
     def autopilot_process(self, q_start, close_program):
         while True:
+            time.sleep(1)
             if not close_program.empty():
                 exit = close_program.get()
                 if exit == 'exit':
@@ -154,8 +155,6 @@ class PyMove:
                                 self.run_up_start()
                                 time.sleep(1)
                                 self.run_up_stop()
-                        else:
-                            continue
             
     def key_control(self, q_start, close_program):
         q_start.put(False)

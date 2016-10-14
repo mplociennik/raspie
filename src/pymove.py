@@ -65,7 +65,8 @@ class PyMove:
     def autopilot_process(self, q_start, close_program):
         close_program.put(False)
         while True:
-            if close_program.get():
+            close_program = close_program.get()
+            if close_program:
                 break
             if not q_start.empty():
                 start = q_start.get()
@@ -156,7 +157,11 @@ class PyMove:
 
     def key_control(self, q_start, close_program):
         q_start.put(False)
+        close_program.put(False)
         while True:
+            close_program = close_program.get()
+            if close_program:
+                break
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_POWER:
                     self.shutdown()

@@ -135,11 +135,11 @@ class PyMove:
                 self.stop_motors()
                 time.sleep(1)
                 self.run_down_start()
-                time.sleep(0.4)
+                time.sleep(0.3)
                 self.run_down_stop()
-                time.sleep(0.4)
+                time.sleep(0.3)
                 self.run_right_start()
-                time.sleep(0.4)
+                time.sleep(0.3)
                 self.run_right_stop()
                 print 'end obstacle'
             else:
@@ -148,6 +148,9 @@ class PyMove:
                 
             if not q_state.empty():
                 exit = q_state.get()
+                if exit == 'autopilot_stop':
+                    print 'autopilot stop...'
+                    break
                 if exit == 'exit':
                     print 'stoping autopilot...'
                     break

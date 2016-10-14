@@ -226,8 +226,8 @@ class PyMove:
     def start(self):
         jobs = []
         q_start = Queue()
-        autopilot_process = Process(target=self.autopilot_process, args=(q_start))
-        key_control = Process(target=self.key_control, args=(q_start, ))
+        autopilot_process = Process(target=self.autopilot_process, args=(q_start,))
+        key_control = Process(target=self.key_control, args=(q_start,))
 
         jobs.append(key_control)
         jobs.append(autopilot_process)

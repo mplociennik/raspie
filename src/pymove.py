@@ -125,7 +125,6 @@ class PyMove:
         
     def autopilot_process(self, q_start, close_program):
         while True:
-            print 'loop...'
             if not close_program.empty():
                 exit = close_program.get()
                 if exit == 'exit':
@@ -138,10 +137,9 @@ class PyMove:
                 if start:
                     distance = Distance()
                     cm = distance.detect()
-                    print int(cm)
+                    self.display_text('Distance:')
+                    self.display_text(cm)
                     if int(cm) <= 20:
-                        self.display_text('Distance:')
-                        self.display_text(cm)
                         self.display_text('Obstacle!')
                         self.stop_motors()
                         time.sleep(1)

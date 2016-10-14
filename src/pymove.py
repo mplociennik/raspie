@@ -135,7 +135,7 @@ class PyMove:
                         print 'If q_start not empty'
                         start = q_start.get()
                         print start
-                        if start:
+                        if start == 'start':
                             print 'if start run distance test'
                             distance = Distance()
                             cm = distance.detect()
@@ -177,12 +177,12 @@ class PyMove:
                 if event.type == pygame.KEYUP and event.key == pygame.K_2:
                     if not q_start.empty():
                         start = q_start.get()
-                        if start:
-                            q_start.put(False)
+                        if start == 'start':
+                            q_start.put('stop')
                         else:
-                            q_start.put(True)
+                            q_start.put('start')
                     else:
-                        q_start.put(True)
+                        q_start.put('stop')
                     time.sleep(1)
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_3:
                     print 'Cleaning up gpio'

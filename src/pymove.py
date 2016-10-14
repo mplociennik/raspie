@@ -151,7 +151,7 @@ class PyMove:
         gpio.output(MOTOR_LEFT_UP, False)
         gpio.output(MOTOR_RIGHT_DOWN, False)
 
-    def key_control(self, q_start):
+    def key_control(self, q_start, close_program):
         q_start.put(False)
         while True:
             for event in pygame.event.get():
@@ -159,7 +159,8 @@ class PyMove:
                     self.shutdown()
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_1:
                     self.display_text('Closing raspie...')
-                    os.system('kill %d' % os.getpid())
+                    pass
+                    #close_program.put(True)
                 if event.type == pygame.KEYUP and event.key == pygame.K_2:
                     if not q_start.empty():
                         start = q_start.get()
@@ -222,9 +223,10 @@ class PyMove:
 
     def start(self):
         jobs = []
+        close_program = Queue()
         q_start = Queue()
-        autopilot_process = Process(target=self.autopilot_process, args=(q_start,))
-        key_control = Process(target=self.key_control, args=(q_start,))
+        autopilot_process = Process(target=self.autopilot_process, args=(q_start, close_program,))
+        key_control = Process(target=self.key_control, args=(q_start,close_program,))
 
         jobs.append(key_control)
         jobs.append(autopilot_process)

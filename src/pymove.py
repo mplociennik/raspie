@@ -159,10 +159,7 @@ class PyMove:
                     self.shutdown()
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_1:
                     self.display_text('Closing raspie...')
-                    try:
-                        sys.exit()
-                    except:
-                        print(sys.exc_info()[0])
+                    os.system('kill %d' % os.getpid())
                 if event.type == pygame.KEYUP and event.key == pygame.K_2:
                     if not q_start.empty():
                         start = q_start.get()

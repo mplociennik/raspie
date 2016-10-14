@@ -75,6 +75,8 @@ class PyMove:
                 if start:
                     if obstacle:
                         print 'obstacle'
+                        self.stop_motors()
+                        time.sleep(1)
                         gpio.output(MOTOR_LEFT_UP, True)
                         gpio.output(MOTOR_RIGHT_DOWN, True)
                         time.sleep(1)

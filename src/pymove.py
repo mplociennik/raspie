@@ -223,7 +223,7 @@ class PyMove:
         self.close_program = Queue()
         key_control = Process(target=self.key_control, args=(self.close_program,))
         key_control.start()
-
+        
 
 if __name__ == '__main__':
     PyMove().start()

@@ -134,6 +134,7 @@ class PyMove:
                     if not q_start.empty():
                         print 'If q_start not empty'
                         start = q_start.get()
+                        print start
                         if start:
                             print 'if start run distance test'
                             distance = Distance()

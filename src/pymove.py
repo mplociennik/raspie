@@ -74,16 +74,14 @@ class PyMove:
                 start = q_start.get()
                 if start:
                     if obstacle:
-                        print 'dupa3'
-                        speech = Speech()
-                        speech.play_sound('sounds/Very_Excited_R2D2.mp3')
+                        print 'obstacle'
                         gpio.output(MOTOR_LEFT_UP, True)
                         gpio.output(MOTOR_RIGHT_DOWN, True)
                         time.sleep(1)
                         gpio.output(MOTOR_LEFT_UP, False)
                         gpio.output(MOTOR_RIGHT_DOWN, False)
                     else:
-                        print 'dupa4'
+                        print 'run!'
                         gpio.output(MOTOR_LEFT_UP, True)
                         gpio.output(MOTOR_RIGHT_UP, True)
             time.sleep(1)

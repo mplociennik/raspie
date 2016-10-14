@@ -125,7 +125,6 @@ class PyMove:
         
     def autopilot_process(self, q_start, close_program):
         while True:
-            time.sleep(1)
             if not close_program.empty():
                 exit = close_program.get()
                 if exit == 'exit':
@@ -179,15 +178,11 @@ class PyMove:
                     if not q_start.empty():
                         start = q_start.get()
                         if start:
-                            text = 'Stoping autopilot...'
                             q_start.put(False)
                         else:
-                            text = 'Starting autopilot...'
                             q_start.put(True)
                     else:
                         q_start.put(True)
-                        text = 'Starting autopilot...'
-                    self.display_text(text)
                     time.sleep(1)
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_3:
                     print 'Cleaning up gpio'

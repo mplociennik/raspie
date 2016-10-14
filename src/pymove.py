@@ -171,7 +171,7 @@ class PyMove:
                     qstate = q_state.get()
                     print qstate
                     if qstate == 'autopilot_stop':
-                        autopilot_process = Process(target=self.autopilot_process, args=(q_state,))
+                        autopilot_process = Process(target=self.autopilot_process, args=(self.q_state,))
                         autopilot_process.start()
                         q_state.put('autopilot_start')
                     else:
@@ -225,8 +225,8 @@ class PyMove:
         text = response
 
     def start(self):
-        q_state = Queue()
-        key_control = Process(target=self.key_control, args=(q_state,))
+        self.q_state = Queue()
+        key_control = Process(target=self.key_control, args=(self.q_state,))
         key_control.start()
         
 

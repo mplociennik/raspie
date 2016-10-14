@@ -144,7 +144,7 @@ class PyMove:
                 
             if not q_state.empty():
                 exit = q_state.get()
-                if exit == 'exit' or exit == 'autopilot_stop':
+                if exit == 'exit':
                     print 'stoping autopilot...'
                     break
             
@@ -168,14 +168,8 @@ class PyMove:
                     time.sleep(2)
                     sys.exit()
                 if event.type == pygame.KEYUP and event.key == pygame.K_2:
-                    qstate = q_state.get()
-                    print qstate
-                    if qstate == 'autopilot_stop':
-                        autopilot_process = Process(target=self.autopilot_process, args=(self.q_state,))
-                        autopilot_process.start()
-                        q_state.put('autopilot_start')
-                    else:
-                        q_state.put('autopilot_stop')
+                    autopilot_process = Process(target=self.autopilot_process, args=(q_state.get(),))
+                    autopilot_process.start()
                         
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_3:
                     print 'Cleaning up gpio'

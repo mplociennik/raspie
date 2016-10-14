@@ -159,8 +159,8 @@ class PyMove:
         q_start.put(False)
         close_program.put(False)
         while True:
-            close_program = close_program.get()
-            if close_program:
+            close = close_program.get()
+            if close:
                 break
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_POWER:
@@ -233,7 +233,7 @@ class PyMove:
         close_program = Queue()
         q_start = Queue()
         autopilot_process = Process(target=self.autopilot_process, args=(q_start, close_program,))
-        key_control = Process(target=self.key_control, args=(q_start,close_program,))
+        key_control = Process(target=self.key_control, args=(q_start, close_program,))
 
         jobs.append(key_control)
         jobs.append(autopilot_process)

@@ -63,6 +63,8 @@ class PyMove:
                 if exit == 'exit':
                     print 'exiting autopilot...'
                     break
+                else:
+                    pass
             if not q_start.empty():
                 start = q_start.get()
                 if start:
@@ -160,6 +162,8 @@ class PyMove:
                 if close == 'exit':
                     print 'exiting key_control...'
                     break
+                else:
+                    pass
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_POWER:
                     self.shutdown()

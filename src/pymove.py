@@ -135,7 +135,7 @@ class PyMove:
                 self.stop_motors()
                 time.sleep(1)
                 self.run_right_start()
-                time.sleep(1)
+                time.sleep(0.5)
                 self.run_right_stop()
                 print 'end obstacle'
             else:

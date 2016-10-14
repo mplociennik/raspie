@@ -123,28 +123,34 @@ class PyMove:
         gpio.output(MOTOR_LEFT_UP, False)
         gpio.output(MOTOR_RIGHT_DOWN, False)
         
+    def search_free_road(self):
+        text = 'Looking for free road...'
+        self.display_text(text)
+        distance = Distance()
+        cm = distance.detect()
+        self.display_text('Distance:')
+        self.display_text(cm)
+        print int(cm)
+        if int(cm) <= 30:
+            self.display_text('Obstacle!')
+            self.stop_motors()
+            time.sleep(1)
+            self.run_down_start()
+            time.sleep(0.3)
+            self.run_down_stop()
+            time.sleep(0.3)
+            self.run_right_start()
+            time.sleep(0.3)
+            self.run_right_stop()
+            print 'end obstacle'
+            self.search_free_road()
+        else:
+            self.display_text('run!')
+            self.run_up_start()
+        
     def autopilot_process(self, q_state):
         while True:
-            distance = Distance()
-            cm = distance.detect()
-            self.display_text('Distance:')
-            self.display_text(cm)
-            print int(cm)
-            if int(cm) <= 30:
-                self.display_text('Obstacle!')
-                self.stop_motors()
-                time.sleep(1)
-                self.run_down_start()
-                time.sleep(0.3)
-                self.run_down_stop()
-                time.sleep(0.3)
-                self.run_right_start()
-                time.sleep(0.3)
-                self.run_right_stop()
-                print 'end obstacle'
-            else:
-                self.display_text('run!')
-                self.run_up_start()
+            self.search_free_road()
                 
             if not q_state.empty():
                 exit = q_state.get()

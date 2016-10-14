@@ -154,6 +154,7 @@ class PyMove:
         gpio.output(MOTOR_RIGHT_DOWN, False)
 
     def key_control(self, q_start):
+        q_start.put(False)
         while True:
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_POWER:

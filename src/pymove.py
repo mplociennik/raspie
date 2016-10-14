@@ -65,8 +65,8 @@ class PyMove:
     def autopilot_process(self, q_start, close_program):
         close_program.put(False)
         while True:
-            close_program = close_program.get()
-            if close_program:
+            close = close_program.get()
+            if close:
                 break
             if not q_start.empty():
                 start = q_start.get()

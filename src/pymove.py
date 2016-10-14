@@ -43,16 +43,10 @@ class PyMove:
     """
     def __init__(self):
         self.data = []
-        self.move = False
-        self.obstacle = False
         pygame.init()
         self.screen = pygame.display.set_mode()
         pygame.key.set_repeat(100, 100)
         self.font = pygame.font.SysFont('monospace', 22)
-
-    def toggle_autopilot(self):
-        self.autopilot = self.autopilot if True else False
-        print self.autopilot
         
     def stop_motors(self):
         self.display_text('stoping motors...')
@@ -67,6 +61,7 @@ class PyMove:
             if not close_program.empty():
                 exit = close_program.get()
                 if exit == 'exit':
+                    print 'exiting autopilot...'
                     break
             if not q_start.empty():
                 start = q_start.get()
@@ -161,6 +156,7 @@ class PyMove:
         while True:
             close = close_program.get()
             if close == 'exit':
+                print 'exiting key_control...'
                 break
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_POWER:

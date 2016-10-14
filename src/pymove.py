@@ -75,9 +75,9 @@ class PyMove:
                     if obstacle:
                         self.display_text('obstacle!')
                         self.stop_motors()
-                        time.sleep(1)
+                        time.sleep(3)
                         self.run_right_start()
-                        time.sleep(1)
+                        time.sleep(2)
                         self.run_right_stop()
                     else:
                         self.display_text('run!')

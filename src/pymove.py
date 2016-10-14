@@ -156,6 +156,8 @@ class PyMove:
                         time.sleep(1)
                         self.run_up_stop()
                         pass
+                else:
+                    pass
             
     def key_control(self, q_start, close_program):
         q_start.put(False)

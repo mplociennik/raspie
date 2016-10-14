@@ -67,7 +67,7 @@ class PyMove:
             obstacle = False
             distance = Distance()
             cm = distance.detect()
-            if cm <= 20:
+            if int(cm) <= 30:
                 self.display_text('Distance:')
                 self.display_text(cm)
                 obstacle = True

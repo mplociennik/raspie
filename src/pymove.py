@@ -133,8 +133,10 @@ class PyMove:
                 else:
                     pass
             if not q_start.empty():
+                print 'If q_start not empty'
                 start = q_start.get()
                 if start:
+                    print 'if start run distance test'
                     distance = Distance()
                     cm = distance.detect()
                     self.display_text('Distance:')
@@ -144,12 +146,16 @@ class PyMove:
                         self.stop_motors()
                         time.sleep(1)
                         self.run_right_start()
-                        time.sleep(3)
+                        time.sleep(1)
                         self.run_right_stop()
+                        print 'end obstacle'
                         pass
                     else:
                         self.display_text('run!')
                         self.run_up_start()
+                        time.sleep(1)
+                        self.run_up_stop()
+                        pass
             
     def key_control(self, q_start, close_program):
         q_start.put(False)

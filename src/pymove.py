@@ -5,7 +5,7 @@ from distance import Distance
 import pygame
 from pygame.locals import *
 from speech import Speech
-import multiprocessing
+from multiprocessing import Process, Queue
 import time
 import os
 import sys
@@ -62,34 +62,39 @@ class PyMove:
         gpio.output(MOTOR_RIGHT_UP, False)
         gpio.output(MOTOR_RIGHT_DOWN, False)
 
-    def distance(self):
+    def distance(self, q_obstacle):
         while True:
             distance = Distance()
             cm = distance.detect()
-            if cm <= 10:
-                self.obstacle = True
+            if cm <= 20:
                 self.stop_motors()
+                q_obstacle.put(True)
+            else:
+                q_obstacle.put(False)
         
-    def autopilot_process(self):
+    def autopilot_process(self, q_start, q_obstacle):
         while True:
-            print self.autopilot
-            if self.autopilot:
-                speech = Speech()
-                speech.play_sound('sounds/Very_Excited_R2D2.mp3')
-                self.display_text('Autopilot starting...')
-                if self.obstacle:
-                    print 'dupa3'
+            if not q_start.empty():
+                start = q_start.get()
+                if start:
                     speech = Speech()
                     speech.play_sound('sounds/Very_Excited_R2D2.mp3')
-                    gpio.output(MOTOR_LEFT_UP, True)
-                    gpio.output(MOTOR_RIGHT_DOWN, True)
-                    time.sleep(1)
-                    gpio.output(MOTOR_LEFT_UP, False)
-                    gpio.output(MOTOR_RIGHT_DOWN, False)
-                else:
-                    print 'dupa4'
-                    gpio.output(MOTOR_LEFT_UP, True)
-                    gpio.output(MOTOR_RIGHT_UP, True)
+                    self.display_text('Autopilot starting...')
+                    if not q_obstacle.empty():
+                        obstacle = q_obstacle.get()
+                        if obstacle:
+                            print 'dupa3'
+                            speech = Speech()
+                            speech.play_sound('sounds/Very_Excited_R2D2.mp3')
+                            gpio.output(MOTOR_LEFT_UP, True)
+                            gpio.output(MOTOR_RIGHT_DOWN, True)
+                            time.sleep(1)
+                            gpio.output(MOTOR_LEFT_UP, False)
+                            gpio.output(MOTOR_RIGHT_DOWN, False)
+                        else:
+                            print 'dupa4'
+                            gpio.output(MOTOR_LEFT_UP, True)
+                            gpio.output(MOTOR_RIGHT_UP, True)
             time.sleep(1)
 
     def restart_raspie(self):
@@ -159,7 +164,7 @@ class PyMove:
         gpio.output(MOTOR_LEFT_UP, False)
         gpio.output(MOTOR_RIGHT_DOWN, False)
         
-    def key_control(self):
+    def key_control(self, q_start):
         while True:
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_POWER:
@@ -170,10 +175,10 @@ class PyMove:
                 if event.type == pygame.KEYUP and event.key == pygame.K_2:
                     if self.autopilot:
                         text = 'Stoping autopilot...'
-                        self.toggle_autopilot()
+                        q_start.put(False)
                     else:
                         text = 'Starting autopilot...'
-                        self.toggle_autopilot()
+                        q_start.put(True)
                     self.display_text(text)
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_3:
                     print 'Cleaning up gpio'
@@ -224,9 +229,11 @@ class PyMove:
 
     def start(self):
         jobs = []
-        autopilot_process = multiprocessing.Process(target=self.autopilot_process)
-        key_control = multiprocessing.Process(target=self.key_control)
-        distance = multiprocessing.Process(target=self.distance)
+        q_start = Queue()
+        q_obstacle = Queue()
+        autopilot_process = Process(target=self.autopilot_process, args=(q_start, q_obstacle,))
+        key_control = Process(target=self.key_control, args=(q_start,))
+        distance = Process(target=self.distance, args=(q_obstacle,))
 
         jobs.append(distance)
         jobs.append(key_control)

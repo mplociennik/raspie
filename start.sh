@@ -1,4 +1,8 @@
 #!/bin/sh
-source src/venv/bin/activate
-sudo venv/bin/python src/raspie.py
+cd /
+cd home/pi/raspie
+git pull
+cd src
+sudo python start.py
+cd /
 

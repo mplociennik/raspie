@@ -1,16 +1,10 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 import multiprocessing
 import os
 import time
-import urllib2
-import pymove
-
-def filter_spaces(text):
-    return text.replace(" ", "%20")
-
-def create_speech(text):
-    url_speak = "http://127.0.0.1:8000/speech?text=" + filter_spaces(text)
-    response = urllib2.urlopen(url_speak)
-    print response
+from pymove import PyMove
+from speech import Speech
 
 def webapi():
     os.system('venv/bin/python webapi/manage.py runserver 0.0.0.0:8000')
@@ -20,37 +14,31 @@ def move_control():
     move_control.start()
     return move_control
 
-def distance_detection():
-    print "distance_detection"
-
-def voice_recording():
-    print "voice_recording"
+def voice_commands():
+    print "voice_commands"
 
 def cam_recording():
     print "cam_recording"
 
 def welcome():
-    text = "Witaj panie"
-    create_speech(text)
+    print "started..."
+    speech = Speech()
+    speech.play_sound('sounds/Processing_R2D2.mp3')
 
 if __name__ == '__main__':
     jobs = []
-    webapi = multiprocessing.Process(target=webapi)
+#    webapi = multiprocessing.Process(target=webapi)
     move_control = multiprocessing.Process(target=move_control)
-    distance_detection = multiprocessing.Process(target=distance_detection)
-    voice_recording = multiprocessing.Process(target=voice_recording)
+    voice_commands = multiprocessing.Process(target=voice_commands)
     cam_recording = multiprocessing.Process(target=cam_recording)
     welcome = multiprocessing.Process(target=welcome)
-    jobs.append(webapi)
+#    jobs.append(webapi)
     jobs.append(move_control)
-    jobs.append(distance_detection)
-    jobs.append(voice_recording)
+    jobs.append(voice_commands)
     jobs.append(cam_recording)
     jobs.append(welcome)
-    webapi.start()
-    time.sleep(10)
+#    webapi.start()
     move_control.start()
-    distance_detection.start()
-    voice_recording.start()
+    voice_commands.start()
     cam_recording.start()
     welcome.start()

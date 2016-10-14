@@ -168,7 +168,7 @@ class PyMove:
                     time.sleep(2)
                     sys.exit()
                 if event.type == pygame.KEYUP and event.key == pygame.K_2:
-                    autopilot_process = Process(target=self.autopilot_process, args=(q_state.get(),))
+                    autopilot_process = Process(target=self.autopilot_process, args=(q_state,))
                     autopilot_process.start()
                         
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_3:
@@ -219,8 +219,8 @@ class PyMove:
         text = response
 
     def start(self):
-        self.q_state = Queue()
-        key_control = Process(target=self.key_control, args=(self.q_state,))
+        q_state = Queue()
+        key_control = Process(target=self.key_control, args=(q_state,))
         key_control.start()
         
 

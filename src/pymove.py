@@ -165,6 +165,7 @@ class PyMove:
                     self.display_text('Closing raspie...')
                     close_program.put('exit')
                     time.sleep(2)
+                    gpio.cleanup()
                     sys.exit()
                 if event.type == pygame.KEYUP and event.key == pygame.K_2:
                     autopilot_process = Process(target=self.autopilot_process, args=(self.close_program,))

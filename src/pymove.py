@@ -63,17 +63,19 @@ class PyMove:
         self.display_text('stoped!')
         
     def autopilot_process(self, q_start):
+        obstacle = False
         while True:
-            obstacle = False
-            distance = Distance()
-            cm = distance.detect()
-            if int(cm) <= 30:
-                self.display_text('Distance:')
-                self.display_text(cm)
-                obstacle = True
             if not q_start.empty():
                 start = q_start.get()
                 if start:
+                    distance = Distance()
+                    cm = distance.detect()
+                    if int(cm) <= 20:
+                        self.display_text('Distance:')
+                        self.display_text(cm)
+                        obstacle = True
+                    else:
+                        obstacle = False
                     if obstacle:
                         self.display_text('obstacle!')
                         self.stop_motors()

@@ -68,6 +68,8 @@ class PyMove:
             distance = Distance()
             cm = distance.detect()
             if cm <= 20:
+                self.display_text('Distance:')
+                self.display_text(cm)
                 obstacle = True
             if not q_start.empty():
                 start = q_start.get()

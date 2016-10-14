@@ -59,9 +59,8 @@ class PyMove:
         gpio.output(MOTOR_LEFT_UP, False)
         gpio.output(MOTOR_LEFT_DOWN, False)
         gpio.output(MOTOR_RIGHT_UP, False)
-        gpio.output(MOTOR_RIGHT_DOWN, False)
-
-           
+        gpio.output(MOTOR_RIGHT_DOWN, False)   
+        self.display_text('stoped!')
         
     def autopilot_process(self, q_start):
         while True:
@@ -74,18 +73,15 @@ class PyMove:
                 start = q_start.get()
                 if start:
                     if obstacle:
-                        print 'obstacle'
+                        self.display_text('obstacle!')
                         self.stop_motors()
                         time.sleep(1)
-                        gpio.output(MOTOR_LEFT_UP, True)
-                        gpio.output(MOTOR_RIGHT_DOWN, True)
+                        self.run_right_start()
                         time.sleep(1)
-                        gpio.output(MOTOR_LEFT_UP, False)
-                        gpio.output(MOTOR_RIGHT_DOWN, False)
+                        self.run_right_stop()
                     else:
-                        print 'run!'
-                        gpio.output(MOTOR_LEFT_UP, True)
-                        gpio.output(MOTOR_RIGHT_UP, True)
+                        self.display_text('run!')
+                        self.run_up_start()
             time.sleep(1)
 
     def restart_raspie(self):
@@ -105,7 +101,7 @@ class PyMove:
 #        label = self.font.render(text, 1, (255,255,0))
 #        self.screen.blit(label, 100,100)
         print text
-        return True
+        return False
 
     def run_up_start(self):
         text = "UP Start"

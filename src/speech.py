@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import urllib2
-from pygame import mixer
 import pyvona
+from audio import Audio
+
 
 IVONA_ACCESS_KEY = 'GDNAIKZKKGPM3SPFPZGA'
 IVONA_SECRET_KEY = 'PXnXmq3aV1qYsV4jxG4WtoVhESq4gZaXGjrDTBke'
@@ -27,9 +28,7 @@ class Speech(object):
             print "Speech: connection not found!"
 
     def play_sound(self, file):
-        mixer.init()
-        mixer.music.load(file)
-        mixer.music.play()
+        Audio(file, 1.0)
 
 if __name__ == "__main__":
     speech = Speech()

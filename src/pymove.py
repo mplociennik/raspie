@@ -1,14 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import RPi.GPIO as gpio
-from distance import Distance
-import pygame
-from pygame.locals import *
-from speech import Speech
-from multiprocessing import Process, Queue
-import time
 import os
 import sys
+import time
+import pygame
+from multiprocessing import Process, Queue
+import RPi.GPIO as gpio
+from distance import Distance
+from pygame.locals import *
+from speech import Speech
+from audio import Audio
 
 
 MOTOR_LEFT_EN1 = 7
@@ -48,25 +49,16 @@ class PyMove:
         pygame.key.set_repeat(100, 100)
         self.font = pygame.font.SysFont('monospace', 22)
         
-    def stop_motors(self):
-        self.display_text('stoping motors...')
-        gpio.output(MOTOR_LEFT_UP, False)
-        gpio.output(MOTOR_LEFT_DOWN, False)
-        gpio.output(MOTOR_RIGHT_UP, False)
-        gpio.output(MOTOR_RIGHT_DOWN, False)   
-        self.display_text('stoped!')
 
     def restart_raspie(self):
-        speech = Speech()
-        speech.play_sound('sounds/Very_Excited_R2D2.mp3')
+        self.play_sound('sounds/Very_Excited_R2D2.mp3')
         gpio.cleanup()
         python = sys.executable
         os.execl(python, python, * sys.argv)
 
     def shutdown(self):
         self.display_text('Shutting down...')
-        speech = Speech()
-        speech.play_sound('sounds/Sad_R2D2.mp3')
+        self.play_sound('sounds/Sad_R2D2.mp3')
         os.system("shutdown now -h")
 
     def display_text(self, text):
@@ -74,6 +66,16 @@ class PyMove:
 #        self.screen.blit(label, 100,100)
         print text
         return False
+    def play_sound(self, music_file):
+        Audio(music_file, 1.0)
+
+    def stop_motors(self):
+        self.display_text('stoping motors...')
+        gpio.output(MOTOR_LEFT_UP, False)
+        gpio.output(MOTOR_LEFT_DOWN, False)
+        gpio.output(MOTOR_RIGHT_UP, False)
+        gpio.output(MOTOR_RIGHT_DOWN, False)   
+        self.display_text('stoped!')
 
     def run_up_start(self):
         text = "UP Start"
@@ -133,6 +135,7 @@ class PyMove:
         print int(cm)
         if int(cm) <= 30:
             self.display_text('Obstacle!')
+            self.play_sound('sounds/Processing_R2D2.mp3')
             self.stop_motors()
             time.sleep(1)
             self.run_down_start()

@@ -5,6 +5,7 @@ import os
 import time
 from pymove import PyMove
 from speech import Speech
+from audio import Audio
 
 def webapi():
     os.system('venv/bin/python webapi/manage.py runserver 0.0.0.0:8000')
@@ -22,8 +23,7 @@ def cam_recording():
 
 def welcome():
     print "started..."
-    speech = Speech()
-    speech.play_sound('sounds/Processing_R2D2.mp3')
+    audio.play_sound('sounds/Processing_R2D2.mp3')
 
 if __name__ == '__main__':
     jobs = []

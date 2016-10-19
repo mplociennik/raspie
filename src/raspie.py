@@ -6,6 +6,7 @@ import time
 from pymove import PyMove
 from speech import Speech
 from audio import Audio
+from voice_control import VoiceControl
 
 def webapi():
     os.system('venv/bin/python webapi/manage.py runserver 0.0.0.0:8000')

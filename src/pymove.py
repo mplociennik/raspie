@@ -153,14 +153,13 @@ class PyMove:
         
     def autopilot_process(self, q_state):
         while True:
-            self.search_free_road()
-                
+            self.search_free_road() 
             if not q_state.empty():
-                exit = q_state.get()
-                if exit == 'autopilot_stop':
+                q_state_value = q_state.get()
+                if q_state_value == 'autopilot_stop':
                     print 'autopilot stop...'
                     break
-                if exit == 'exit':
+                if q_state_value == 'exit':
                     print 'stoping autopilot...'
                     break
             

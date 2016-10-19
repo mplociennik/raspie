@@ -12,16 +12,15 @@ class Speech(object):
     """Class to making connection to voice webapi."""
     
     def hello(self, text):
-        self.create_speech(text)
+        self.create_voice(text)
 
     def filter_spaces(self, text):
         return text.replace(" ", "%20")
 
     def create_voice(self, text):
-        """"""
         v = pyvona.create_voice(IVONA_ACCESS_KEY, IVONA_SECRET_KEY)
         v.voice_name = 'Jacek'
-
+        v.region = 'eu-east'
         try:
             v.speak(text)
         except:
@@ -32,4 +31,4 @@ class Speech(object):
 
 if __name__ == "__main__":
     speech = Speech()
-    speech.hello('Hello World!')
+    speech.hello('Witaj świecie!')

@@ -24,7 +24,7 @@ def cam_recording():
 
 def welcome():
     print "started..."
-    Audio.play_music('sounds/Processing_R2D2.mp3')
+    Audio('sounds/Processing_R2D2.mp3', 1.0)
 
 if __name__ == '__main__':
     jobs = []

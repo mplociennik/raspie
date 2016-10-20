@@ -195,6 +195,7 @@ class PyMove:
                     speech.create_voice(text)
                     self.display_text(text)
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_5:
+                    self.play_sound('sounds/Very_Excited_R2D2.mp3')
                     text = "Let's dance!"
                     speech = Speech()
                     speech.create_voice(text)

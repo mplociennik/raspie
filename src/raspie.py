@@ -17,7 +17,7 @@ def move_control():
     return move_control
 
 def voice_commands():
-    print "voice_commands"
+    VoiceControl().listen_commands()
 
 def cam_recording():
     print "cam_recording"

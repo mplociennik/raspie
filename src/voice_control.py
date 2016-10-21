@@ -3,7 +3,7 @@
 
 import speech_recognition as sr
 from multiprocessing import Process, Queue
-#from pymove import PyMove
+from pymove import PyMove
 from speech import Speech
 
 
@@ -13,10 +13,10 @@ class VoiceControl():
         text = 'Starting autopilot'
         speech = Speech()
         speech.create_voice(text)
-        #autopilot = PyMove()
-        #q_state = Queue()
-        #autopilot_process = Process(target=autopilot.autopilot_process, args=(q_state,))
-        #autopilot_process.start()
+        autopilot = PyMove()
+        q_state = Queue()
+        autopilot_process = Process(target=autopilot.autopilot_process, args=(q_state,))
+        autopilot_process.start()
 
     def listen_commands(self):
         r = sr.Recognizer()

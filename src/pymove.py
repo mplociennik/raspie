@@ -185,7 +185,6 @@ class PyMove:
                 if event.type == pygame.KEYUP and event.key == pygame.K_2:
                     autopilot_process = Process(target=self.autopilot_process, args=(q_state,))
                     autopilot_process.start()
-                        
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_3:
                     print 'Cleaning up gpio'
                     gpio.cleanup()
@@ -212,6 +211,10 @@ class PyMove:
                     self.run_down_start()
                     time.sleep(1)
                     self.run_down_stop()
+                if event.type == pygame.KEYDOWN and event.key == pygame.K_6:
+                    self.play_sound('sounds/Very_Excited_R2D2.mp3')
+                if event.type == pygame.KEYDOWN and event.key == pygame.K_7:
+                    self.play_sound('sounds/Processing_R2D2.mp3')
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
                     self.run_up_start()
                 elif event.type == pygame.KEYUP and event.key == pygame.K_UP:
@@ -228,11 +231,6 @@ class PyMove:
                     self.run_right_start()
                 elif event.type == pygame.KEYUP and event.key == pygame.K_RIGHT:
                     self.run_right_stop()
-
-    def create_speech(self, text):
-        url_speak = "http://127.0.0.1:8000/speech?text=" + filter_spaces(text)
-        response = urllib2.urlopen(url_speak)
-        text = response
 
     def start(self):
         q_state = Queue()

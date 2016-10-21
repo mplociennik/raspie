@@ -4,6 +4,7 @@ import os
 import sys
 import time
 import pygame
+import subprocess
 from multiprocessing import Process, Queue
 import RPi.GPIO as gpio
 from distance import Distance
@@ -177,10 +178,11 @@ class PyMove:
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_POWER:
                     self.shutdown()
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_1:
-                    self.display_text('Closing raspie...')
+                    self.display_text('Restarting raspie...')
                     q_state.put('exit')
                     gpio.cleanup()
                     time.sleep(2)
+                    subprocess.call(['.././start.sh'])
                     sys.exit()
                 if event.type == pygame.KEYUP and event.key == pygame.K_2:
                     autopilot_process = Process(target=self.autopilot_process, args=(q_state,))

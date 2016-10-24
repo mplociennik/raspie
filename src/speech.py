@@ -10,7 +10,14 @@ IVONA_SECRET_KEY = 'PXnXmq3aV1qYsV4jxG4WtoVhESq4gZaXGjrDTBke'
 
 class Speech(object):
     """Class to making connection to voice webapi."""
-    
+
+    name = 'Jacek'
+    region = 'eu-east'
+
+    def __init__(self, name=None, region=None):
+        self.name = name
+        self.region = region
+
     def hello(self, text):
         self.create_voice(text)
 
@@ -19,8 +26,8 @@ class Speech(object):
 
     def create_voice(self, text):
         v = pyvona.create_voice(IVONA_ACCESS_KEY, IVONA_SECRET_KEY)
-        v.voice_name = 'Jacek'
-        v.region = 'eu-east'
+        v.voice_name = self.name
+        v.region = self.region
         try:
             v.speak(text)
         except:

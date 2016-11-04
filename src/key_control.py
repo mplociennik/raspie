@@ -82,33 +82,33 @@ class KeyControl:
                     move.run_left_start()
                     time.sleep(1)
                     move.run_left_stop()
-                    main.run_right_start()
+                    move.run_right_start()
                     time.sleep(1)
-                    main.run_right_stop()
-                    main.run_up_start()
+                    move.run_right_stop()
+                    move.run_up_start()
                     time.sleep(1)
-                    main.run_up_stop()
-                    main.run_down_start()
+                    move.run_up_stop()
+                    move.run_down_start()
                     time.sleep(1)
-                    main.run_down_stop()
+                    move.run_down_stop()
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_4:
                     self.play_sound('sounds/Very_Excited_R2D2.mp3')
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
-                    main.run_up_start()
+                    move.run_up_start()
                 elif event.type == pygame.KEYUP and event.key == pygame.K_UP:
-                    main.run_up_stop()
+                    move.run_up_stop()
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
-                    main.run_down_start()
+                    move.run_down_start()
                 elif event.type == pygame.KEYUP and event.key == pygame.K_DOWN:
-                    main.run_down_stop()
+                    move.run_down_stop()
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_LEFT:
                     move.run_left_start()
                 elif event.type == pygame.KEYUP and event.key == pygame.K_LEFT:
                     move.run_left_stop()
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_RIGHT:
-                    main.run_right_start()
+                    move.run_right_start()
                 elif event.type == pygame.KEYUP and event.key == pygame.K_RIGHT:
-                    main.run_right_stop()
+                    move.run_right_stop()
 
     def start(self):
         q_state = Queue()

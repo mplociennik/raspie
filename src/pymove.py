@@ -37,10 +37,6 @@ class PyMove:
     """
     def __init__(self):
         self.data = []
-        pygame.init()
-        self.screen = pygame.display.set_mode()
-        pygame.key.set_repeat(100, 100)
-        self.font = pygame.font.SysFont('monospace', 22)
     
     def gpio_cleanup(self):
         gpio.cleanup()

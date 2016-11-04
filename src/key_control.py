@@ -1,7 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import pygame
+import time
+import os
+import sys
 import subprocess
+import pygame
 from multiprocessing import Process, Queue
 from pygame.locals import *
 from speech import Speech

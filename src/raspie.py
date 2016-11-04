@@ -12,9 +12,9 @@ def webapi():
     os.system('venv/bin/python webapi/manage.py runserver 0.0.0.0:8000')
 
 def key_control():
-    move_control = PyMove()
-    move_control.start()
-    return move_control
+    key_control = KeyControl()
+    key_control.start()
+    return key_control
 
 def voice_commands():
     VoiceControl().listen_commands()

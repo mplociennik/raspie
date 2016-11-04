@@ -40,6 +40,6 @@ if __name__ == '__main__':
     jobs.append(welcome)
 #    webapi.start()
     key_control.start()
-    voice_commands.start()
+#    voice_commands.start()
 #    cam_recording.start()
     welcome.start()

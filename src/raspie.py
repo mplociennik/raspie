@@ -3,8 +3,7 @@
 import multiprocessing
 import os
 import time
-from pymove import PyMove
-from speech import Speech
+from key_control import KeyControl
 from audio import Audio
 from voice_control import VoiceControl
 

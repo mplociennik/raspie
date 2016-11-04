@@ -143,6 +143,5 @@ class PyMove:
                     break
 
 if __name__ == '__main__':
-    q_state = Queue()
-    move = Process(target=self.autopilot_process, args=(q_state, ))
-    move.start()  
+    move = PyMove
+    move.autopilot_process()

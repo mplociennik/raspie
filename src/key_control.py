@@ -6,6 +6,7 @@ from multiprocessing import Process, Queue
 from pygame.locals import *
 from speech import Speech
 from audio import Audio
+from pymove import PyMove as move
 
 
 class KeyControl:
@@ -21,7 +22,7 @@ class KeyControl:
 
     def restart_raspie(self):
         self.play_sound('sounds/Very_Excited_R2D2.mp3')
-        gpio.cleanup()
+        move.gpio_cleanup()
         python = sys.executable
         os.execl(python, python, * sys.argv)
 
@@ -57,7 +58,7 @@ class KeyControl:
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_9:
                     self.display_text('Restarting raspie...')
                     q_state.put('exit')
-                    gpio.cleanup()
+                    move.gpio_cleanup()
                     time.sleep(2)
                     subprocess.call(['.././start.sh'])
                     sys.exit()
@@ -66,7 +67,7 @@ class KeyControl:
                     autopilot_process.start()
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_8:
                     print 'Cleaning up gpio'
-                    gpio.cleanup()
+                    move.gpio_cleanup()
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_2:
                     text = "Co słychać?"
                     speech = Speech()
@@ -78,36 +79,36 @@ class KeyControl:
                     speech = Speech()
                     speech.create_voice(text)
                     self.display_text(text)
-                    self.run_left_start()
+                    move.run_left_start()
                     time.sleep(1)
-                    self.run_left_stop()
-                    self.run_right_start()
+                    move.run_left_stop()
+                    main.run_right_start()
                     time.sleep(1)
-                    self.run_right_stop()
-                    self.run_up_start()
+                    main.run_right_stop()
+                    main.run_up_start()
                     time.sleep(1)
-                    self.run_up_stop()
-                    self.run_down_start()
+                    main.run_up_stop()
+                    main.run_down_start()
                     time.sleep(1)
-                    self.run_down_stop()
+                    main.run_down_stop()
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_4:
                     self.play_sound('sounds/Very_Excited_R2D2.mp3')
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
-                    self.run_up_start()
+                    main.run_up_start()
                 elif event.type == pygame.KEYUP and event.key == pygame.K_UP:
-                    self.run_up_stop()
+                    main.run_up_stop()
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
-                    self.run_down_start()
+                    main.run_down_start()
                 elif event.type == pygame.KEYUP and event.key == pygame.K_DOWN:
-                    self.run_down_stop()
+                    main.run_down_stop()
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_LEFT:
-                    self.run_left_start()
+                    move.run_left_start()
                 elif event.type == pygame.KEYUP and event.key == pygame.K_LEFT:
-                    self.run_left_stop()
+                    move.run_left_stop()
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_RIGHT:
-                    self.run_right_start()
+                    main.run_right_start()
                 elif event.type == pygame.KEYUP and event.key == pygame.K_RIGHT:
-                    self.run_right_stop()
+                    main.run_right_stop()
 
     def start(self):
         q_state = Queue()

@@ -41,7 +41,11 @@ class PyMove:
         self.screen = pygame.display.set_mode()
         pygame.key.set_repeat(100, 100)
         self.font = pygame.font.SysFont('monospace', 22)
-        
+    
+    def gpio_cleanup(self):
+        gpio.cleanup()
+        return
+    
     def display_text(self, text):
 #        label = self.font.render(text, 1, (255,255,0))
 #        self.screen.blit(label, 100,100)

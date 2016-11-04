@@ -31,7 +31,7 @@ gpio.output(MOTOR_RIGHT_EN1, True)
 gpio.output(MOTOR_RIGHT_EN2, True)
 
 
-class PyMove:
+class PyMove():
     """
     For controlling motors by gpio raspberry and keyboard.
     """

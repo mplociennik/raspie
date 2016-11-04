@@ -36,8 +36,9 @@ class VoiceControl():
         '''
 
         try:
-            words = r.recognize_google(audio, None, 'pl-PL')
-            print("Google Speech Recognition thinks you said: " + words)
+#            words = r.recognize_google(audio, None, 'pl-PL')
+            words = r.recognize_sphinx(audio)
+            print("PocketSphinx Speech Recognition thinks you said: " + words)
             speech = Speech()
             speech.create_voice(words)
             if words == 'Raspie':

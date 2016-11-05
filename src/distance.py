@@ -26,7 +26,7 @@ class Distance:
             print "start"
             time.sleep(1)
             GPIO.output(TRIG,1)
-            time.sleep(0.00001)
+            time.sleep(0.0001)
             GPIO.output(TRIG,0)
             while GPIO.input(ECHO) == 0:
                 print "pulse_start"

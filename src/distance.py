@@ -34,6 +34,7 @@ class Distance:
             while GPIO.input(ECHO) == 1:
                 print "pulse_stop"
                 pulse_stop = time.time()
+                continue
             distance = (pulse_stop - pulse_start) * 17150
             distance = round(distance, 2)
             print distance

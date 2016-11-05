@@ -4,8 +4,8 @@ from os import environ, path
 from pocketsphinx.pocketsphinx import *
 from sphinxbase.sphinxbase import *
 
-MODELDIR = "pocketsphinx/model"
-DATADIR = "pocketsphinx/test/data"
+MODELDIR = "/pocketsphinx/model"
+DATADIR = "/pocketsphinx/test/data"
 
 # Create a decoder with certain model
 config = Decoder.default_config()

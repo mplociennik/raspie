@@ -36,8 +36,9 @@ gpio.output(MOTOR_LEFT_EN2, True)
 gpio.output(MOTOR_RIGHT_EN1, True)
 gpio.output(MOTOR_RIGHT_EN2, True)
 
-p = gpio.PWM(HEAD_LEFT, 50)
-p.start(7.5)
+GPIO.setup(HEAD_LEFT,GPIO.OUT)
+pwm = gpio.PWM(HEAD_LEFT, 50)
+pwm.start(5)
 
 class PyMove():
     """

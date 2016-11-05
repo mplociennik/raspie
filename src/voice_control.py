@@ -20,7 +20,7 @@ class VoiceControl():
 
     def listen_commands(self):
         r = sr.Recognizer()
-        m = sr.Microphone(2, sample_rate=44100)
+        m = sr.Microphone(2, sample_rate = 48000, device_index = 2, chunk_size = 1024)
 
         with m as source: r.adjust_for_ambient_noise(source)
         print("Set minimum energy threshold to {}".format(r.energy_threshold))

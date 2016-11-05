@@ -152,7 +152,7 @@ class PyMove():
         text = "HEAD LEFT START"
         self.display_text(text)
         gpio.output(HEAD_LEFT, True)
-        time.sleep(1)
+        time.sleep(0.0015)
         gpio.output(HEAD_LEFT, False)
         
 if __name__ == '__main__':

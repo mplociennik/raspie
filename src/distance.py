@@ -36,6 +36,6 @@ class Distance:
 
 if __name__ == "__main__":
     distance = Distance()
-    distance.detect()
+    print 'distance: {0} cm'.format(distance.detect())
 
 

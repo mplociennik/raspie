@@ -26,7 +26,7 @@ class VoiceControl():
         print("Set minimum energy threshold to {}".format(r.energy_threshold))
         print("Say something!")
         with m as source: audio = r.listen(source)
-        print("Got it! Now to recognize it {0}").format(audio)
+        print("Got it! Now to recognize it {0}").format(r.recognize_sphinx(audio))
 #        with sr.Microphone(device_index=2) as source:
 #            print("Say something!")
 #            audio = r.listen(source)

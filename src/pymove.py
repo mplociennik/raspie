@@ -154,7 +154,7 @@ class PyMove():
     def head_left(self):
         text = "HEAD LEFT START"
         self.display_text(text)
-        p.ChangeDutyCycle(2.5)
+        pwm.ChangeDutyCycle(2.5)
 #        time.sleep(1)
 #        p.ChangeDutyCycle(12.5)
 #        time.sleep(1)

@@ -14,6 +14,11 @@ MOTOR_LEFT_DOWN = 16
 MOTOR_RIGHT_UP = 15
 MOTOR_LEFT_UP = 18
 
+HEAD_LEFT = 33
+HEAD_RIGHT = None
+HEAD_UP = None
+HEAD_DOWN = None
+
 gpio.setmode(gpio.BOARD)
 gpio.setwarnings(False)
 gpio.setup(MOTOR_LEFT_EN1, gpio.OUT)
@@ -142,6 +147,13 @@ class PyMove():
                     print 'stoping autopilot...'
                     break
 
+    def head_left(self):
+        text = "HEAD LEFT START"
+        self.display_text(text)
+        gpio.output(HEAD_LEFT, True)
+        time.sleep(1)
+        gpio.output(HEAD_LEFT, False)
+        
 if __name__ == '__main__':
     move = PyMove
     move.autopilot_process()

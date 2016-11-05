@@ -1,18 +1,16 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from multiprocessing import Process, Queue
 import RPi.GPIO as gpio
 from distance import Distance
 
 
-MOTOR_LEFT_EN1 = 7
+MOTOR_RIGHT_EN1 = 7
 MOTOR_LEFT_EN2 = 11
-MOTOR_RIGHT_EN1 = 12
-MOTOR_RIGHT_EN2 = 22
-MOTOR_LEFT_DOWN = 13
-MOTOR_RIGHT_DOWN = 16
-MOTOR_LEFT_UP = 15
-MOTOR_RIGHT_UP = 18
+MOTOR_LEFT_EN1 = 12
+MOTOR_RIGHT_DOWN = 13
+MOTOR_LEFT_DOWN = 16
+MOTOR_RIGHT_UP = 15
+MOTOR_LEFT_UP = 18
 
 gpio.setmode(gpio.BOARD)
 gpio.setwarnings(False)

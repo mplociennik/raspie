@@ -21,7 +21,7 @@ class VoiceControl():
     def listen_commands(self):
         r = sr.Recognizer()
         r = sr.Recognizer()
-        with sr.Microphone(2) as source:
+        with sr.Microphone(6) as source:
             print("Say something!")
             audio = r.listen(source)
 

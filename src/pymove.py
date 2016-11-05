@@ -15,7 +15,7 @@ MOTOR_LEFT_DOWN = 16
 MOTOR_RIGHT_UP = 15
 MOTOR_LEFT_UP = 18
 
-HEAD_LEFT = 33
+HEAD_X = 37
 HEAD_RIGHT = None
 HEAD_UP = None
 HEAD_DOWN = None
@@ -36,9 +36,9 @@ gpio.output(MOTOR_LEFT_EN2, True)
 gpio.output(MOTOR_RIGHT_EN1, True)
 gpio.output(MOTOR_RIGHT_EN2, True)
 
-gpio.setup(HEAD_LEFT,gpio.OUT)
-pwm = gpio.PWM(HEAD_LEFT, 50)
-pwm.start(5)
+gpio.setup(HEAD_X,gpio.OUT)
+pwm = gpio.PWM(HEAD_X, 50)
+pwm.start(7.5)
 
 class PyMove():
     """

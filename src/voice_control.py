@@ -20,9 +20,8 @@ class VoiceControl():
 
     def listen_commands(self):
         r = sr.Recognizer()
-        m = sr.Microphone(2)
-        audio_test = sr.Microphone.get_pyaudio().PyAudio()
-        audio_test.get_device_info_by_index(1)
+        m = sr.Microphone(2, sample_rate=44100)
+
         with m as source: r.adjust_for_ambient_noise(source)
         print("Set minimum energy threshold to {}".format(r.energy_threshold))
         print("Say something!")

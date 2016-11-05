@@ -95,6 +95,8 @@ class KeyControl:
                     PyMove().run_down_stop()
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_4:
                     self.play_sound('sounds/Very_Excited_R2D2.mp3')
+                if event.type == pygame.KEYDOWN and event.key == pygame.K_5:
+                    PyMove().head_left()
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
                     PyMove().run_up_start()
                 elif event.type == pygame.KEYUP and event.key == pygame.K_UP:

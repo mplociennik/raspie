@@ -36,7 +36,7 @@ gpio.output(MOTOR_LEFT_EN2, True)
 gpio.output(MOTOR_RIGHT_EN1, True)
 gpio.output(MOTOR_RIGHT_EN2, True)
 
-p = gpio.PWM(HEAD_LEFT)
+p = gpio.PWM(HEAD_LEFT, 50)
 p.start(7.5)
 
 

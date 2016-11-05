@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import time
 from multiprocessing import Process, Queue
 import RPi.GPIO as gpio
 from distance import Distance

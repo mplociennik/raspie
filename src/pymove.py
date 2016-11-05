@@ -154,6 +154,12 @@ class PyMove():
     def head_left(self):
         text = "HEAD LEFT START"
         self.display_text(text)
+        p.ChangeDutyCycle(7.5)
+        time.sleep(1)
+        p.ChangeDutyCycle(12.5)
+        time.sleep(1)
+        p.ChangeDutyCycle(2.5)
+        time.sleep(1)
         gpio.output(HEAD_LEFT, True)
         time.sleep(0.0015)
         gpio.output(HEAD_LEFT, False)

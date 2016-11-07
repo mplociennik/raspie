@@ -22,8 +22,8 @@ try:
         pwm_Y.ChangeDutyCycle(12.5)
         pwm_X.ChangeDutyCycle(12.5)
         time.sleep(1)
-        pwm._Y.ChangeDutyCycle(2.5)
-        pwm._X.ChangeDutyCycle(2.5)
+        pwm_Y.ChangeDutyCycle(2.5)
+        pwm_X.ChangeDutyCycle(2.5)
         time.sleep(1)
 except KeyboardInterrupt:
     pwm_Y.stop()

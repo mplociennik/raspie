@@ -4,7 +4,7 @@ import RPi.GPIO as GPIO
 import time
 
 GPIO.setmode(GPIO.BOARD)
-TRIG = 31
+TRIG = 33
 ECHO = 32
 GPIO.setup(TRIG,GPIO.OUT)
 GPIO.setup(ECHO, GPIO.IN)
@@ -22,20 +22,28 @@ class Distance:
         GPIO.cleanup()
         
     def detect(self):
-        time.sleep(1)
-        GPIO.output(TRIG,1)
-        time.sleep(0.00001)
-        GPIO.output(TRIG,0)
-        while GPIO.input(ECHO) == 0:
-            pulse_start = time.time()
-        while GPIO.input(ECHO) == 1:
-            pulse_stop = time.time()
-        distance = (pulse_stop - pulse_start) * 17150
-        distance = round(distance, 2)
-        return distance
+        try:
+            print "start"
+            time.sleep(1)
+            GPIO.output(TRIG,1)
+            time.sleep(0.000001)
+            GPIO.output(TRIG,0)
+            time.sleep(0.000001)
+            while GPIO.input(ECHO) == 0:
+                pulse_start = time.time()
+            while GPIO.input(ECHO) == 1:
+                pulse_stop = time.time()
+            distance = (pulse_stop - pulse_start) * 17150
+            distance = round(distance, 2)
+            print "Distance: {0}cm".format(distance)
+            return distance
+        except KeyboardInterrupt:
+            print "interrupt"
+        finally:
+            GPIO.cleanup()
 
 if __name__ == "__main__":
     distance = Distance()
-    distance.detect()
+    print 'distance: {0} cm'.format(distance.detect())
 
 

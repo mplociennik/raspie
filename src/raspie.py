@@ -3,18 +3,17 @@
 import multiprocessing
 import os
 import time
-from pymove import PyMove
-from speech import Speech
+from key_control import KeyControl
 from audio import Audio
 from voice_control import VoiceControl
 
 def webapi():
     os.system('venv/bin/python webapi/manage.py runserver 0.0.0.0:8000')
 
-def move_control():
-    move_control = PyMove()
-    move_control.start()
-    return move_control
+def key_control():
+    key_control = KeyControl()
+    key_control.start()
+    return key_control
 
 def voice_commands():
     VoiceControl().listen_commands()
@@ -29,17 +28,17 @@ def welcome():
 if __name__ == '__main__':
     jobs = []
 #    webapi = multiprocessing.Process(target=webapi)
-    move_control = multiprocessing.Process(target=move_control)
+    key_control = multiprocessing.Process(target=key_control)
     voice_commands = multiprocessing.Process(target=voice_commands)
 #    cam_recording = multiprocessing.Process(target=cam_recording)
     welcome = multiprocessing.Process(target=welcome)
 #    jobs.append(webapi)
-    jobs.append(move_control)
+    jobs.append(key_control)
     jobs.append(voice_commands)
     jobs.append(cam_recording)
     jobs.append(welcome)
 #    webapi.start()
-    move_control.start()
-    voice_commands.start()
+    key_control.start()
+#    voice_commands.start()
 #    cam_recording.start()
     welcome.start()

@@ -1,26 +1,24 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import os
-import sys
 import time
-import pygame
-import subprocess
 from multiprocessing import Process, Queue
 import RPi.GPIO as gpio
 from distance import Distance
-from pygame.locals import *
-from speech import Speech
-from audio import Audio
 
 
-MOTOR_LEFT_EN1 = 7
-MOTOR_LEFT_EN2 = 11
-MOTOR_RIGHT_EN1 = 12
-MOTOR_RIGHT_EN2 = 22
-MOTOR_LEFT_UP = 13
-MOTOR_RIGHT_UP = 16
-MOTOR_LEFT_DOWN = 15
-MOTOR_RIGHT_DOWN = 18
+MOTOR_RIGHT_EN1 = 7
+MOTOR_RIGHT_EN2 = 11
+MOTOR_LEFT_EN1 = 12
+MOTOR_LEFT_EN2 = 22
+MOTOR_RIGHT_DOWN = 13
+MOTOR_LEFT_DOWN = 16
+MOTOR_RIGHT_UP = 15
+MOTOR_LEFT_UP = 18
+
+HEAD_X = 37
+HEAD_RIGHT = None
+HEAD_UP = None
+HEAD_DOWN = None
 
 gpio.setmode(gpio.BOARD)
 gpio.setwarnings(False)
@@ -38,38 +36,27 @@ gpio.output(MOTOR_LEFT_EN2, True)
 gpio.output(MOTOR_RIGHT_EN1, True)
 gpio.output(MOTOR_RIGHT_EN2, True)
 
+gpio.setup(HEAD_X,gpio.OUT)
+pwm = gpio.PWM(HEAD_X, 50)
+pwm.start(7.7)
 
-class PyMove:
+class PyMove():
     """
     For controlling motors by gpio raspberry and keyboard.
     """
     def __init__(self):
         self.data = []
-        pygame.init()
-        self.screen = pygame.display.set_mode()
-        pygame.key.set_repeat(100, 100)
-        self.font = pygame.font.SysFont('monospace', 22)
-        
-
-    def restart_raspie(self):
-        self.play_sound('sounds/Very_Excited_R2D2.mp3')
+    
+    def gpio_cleanup(self):
         gpio.cleanup()
-        python = sys.executable
-        os.execl(python, python, * sys.argv)
-
-    def shutdown(self):
-        self.display_text('Shutting down...')
-        self.play_sound('sounds/Sad_R2D2.mp3')
-        os.system("shutdown now -h")
-
+        return
+    
     def display_text(self, text):
 #        label = self.font.render(text, 1, (255,255,0))
 #        self.screen.blit(label, 100,100)
         print text
-        return False
-    def play_sound(self, music_file):
-        Audio(music_file, 1.0)
-
+        return 
+    
     def stop_motors(self):
         self.display_text('stoping motors...')
         gpio.output(MOTOR_LEFT_UP, False)
@@ -163,82 +150,20 @@ class PyMove:
                 if q_state_value == 'exit':
                     print 'stoping autopilot...'
                     break
-            
-    def key_control(self, q_state):
-        q_state.put('open')
-        while True:
-            if not q_state.empty():
-                close = q_state.get()
-                if close == 'exit':
-                    print 'exiting key_control...'
-                    break
-                else:
-                    pass
-            for event in pygame.event.get():
-                if event.type == pygame.KEYDOWN and event.key == pygame.K_POWER:
-                    self.shutdown()
-                if event.type == pygame.KEYDOWN and event.key == pygame.K_1:
-                    self.display_text('Restarting raspie...')
-                    q_state.put('exit')
-                    gpio.cleanup()
-                    time.sleep(2)
-                    subprocess.call(['.././start.sh'])
-                    sys.exit()
-                if event.type == pygame.KEYUP and event.key == pygame.K_2:
-                    autopilot_process = Process(target=self.autopilot_process, args=(q_state,))
-                    autopilot_process.start()
-                if event.type == pygame.KEYDOWN and event.key == pygame.K_3:
-                    print 'Cleaning up gpio'
-                    gpio.cleanup()
-                if event.type == pygame.KEYDOWN and event.key == pygame.K_4:
-                    text = "Co słychać?"
-                    speech = Speech()
-                    speech.create_voice(text)
-                    self.display_text(text)
-                if event.type == pygame.KEYDOWN and event.key == pygame.K_5:
-                    self.play_sound('sounds/Very_Excited_R2D2.mp3')
-                    text = "Let's dance!"
-                    speech = Speech()
-                    speech.create_voice(text)
-                    self.display_text(text)
-                    self.run_left_start()
-                    time.sleep(1)
-                    self.run_left_stop()
-                    self.run_right_start()
-                    time.sleep(1)
-                    self.run_right_stop()
-                    self.run_up_start()
-                    time.sleep(1)
-                    self.run_up_stop()
-                    self.run_down_start()
-                    time.sleep(1)
-                    self.run_down_stop()
-                if event.type == pygame.KEYDOWN and event.key == pygame.K_6:
-                    self.play_sound('sounds/Very_Excited_R2D2.mp3')
-                if event.type == pygame.KEYDOWN and event.key == pygame.K_7:
-                    self.play_sound('sounds/Processing_R2D2.mp3')
-                if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
-                    self.run_up_start()
-                elif event.type == pygame.KEYUP and event.key == pygame.K_UP:
-                    self.run_up_stop()
-                if event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
-                    self.run_down_start()
-                elif event.type == pygame.KEYUP and event.key == pygame.K_DOWN:
-                    self.run_down_stop()
-                if event.type == pygame.KEYDOWN and event.key == pygame.K_LEFT:
-                    self.run_left_start()
-                elif event.type == pygame.KEYUP and event.key == pygame.K_LEFT:
-                    self.run_left_stop()
-                if event.type == pygame.KEYDOWN and event.key == pygame.K_RIGHT:
-                    self.run_right_start()
-                elif event.type == pygame.KEYUP and event.key == pygame.K_RIGHT:
-                    self.run_right_stop()
 
-    def start(self):
-        q_state = Queue()
-        key_control = Process(target=self.key_control, args=(q_state,))
-        key_control.start()
+    def head_left(self):
+        text = "HEAD LEFT START"
+        self.display_text(text)
+        pwm.ChangeDutyCycle(2.5)
+#        time.sleep(1)
+#        p.ChangeDutyCycle(12.5)
+#        time.sleep(1)
+#        p.ChangeDutyCycle(2.5)
+#        time.sleep(1)
+#        gpio.output(HEAD_LEFT, True)
+#        time.sleep(0.0015)
+#        gpio.output(HEAD_LEFT, False)
         
-
 if __name__ == '__main__':
-    PyMove().start()
+    move = PyMove
+    move.autopilot_process()

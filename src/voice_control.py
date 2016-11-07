@@ -20,9 +20,16 @@ class VoiceControl():
 
     def listen_commands(self):
         r = sr.Recognizer()
-        with sr.Microphone() as source:
-            print("Waiting for command")
-            audio = r.listen(source)
+        m = sr.Microphone(2, sample_rate = 48000, device_index = 2, chunk_size = 1024)
+
+        with m as source: r.adjust_for_ambient_noise(source)
+        print("Set minimum energy threshold to {}".format(r.energy_threshold))
+        print("Say something!")
+        with m as source: audio = r.listen(source)
+        print("Got it! Now to recognize it {0}").format(r.recognize_sphinx(audio))
+#        with sr.Microphone(device_index=2) as source:
+#            print("Say something!")
+#            audio = r.listen(source)
 
         '''
         # recognize speech using Sphinx
@@ -35,8 +42,9 @@ class VoiceControl():
         '''
 
         try:
-            words = r.recognize_google(audio, None, 'pl-PL')
-            print("Google Speech Recognition thinks you said: " + words)
+#            words = r.recognize_google(audio, None, 'pl-PL')
+            words = r.recognize_sphinx(audio)
+            print("PocketSphinx Speech Recognition thinks you said: " + words)
             speech = Speech()
             speech.create_voice(words)
             if words == 'Raspie':

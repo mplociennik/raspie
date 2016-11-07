@@ -1,28 +1,22 @@
-from Tkinter import *
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 import RPi.GPIO as GPIO
 import time
 
+
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(37, GPIO.OUT)
-pwm = GPIO.PWM(37, 100)
-pwm.start(5)
+pwm = GPIO.PWM(37, 50)
+pwm.start(7.5)
 
-class App:
-
-    def __init__(self, master):
-        frame = Frame(master)
-        frame.pack()
-        scale = Scale(frame, from_=0, to=180,
-              orient=HORIZONTAL, command=self.update)
-        scale.grid(row=0)
-
-
-    def update(self, angle):
-        duty = float(angle) / 10.0 + 2.5
-        pwm.ChangeDutyCycle(duty)
-
-root = Tk()
-root.wm_title('Servo Control')
-app = App(root)
-root.geometry("200x50+0+0")
-root.mainloop()
+try:
+    while True:
+        pwm.changeDutyCycle(7.5)
+        time.sleep(1)
+        pwm.changeDutyCycle(12.5)
+        time.sleep(1)
+        pwm.changeDutyCycle(2.5)
+        time.sleep(1)
+except KeyboardInterrupt:
+    pwm.stop()
+    GPIO.cleanup()

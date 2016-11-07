@@ -5,8 +5,8 @@ import time
 ''' http://makezine.com/projects/raspberry-eye-remote-servo-cam/ sprawdzic'''
 
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(37, GPIO.OUT)
-pwm = GPIO.PWM(37, 50)
+GPIO.setup(7, GPIO.OUT)
+pwm = GPIO.PWM(7, 50)
 pwm.start(7.5)
 
 try:

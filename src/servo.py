@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import RPi.GPIO as GPIO
 import time
-
+''' http://makezine.com/projects/raspberry-eye-remote-servo-cam/ sprawdzic'''
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(37, GPIO.OUT)

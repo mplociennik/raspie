@@ -11,11 +11,11 @@ pwm.start(7.5)
 
 try:
     while True:
-        pwm.changeDutyCycle(7.5)
+        pwm.ChangeDutyCycle(7.5)
         time.sleep(1)
-        pwm.changeDutyCycle(12.5)
+        pwm.ChangeDutyCycle(12.5)
         time.sleep(1)
-        pwm.changeDutyCycle(2.5)
+        pwm.ChangeDutyCycle(2.5)
         time.sleep(1)
 except KeyboardInterrupt:
     pwm.stop()

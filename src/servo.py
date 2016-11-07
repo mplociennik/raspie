@@ -8,7 +8,7 @@ SERVO_X = 35
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(SERVO_Y, GPIO.OUT)
 pwm_Y = GPIO.PWM(SERVO_Y, 50)
-pwmY.start(7.5)
+pwm_Y.start(7.5)
 GPIO.setup(SERVO_X, GPIO.OUT)
 pwm_X = GPIO.PWM(SERVO_Y, 50)
 pwm_X.start(7.5)

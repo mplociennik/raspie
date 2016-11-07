@@ -3,10 +3,10 @@
 import RPi.GPIO as GPIO
 import time
 ''' http://makezine.com/projects/raspberry-eye-remote-servo-cam/ sprawdzic'''
-
+SERVO_Y = 33
 GPIO.setmode(GPIO.BOARD)
-GPIO.setup(7, GPIO.OUT)
-pwm = GPIO.PWM(7, 50)
+GPIO.setup(SERVO_Y, GPIO.OUT)
+pwm = GPIO.PWM(SERVO_Y, 50)
 pwm.start(7.5)
 
 try:

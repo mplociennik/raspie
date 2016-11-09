@@ -29,14 +29,13 @@ class Distance:
             time.sleep(0.000001)
             GPIO.output(TRIG,0)
             time.sleep(0.000001)
-            while GPIO.input(ECHO) == 0:
+            while GPIO.input(ECHO)==0:
                 pulse_start = time.time()
-            while GPIO.input(ECHO) == 1:
-                pulse_stop = time.time()
-                time.sleep(0.000001)                
-                distance = (pulse_stop - pulse_start) * 17150
-                distance = round(distance, 2)
-                return distance
+            while GPIO.input(ECHO)==1:
+                pulse_stop = time.time()               
+            distance = (pulse_stop - pulse_start) * 17150
+            distance = round(distance, 2)
+            return distance
         except KeyboardInterrupt:
             print "interrupt"
         finally:

@@ -5,7 +5,10 @@ from multiprocessing import Process, Queue
 import RPi.GPIO as gpio
 from distance import Distance
 
+gpio.setmode(gpio.BOARD)
+gpio.setwarnings(False)
 
+# Motors init configuration
 MOTOR_RIGHT_EN1 = 7
 MOTOR_RIGHT_EN2 = 11
 MOTOR_LEFT_EN1 = 12
@@ -15,13 +18,6 @@ MOTOR_LEFT_DOWN = 16
 MOTOR_RIGHT_UP = 15
 MOTOR_LEFT_UP = 18
 
-HEAD_X = 37
-HEAD_RIGHT = None
-HEAD_UP = None
-HEAD_DOWN = None
-
-gpio.setmode(gpio.BOARD)
-gpio.setwarnings(False)
 gpio.setup(MOTOR_LEFT_EN1, gpio.OUT)
 gpio.setup(MOTOR_LEFT_EN2, gpio.OUT)
 gpio.setup(MOTOR_RIGHT_EN1, gpio.OUT)
@@ -36,9 +32,21 @@ gpio.output(MOTOR_LEFT_EN2, True)
 gpio.output(MOTOR_RIGHT_EN1, True)
 gpio.output(MOTOR_RIGHT_EN2, True)
 
-gpio.setup(HEAD_X,gpio.OUT)
-pwm = gpio.PWM(HEAD_X, 50)
-pwm.start(7.7)
+# Head init configuration
+SERVO_Y = 33
+SERVO_X = 35
+HEAD_POS_X = 7.5
+HEAD_POS_Y = 7.5
+HEAD_POS_CHUNK = 0.2
+
+GPIO.setup(SERVO_Y, GPIO.OUT)
+pwm_Y = GPIO.PWM(SERVO_Y, 50)
+pwm_Y.start(HEAD_POSY)
+
+GPIO.setup(SERVO_X, GPIO.OUT)
+pwm_X = GPIO.PWM(SERVO_Y, 50)
+pwm_X.start(HEAD_POS_X)
+
 
 class PyMove():
     """
@@ -152,17 +160,20 @@ class PyMove():
                     break
 
     def head_left(self):
-        text = "HEAD LEFT START"
-        self.display_text(text)
-        pwm.ChangeDutyCycle(2.5)
-#        time.sleep(1)
-#        p.ChangeDutyCycle(12.5)
-#        time.sleep(1)
-#        p.ChangeDutyCycle(2.5)
-#        time.sleep(1)
-#        gpio.output(HEAD_LEFT, True)
-#        time.sleep(0.0015)
-#        gpio.output(HEAD_LEFT, False)
+        new_pos = HEAD_POS_X - HEAD_POS_CHUNK
+        pwm_X.ChangeDutyCycle(new_pos)    
+
+    def head_right(self):
+        new_pos = HEAD_POS_X + HEAD_POS_CHUNK
+        pwm_X.ChangeDutyCycle(new_pos)    
+
+    def head_up(self):
+        new_pos = HEAD_POS_Y - HEAD_POS_CHUNK
+        pwm_Y.ChangeDutyCycle(new_pos)    
+
+    def head_down(self):
+        new_pos = HEAD_POS_Y + HEAD_POS_CHUNK
+        pwm_Y.ChangeDutyCycle(new_pos)
         
 if __name__ == '__main__':
     move = PyMove

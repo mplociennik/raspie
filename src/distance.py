@@ -29,9 +29,13 @@ class Distance:
             time.sleep(0.000001)
             GPIO.output(TRIG,0)
             time.sleep(0.000001)
-            while GPIO.input(ECHO) == True:
-                pulse_start = time.time()
+            print GPIO.input(ECHO)
             while GPIO.input(ECHO) == False:
+                print "start"
+                print GPIO.input(ECHO)
+                pulse_start = time.time()
+            while GPIO.input(ECHO) == True:
+                print GPIO.input(ECHO)
                 pulse_stop = time.time()               
             distance = (pulse_stop - pulse_start) * 17150
             distance = round(distance, 2)

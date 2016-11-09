@@ -15,10 +15,8 @@ MOTOR_LEFT_DOWN = 16
 MOTOR_RIGHT_UP = 15
 MOTOR_LEFT_UP = 18
 
-HEAD_X = 37
-HEAD_RIGHT = None
-HEAD_UP = None
-HEAD_DOWN = None
+SERVO_Y = 33
+SERVO_X = 35
 
 gpio.setmode(gpio.BOARD)
 gpio.setwarnings(False)
@@ -36,9 +34,13 @@ gpio.output(MOTOR_LEFT_EN2, True)
 gpio.output(MOTOR_RIGHT_EN1, True)
 gpio.output(MOTOR_RIGHT_EN2, True)
 
-gpio.setup(HEAD_X,gpio.OUT)
-pwm = gpio.PWM(HEAD_X, 50)
-pwm.start(7.7)
+GPIO.setup(SERVO_Y, GPIO.OUT)
+pwm_Y = GPIO.PWM(SERVO_Y, 50)
+pwm_Y.start(7.5)
+GPIO.setup(SERVO_X, GPIO.OUT)
+pwm_X = GPIO.PWM(SERVO_Y, 50)
+pwm_X.start(7.5)
+
 
 class PyMove():
     """
@@ -154,15 +156,7 @@ class PyMove():
     def head_left(self):
         text = "HEAD LEFT START"
         self.display_text(text)
-        pwm.ChangeDutyCycle(2.5)
-#        time.sleep(1)
-#        p.ChangeDutyCycle(12.5)
-#        time.sleep(1)
-#        p.ChangeDutyCycle(2.5)
-#        time.sleep(1)
-#        gpio.output(HEAD_LEFT, True)
-#        time.sleep(0.0015)
-#        gpio.output(HEAD_LEFT, False)
+
         
 if __name__ == '__main__':
     move = PyMove

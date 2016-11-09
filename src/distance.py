@@ -36,7 +36,6 @@ class Distance:
                 time.sleep(0.000001)                
                 distance = (pulse_stop - pulse_start) * 17150
                 distance = round(distance, 2)
-                print "Distance: {0}cm".format(distance)
                 return distance
         except KeyboardInterrupt:
             print "interrupt"

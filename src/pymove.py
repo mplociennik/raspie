@@ -35,12 +35,12 @@ gpio.output(MOTOR_RIGHT_EN2, True)
 SERVO_X = 13
 SERVO_Y = 12
 
-GPIO.setup(SERVO_X, GPIO.OUT)
-pwm_X = GPIO.PWM(SERVO_X, 50)
+gpio.setup(SERVO_X, gpio.OUT)
+pwm_X = gpio.PWM(SERVO_X, 50)
 pwm_X.start(7.5)
 
-GPIO.setup(SERVO_Y, GPIO.OUT)
-pwm_Y = GPIO.PWM(SERVO_Y, 50)
+gpio.setup(SERVO_Y, gpio.OUT)
+pwm_Y = gpio.PWM(SERVO_Y, 50)
 pwm_Y.start(7.5)
 
 

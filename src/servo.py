@@ -17,9 +17,13 @@ try:
 #    while True:
     pwm_Y.start(7.5)
     pwm_X.start(7.5)
-    time.sleep(1)
-    pwm_Y.ChangeDutyCycle(12.5)
-    pwm_X.ChangeDutyCycle(12.5)
+    time.sleep(2)
+    pwm_Y.stop()
+    pwm_X.stop()
+    time.sleep(2)
+    pwm_Y.start(2.5)
+    pwm_X.start(2.5)
+    time.sleep(2)
     pwm_Y.stop()
     pwm_X.stop()
     GPIO.cleanup();

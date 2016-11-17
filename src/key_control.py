@@ -108,20 +108,20 @@ class KeyControl:
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_4:
                     self.play_sound('sounds/Very_Excited_R2D2.mp3')
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_a:
-                    self.HEAD_X_POS = self.HEAD_X_POS - HEAD_POS_CHUNK
-                    head_pos = self.calculate_servo_position(self.HEAD_X_POS)
+                    self.HEAD_X_ANGLE = self.HEAD_X_ANGLE - self.HEAD_POS_CHUNK
+                    head_pos = self.calculate_servo_position(self.HEAD_X_ANGLE)
                     PyMove().head_x(head_pos)
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_d:
-                    self.HEAD_X_POS = self.HEAD_X_POS + HEAD_POS_CHUNK
-                    head_pos = self.calculate_servo_position(self.HEAD_X_POS)
+                    self.HEAD_X_ANGLE = self.HEAD_X_ANGLE + self.HEAD_POS_CHUNK
+                    head_pos = self.calculate_servo_position(self.HEAD_X_ANGLE)
                     PyMove().head_x(head_pos) 
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_w:
-                    self.HEAD_Y_POS = self.HEAD_Y_POS + HEAD_POS_CHUNK
-                    head_pos = self.calculate_servo_position(self.HEAD_Y_POS)
+                    self.HEAD_Y_ANGLE = self.HEAD_Y_ANGLE + self.HEAD_POS_CHUNK
+                    head_pos = self.calculate_servo_position(self.HEAD_Y_ANGLE)
                     PyMove().head_y(head_pos)
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_s:
-                    self.HEAD_Y_POS = self.HEAD_Y_POS - HEAD_POS_CHUNK
-                    head_pos = self.calculate_servo_position(self.HEAD_Y_POS)
+                    self.HEAD_Y_ANGLE = self.HEAD_Y_ANGLE - self.HEAD_POS_CHUNK
+                    head_pos = self.calculate_servo_position(self.HEAD_Y_ANGLE)
                     PyMove().head_y(head_pos)                                     
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
                     PyMove().run_up_start()

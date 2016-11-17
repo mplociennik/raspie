@@ -16,6 +16,11 @@ class KeyControl:
     """
     For controlling motors by gpio raspberry and keyboard.
     """
+    
+    HEAD_X_ANGLE = 90
+    HEAD_Y_ANGLE = 90
+    HEAD_POS_CHUNK = 15
+
     def __init__(self):
         self.data = []
         pygame.init()
@@ -42,6 +47,13 @@ class KeyControl:
     
     def play_sound(self, music_file):
         Audio(music_file, 1.0)
+        
+    def calculate_servo_position(self, angle):
+#        0 stopni = 2.5
+#        90 stopni = 7.5
+#        180 stopni = 12.5
+        duty_cycle = float(((angle / 180.0) + 1.0) * 5.0)
+        return duty_cycle
         
     def key_control(self, q_state):
         q_state.put('open')
@@ -96,13 +108,21 @@ class KeyControl:
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_4:
                     self.play_sound('sounds/Very_Excited_R2D2.mp3')
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_a:
-                    PyMove().head_left()
+                    self.HEAD_X_POS = self.HEAD_X_POS - HEAD_POS_CHUNK
+                    head_pos = self.calculate_servo_position(self.HEAD_X_POS)
+                    PyMove().head_x(head_pos)
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_d:
-                    PyMove().head_right()   
+                    self.HEAD_X_POS = self.HEAD_X_POS + HEAD_POS_CHUNK
+                    head_pos = self.calculate_servo_position(self.HEAD_X_POS)
+                    PyMove().head_x(head_pos) 
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_w:
-                    PyMove().head_up()
+                    self.HEAD_Y_POS = self.HEAD_Y_POS + HEAD_POS_CHUNK
+                    head_pos = self.calculate_servo_position(self.HEAD_Y_POS)
+                    PyMove().head_y(head_pos)
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_s:
-                    PyMove().head_down()                                      
+                    self.HEAD_Y_POS = self.HEAD_Y_POS - HEAD_POS_CHUNK
+                    head_pos = self.calculate_servo_position(self.HEAD_Y_POS)
+                    PyMove().head_y(head_pos)                                     
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
                     PyMove().run_up_start()
                 elif event.type == pygame.KEYUP and event.key == pygame.K_UP:

@@ -32,19 +32,16 @@ gpio.output(MOTOR_RIGHT_EN1, True)
 gpio.output(MOTOR_RIGHT_EN2, True)
 
 # Head init configuration
-SERVO_X = 8
-SERVO_Y = 33
-HEAD_POS_X = 7.5
-HEAD_POS_Y = 7.5
-HEAD_POS_CHUNK = 0.2
+SERVO_X = 13
+SERVO_Y = 12
 
-gpio.setup(SERVO_X, gpio.OUT)
-pwm_X = gpio.PWM(SERVO_X, 50)
-pwm_X.start(HEAD_POS_X)
+GPIO.setup(SERVO_X, GPIO.OUT)
+pwm_X = GPIO.PWM(SERVO_X, 50)
+pwm_X.start(7.5)
 
-gpio.setup(SERVO_Y, gpio.OUT)
-pwm_Y = gpio.PWM(SERVO_Y, 50)
-pwm_Y.start(HEAD_POS_Y)
+GPIO.setup(SERVO_Y, GPIO.OUT)
+pwm_Y = GPIO.PWM(SERVO_Y, 50)
+pwm_Y.start(7.5)
 
 
 class PyMove():
@@ -158,23 +155,11 @@ class PyMove():
                     print 'stoping autopilot...'
                     break
 
-    def head_left(self):
-#        new_pos = HEAD_POS_X - HEAD_POS_CHUNK
-#        pwm_X.ChangeDutyCycle(new_pos)    
-        pwm_X.ChangeDutyCycle(2.5)    
+    def head_x(self, pos): 
+        pwm_X.ChangeDutyCycle(pos)        
 
-    def head_right(self):
-#        new_pos = HEAD_POS_X + HEAD_POS_CHUNK
-#        pwm_X.ChangeDutyCycle(new_pos)    
-        pwm_X.ChangeDutyCycle(12.5)    
-
-    def head_up(self):
-        new_pos = HEAD_POS_Y - HEAD_POS_CHUNK
-        pwm_Y.ChangeDutyCycle(new_pos)    
-
-    def head_down(self):
-        new_pos = HEAD_POS_Y + HEAD_POS_CHUNK
-        pwm_Y.ChangeDutyCycle(new_pos)
+    def head_y(self, pos):
+        pwm_Y.ChangeDutyCycle(pos)    
         
 if __name__ == '__main__':
     move = PyMove

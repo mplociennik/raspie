@@ -116,13 +116,15 @@ class KeyControl:
                     head_pos = self.calculate_servo_position(self.HEAD_X_ANGLE)
                     PyMove().head_x(head_pos) 
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_w:
-                    self.HEAD_Y_ANGLE = self.HEAD_Y_ANGLE + self.HEAD_POS_CHUNK
-                    head_pos = self.calculate_servo_position(self.HEAD_Y_ANGLE)
-                    PyMove().head_y(head_pos)
+                    if self.HEAD_Y_ANGLE >= 0 and self.HEAD_Y_ANGLE <= 180:
+                        self.HEAD_Y_ANGLE = self.HEAD_Y_ANGLE + self.HEAD_POS_CHUNK
+                        head_pos = self.calculate_servo_position(self.HEAD_Y_ANGLE)
+                        PyMove().head_y(head_pos)
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_s:
-                    self.HEAD_Y_ANGLE = self.HEAD_Y_ANGLE - self.HEAD_POS_CHUNK
-                    head_pos = self.calculate_servo_position(self.HEAD_Y_ANGLE)
-                    PyMove().head_y(head_pos)                                     
+                    if self.HEAD_Y_ANGLE >= 0 and self.HEAD_Y_ANGLE <= 180:
+                        self.HEAD_Y_ANGLE = self.HEAD_Y_ANGLE - self.HEAD_POS_CHUNK
+                        head_pos = self.calculate_servo_position(self.HEAD_Y_ANGLE)
+                        PyMove().head_y(head_pos)                                     
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
                     PyMove().run_up_start()
                 elif event.type == pygame.KEYUP and event.key == pygame.K_UP:

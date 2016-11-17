@@ -23,6 +23,7 @@ try:
     pwm_X.start(2.5)
     pwm_Y.stop()
     pwm_X.stop()
+    time.sleep(2)
     GPIO.cleanup();
 #        print "cycle..."
 #        pwm_Y.ChangeDutyCycle(7.5)

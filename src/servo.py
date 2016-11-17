@@ -21,7 +21,7 @@ try:
     pwm_Y.ChangeDutyCycle(12.5)
     pwm_X.ChangeDutyCycle(12.5)
     pwm_Y.stop()
-    pwm_X
+    pwm_X.stop()
 #        print "cycle..."
 #        pwm_Y.ChangeDutyCycle(7.5)
 #        time.sleep(0.5)

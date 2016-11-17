@@ -12,23 +12,11 @@ pwm_Y = GPIO.PWM(SERVO_Y, 50)
 GPIO.setup(SERVO_X, GPIO.OUT)
 pwm_X = GPIO.PWM(SERVO_X, 50)
 
+pwm_Y.start(7.5)
+pwm_X.start(7.5)
 
 try:
     while True:
-#    pwm_Y.start(7.5)
-#    pwm_X.start(7.5)
-#    time.sleep(0.5)
-#    pwm_Y.stop()
-#    pwm_X.stop()
-#    time.sleep(2)
-#    pwm_Y.start(2.5)
-#    pwm_X.start(2.5)
-#    time.sleep(0.5)
-#    pwm_Y.stop()
-#    pwm_X.stop()
-#    time.sleep(2)
-        pwm_Y.start(7.5)
-        pwm_X.start(7.5)
         print "cycle..."
         pwm_Y.ChangeDutyCycle(7.5)
         time.sleep(0.5)
@@ -42,9 +30,6 @@ try:
         time.sleep(0.5)
 	pwm_X.ChangeDutyCycle(2.5)
         time.sleep(1)
-        pwm_Y.stop()
-        pwm_X.stop()
-#    GPIO.cleanup()
 except KeyboardInterrupt:
     pwm_Y.stop()
     pwm_X.stop()

@@ -22,7 +22,7 @@ try:
     pwm_X.ChangeDutyCycle(12.5)
     pwm_Y.stop()
     pwm_X.stop()
-    gpio.cleanup();
+    GPIO.cleanup();
 #        print "cycle..."
 #        pwm_Y.ChangeDutyCycle(7.5)
 #        time.sleep(0.5)

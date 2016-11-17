@@ -39,7 +39,7 @@ HEAD_POS_Y = 7.5
 HEAD_POS_CHUNK = 0.2
 
 gpio.setup(SERVO_X, gpio.OUT)
-pwm_X = gpio.PWM(SERVO_Y, 50)
+pwm_X = gpio.PWM(SERVO_X, 50)
 pwm_X.start(HEAD_POS_X)
 
 gpio.setup(SERVO_Y, gpio.OUT)

@@ -156,9 +156,11 @@ class PyMove():
                     break
 
     def head_x(self, pos): 
+        print "chaging pos to: {0}".format(pos)
         pwm_X.ChangeDutyCycle(pos)        
 
     def head_y(self, pos):
+        print "chaging pos to: {0}".format(pos)
         pwm_Y.ChangeDutyCycle(pos)    
         
 if __name__ == '__main__':

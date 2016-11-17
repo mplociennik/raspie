@@ -4,8 +4,8 @@ import RPi.GPIO as GPIO
 import time
 
 GPIO.setmode(GPIO.BOARD)
-TRIG = 31
-ECHO = 32
+TRIG = 3
+ECHO = 5
 GPIO.setup(TRIG,GPIO.OUT)
 GPIO.setup(ECHO, GPIO.IN)
 GPIO.output(TRIG, False)

@@ -4,8 +4,8 @@ import RPi.GPIO as GPIO
 import time
 
 GPIO.setmode(GPIO.BOARD)
-TRIG = 3
-ECHO = 5
+TRIG = 7 
+ECHO = 11
 GPIO.setup(TRIG,GPIO.OUT)
 GPIO.setup(ECHO, GPIO.IN)
 GPIO.output(TRIG, False)
@@ -25,10 +25,9 @@ class Distance:
         time.sleep(0.000001)
         GPIO.output(TRIG,0)
         time.sleep(0.000001)
-        print GPIO.input(ECHO)
-        while GPIO.input(ECHO) == False:
+        while GPIO.input(ECHO) == 0:
             pulse_start = time.time()
-        while GPIO.input(ECHO) == True:
+        while GPIO.input(ECHO) == 1:
             pulse_stop = time.time()               
         distance = (pulse_stop - pulse_start) * 17150
         distance = round(distance, 2)

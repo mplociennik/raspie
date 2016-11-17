@@ -32,19 +32,19 @@ gpio.output(MOTOR_RIGHT_EN1, True)
 gpio.output(MOTOR_RIGHT_EN2, True)
 
 # Head init configuration
+SERVO_X = 8
 SERVO_Y = 33
-SERVO_X = 35
 HEAD_POS_X = 7.5
 HEAD_POS_Y = 7.5
 HEAD_POS_CHUNK = 0.2
 
-gpio.setup(SERVO_Y, GPIO.OUT)
-pwm_Y = GPIO.PWM(SERVO_Y, 50)
-pwm_Y.start(HEAD_POSY)
-
 gpio.setup(SERVO_X, GPIO.OUT)
 pwm_X = GPIO.PWM(SERVO_Y, 50)
 pwm_X.start(HEAD_POS_X)
+
+gpio.setup(SERVO_Y, GPIO.OUT)
+pwm_Y = GPIO.PWM(SERVO_Y, 50)
+pwm_Y.start(HEAD_POS_Y)
 
 
 class PyMove():

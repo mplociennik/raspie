@@ -27,6 +27,8 @@ try:
 #    pwm_Y.stop()
 #    pwm_X.stop()
 #    time.sleep(2)
+        pwm_Y.start(7.5)
+        pwm_X.start(7.5)
         print "cycle..."
         pwm_Y.ChangeDutyCycle(7.5)
         time.sleep(0.5)
@@ -40,6 +42,8 @@ try:
         time.sleep(0.5)
 	pwm_X.ChangeDutyCycle(2.5)
         time.sleep(1)
+        pwm_Y.stop()
+        pwm_X.stop()
 #    GPIO.cleanup()
 except KeyboardInterrupt:
     pwm_Y.stop()

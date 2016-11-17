@@ -14,14 +14,14 @@ pwm_X = GPIO.PWM(SERVO_X, 50)
 
 
 try:
-    while True:
-        pwm_Y.start(7.5)
-        pwm_X.start(7.5)
-        time.sleep(1)
-        pwm_Y.ChangeDutyCycle(12.5)
-        pwm_X.ChangeDutyCycle(12.5)
-        pwm_Y.stop()
-        pwm_X.stop()
+#    while True:
+    pwm_Y.start(7.5)
+    pwm_X.start(7.5)
+    time.sleep(1)
+    pwm_Y.ChangeDutyCycle(12.5)
+    pwm_X.ChangeDutyCycle(12.5)
+    pwm_Y.stop()
+    pwm_X
 #        print "cycle..."
 #        pwm_Y.ChangeDutyCycle(7.5)
 #        time.sleep(0.5)

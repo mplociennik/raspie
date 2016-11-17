@@ -159,12 +159,14 @@ class PyMove():
                     break
 
     def head_left(self):
-        new_pos = HEAD_POS_X - HEAD_POS_CHUNK
-        pwm_X.ChangeDutyCycle(new_pos)    
+#        new_pos = HEAD_POS_X - HEAD_POS_CHUNK
+#        pwm_X.ChangeDutyCycle(new_pos)    
+        pwm_X.ChangeDutyCycle(2.5)    
 
     def head_right(self):
-        new_pos = HEAD_POS_X + HEAD_POS_CHUNK
-        pwm_X.ChangeDutyCycle(new_pos)    
+#        new_pos = HEAD_POS_X + HEAD_POS_CHUNK
+#        pwm_X.ChangeDutyCycle(new_pos)    
+        pwm_X.ChangeDutyCycle(12.5)    
 
     def head_up(self):
         new_pos = HEAD_POS_Y - HEAD_POS_CHUNK

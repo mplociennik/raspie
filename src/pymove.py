@@ -156,12 +156,18 @@ class PyMove():
                     break
 
     def head_x(self, pos): 
-        print "chaging pos to: {0}".format(pos)
-        pwm_X.ChangeDutyCycle(pos)        
+        if pos >= 2.5 and pos <=12.5:
+            print "chaging pos to: {0}".format(pos)
+            pwm_X.ChangeDutyCycle(pos)
+        else:
+            print "Position out of range: {0}".format(pos)
 
     def head_y(self, pos):
-        print "chaging pos to: {0}".format(pos)
-        pwm_Y.ChangeDutyCycle(pos)    
+        if pos >= 2.5 and pos <=12.5:
+            print "chaging pos to: {0}".format(pos)
+            pwm_Y.ChangeDutyCycle(pos)   
+        else:
+            print "Position out of range: {0}".format(pos)
         
 if __name__ == '__main__':
     move = PyMove

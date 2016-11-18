@@ -5,6 +5,7 @@ import os
 import sys
 import subprocess
 import pygame
+from threading import Lock
 from multiprocessing import Process, Queue
 from pygame.locals import *
 from speech import Speech
@@ -54,6 +55,30 @@ class KeyControl:
 #        180 stopni = 12.5
         duty_cycle = float(((angle / 180.0) + 1.0) * 5.0)
         return duty_cycle
+    
+    def run_process_move(self, direction):
+        getattr(PyMove, direction)()
+        
+    def run_process_head(self, axis, degrees):
+        if self.HEAD_Y_ANGLE >= 0 and self.HEAD_Y_ANGLE <= 180:
+            self.HEAD_Y_ANGLE = self.HEAD_Y_ANGLE + self.HEAD_POS_CHUNK
+            head_pos = self.calculate_servo_position(self.HEAD_Y_ANGLE)
+            PyMove().head_y(head_pos)
+            getattr(Pymove, 'head')(head_pos)
+            
+    def run_robot_body_processes(self, move_type):
+        lock = threading.Lock()
+        lock.acquire()
+        moves = {
+            0: ""
+        }
+        try:
+            moves.get(argument, "nothing (default value)")
+            first = run_process_move()
+            two = run_process_head()
+        finally:
+            lock.release()
+        return first, second
         
     def key_control(self, q_state):
         q_state.put('open')

@@ -67,7 +67,7 @@ class KeyControl:
                 getattr(move, move_type)()
         finally:
             lock.release()
-        return false
+        return False
         
     def key_control(self, q_state):
         q_state.put('open')

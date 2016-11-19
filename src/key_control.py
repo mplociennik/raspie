@@ -21,30 +21,32 @@ class KeyControl:
     HEAD_X_ANGLE = 90
     HEAD_Y_ANGLE = 90
     HEAD_POS_CHUNK = 15
+    font = pygame.font.SysFont('monospace', 22)
 
     def __init__(self):
         self.data = []
         pygame.init()
         self.screen = pygame.display.set_mode()
         pygame.key.set_repeat(100, 100)
-        self.font = pygame.font.SysFont('monospace', 22)
-
+        
     def restart_raspie(self):
         self.play_sound('sounds/Very_Excited_R2D2.mp3')
         self.run_robot_body_process('gpio_cleanup')
         python = sys.executable
         os.execl(python, python, * sys.argv)
+        return
 
     def shutdown(self):
         self.display_text('Shutting down...')
         self.play_sound('sounds/Sad_R2D2.mp3')
         os.system("shutdown now -h")
+        return
 
     def display_text(self, text):
-#        label = self.font.render(text, 1, (255,255,0))
-#        self.screen.blit(label, 100,100)
+        screen_label = self.font.render(text, 1, (255,255,255))
+        self.screen.blit(screen_label, 100,100)
         print text
-        return 
+        return
     
     def play_sound(self, music_file):
         Audio(music_file, 1.0)
@@ -130,6 +132,7 @@ class KeyControl:
                     head_pos = self.calculate_servo_position(self.HEAD_X_ANGLE)
                     self.run_robot_body_process('head_x', head_pos) 
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_w:
+                    self.display_text('Head up...')
                     if self.HEAD_Y_ANGLE >= 0 and self.HEAD_Y_ANGLE <= 180:
                         self.HEAD_Y_ANGLE = self.HEAD_Y_ANGLE + self.HEAD_POS_CHUNK
                         head_pos = self.calculate_servo_position(self.HEAD_Y_ANGLE)

@@ -5,7 +5,7 @@ import os
 import sys
 import subprocess
 import pygame
-from threading import Lock
+import threading
 from multiprocessing import Process, Queue
 from pygame.locals import *
 from speech import Speech

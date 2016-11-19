@@ -21,13 +21,14 @@ class KeyControl:
     HEAD_X_ANGLE = 90
     HEAD_Y_ANGLE = 90
     HEAD_POS_CHUNK = 15
-    font = pygame.font.SysFont('monospace', 22)
+    
 
     def __init__(self):
         self.data = []
         pygame.init()
         self.screen = pygame.display.set_mode()
         pygame.key.set_repeat(100, 100)
+        self.font = pygame.font.SysFont('monospace', 22)
         
     def restart_raspie(self):
         self.play_sound('sounds/Very_Excited_R2D2.mp3')

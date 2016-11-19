@@ -61,9 +61,9 @@ class KeyControl:
         lock.acquire()
         try:
             if value:
-                getattr(Pymove, move_type)(value)
+                getattr(PyMove, move_type)(value)
             else:
-                getattr(Pymove, move_type)()
+                getattr(PyMove, move_type)()
         finally:
             lock.release()
         return false

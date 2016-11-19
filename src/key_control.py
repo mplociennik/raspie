@@ -60,10 +60,11 @@ class KeyControl:
         lock = threading.Lock()
         lock.acquire()
         try:
+            move = PyMove
             if value:
-                getattr(PyMove, move_type)(value)
+                getattr(move, move_type)(value)
             else:
-                getattr(PyMove, move_type)()
+                getattr(move, move_type)()
         finally:
             lock.release()
         return false

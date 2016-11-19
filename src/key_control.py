@@ -26,7 +26,7 @@ class KeyControl:
     def __init__(self):
         self.data = []
         pygame.init()
-        self.screen = pygame.display.set_mode((640, 480), 0, 32)
+        self.screen = pygame.display.set_mode((640, 480))
         pygame.key.set_repeat(100, 100)
         self.font = pygame.font.SysFont('monospace', 22)
         
@@ -45,7 +45,7 @@ class KeyControl:
 
     def display_text(self, text):
         screen_label = self.font.render(text, 1, (255, 255, 255))
-        self.screen.blit(screen_label, 1, 1)
+        self.screen.blit(screen_label, int(1), int(1))
         print text
         return
     

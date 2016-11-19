@@ -45,7 +45,7 @@ class KeyControl:
 
     def display_text(self, text):
         screen_label = self.font.render(text, 1, (255, 255, 255))
-        self.screen.blit(screen_label, 100, 100)
+        self.screen.blit(screen_label, 1, 1)
         print text
         return
     

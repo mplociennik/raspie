@@ -56,7 +56,7 @@ class KeyControl:
         duty_cycle = float(((angle / 180.0) + 1.0) * 5.0)
         return duty_cycle
 
-    def run_robot_body_processes(self, move_type, value = None):
+    def run_robot_body_process(self, move_type, value = None):
         lock = threading.Lock()
         lock.acquire()
         try:

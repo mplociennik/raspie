@@ -7,6 +7,7 @@ import os
 import pygame
 from pygame.locals import *
 from pymove import PyMove
+from pyhead import PyHead
 from speech import Speech
 import subprocess
 import sys
@@ -19,8 +20,8 @@ class KeyControl:
     For controlling motors by gpio raspberry and keyboard.
     """
     
-    HEAD_X_ANGLE = 90
-    HEAD_Y_ANGLE = 90
+    turn_x_ANGLE = 90
+    turn_y_ANGLE = 90
     HEAD_POS_CHUNK = 15
     pygame.init()
     screen = pygame.display.set_mode((640, 480))
@@ -29,6 +30,8 @@ class KeyControl:
     def __init__(self):
         self.data = []
         pygame.key.set_repeat(100, 100)
+        self.head = PyHead()
+        self.move = PyMove()
         
         
     def restart_raspie(self):
@@ -63,15 +66,20 @@ class KeyControl:
         duty_cycle = float(((angle / 180.0) + 1.0) * 5.0)
         return duty_cycle
 
-    def run_robot_body_process(self, move_type, value=None):
+    def run_robot_move_process(self, move_type):
         lock = threading.Lock()
         lock.acquire()
         try:
-            move = PyMove()
-            if value:
-                getattr(move, move_type)(value)
-            else:
-                getattr(move, move_type)()
+            getattr(self.move, move_type)()
+        finally:
+            lock.release()
+        return False
+
+    def run_robot_head_process(self, move_type, value):
+        lock = threading.Lock()
+        lock.acquire()
+        try:
+            getattr(self.move, move_type)(value)
         finally:
             lock.release()
         return False
@@ -129,24 +137,24 @@ class KeyControl:
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_4:
                     self.play_sound('sounds/Very_Excited_R2D2.mp3')
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_a:
-                    self.HEAD_X_ANGLE = self.HEAD_X_ANGLE - self.HEAD_POS_CHUNK
-                    head_pos = self.calculate_servo_position(self.HEAD_X_ANGLE)
-                    self.run_robot_body_process('head_x', head_pos)
+                    self.turn_x_ANGLE = self.turn_x_ANGLE - self.HEAD_POS_CHUNK
+                    head_pos = self.calculate_servo_position(self.turn_x_ANGLE)
+                    self.run_robot_head_process('turn_x', head_pos)
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_d:
-                    self.HEAD_X_ANGLE = self.HEAD_X_ANGLE + self.HEAD_POS_CHUNK
-                    head_pos = self.calculate_servo_position(self.HEAD_X_ANGLE)
-                    self.run_robot_body_process('head_x', head_pos) 
+                    self.turn_x_ANGLE = self.turn_x_ANGLE + self.HEAD_POS_CHUNK
+                    head_pos = self.calculate_servo_position(self.turn_x_ANGLE)
+                    self.run_robot_head_process('turn_x', head_pos) 
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_w:
                     self.display_text('Head up...')
-                    if self.HEAD_Y_ANGLE >= 0 and self.HEAD_Y_ANGLE <= 180:
-                        self.HEAD_Y_ANGLE = self.HEAD_Y_ANGLE + self.HEAD_POS_CHUNK
-                        head_pos = self.calculate_servo_position(self.HEAD_Y_ANGLE)
-                        self.run_robot_body_process('head_y', head_pos)
+                    if self.turn_y_ANGLE >= 0 and self.turn_y_ANGLE <= 180:
+                        self.turn_y_ANGLE = self.turn_y_ANGLE + self.HEAD_POS_CHUNK
+                        head_pos = self.calculate_servo_position(self.turn_y_ANGLE)
+                        self.run_robot_head_process('turn_y', head_pos)
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_s:
-                    if self.HEAD_Y_ANGLE >= 0 and self.HEAD_Y_ANGLE <= 180:
-                        self.HEAD_Y_ANGLE = self.HEAD_Y_ANGLE - self.HEAD_POS_CHUNK
-                        head_pos = self.calculate_servo_position(self.HEAD_Y_ANGLE)
-                        self.run_robot_body_process('head_y', head_pos)                                  
+                    if self.turn_y_ANGLE >= 0 and self.turn_y_ANGLE <= 180:
+                        self.turn_y_ANGLE = self.turn_y_ANGLE - self.HEAD_POS_CHUNK
+                        head_pos = self.calculate_servo_position(self.turn_y_ANGLE)
+                        self.run_robot_head_process('turn_y', head_pos)                                  
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
                     self.run_robot_body_process('run_up_start')
                 elif event.type == pygame.KEYUP and event.key == pygame.K_UP:

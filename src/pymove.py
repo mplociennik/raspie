@@ -31,18 +31,6 @@ gpio.output(MOTOR_LEFT_EN2, True)
 gpio.output(MOTOR_RIGHT_EN1, True)
 gpio.output(MOTOR_RIGHT_EN2, True)
 
-# Head init configuration
-SERVO_X = 13
-SERVO_Y = 12
-
-gpio.setup(SERVO_X, gpio.OUT)
-pwm_X = gpio.PWM(SERVO_X, 50)
-pwm_X.start(7.5)
-
-gpio.setup(SERVO_Y, gpio.OUT)
-pwm_Y = gpio.PWM(SERVO_Y, 50)
-pwm_Y.start(7.5)
-
 
 class PyMove():
     """
@@ -54,12 +42,6 @@ class PyMove():
     def gpio_cleanup(self):
         gpio.cleanup()
         return
-    
-    def display_text(self, text):
-#        label = self.font.render(text, 1, (255,255,0))
-#        self.screen.blit(label, 100,100)
-        print text
-        return 
     
     def stop_motors(self):
         self.display_text('stoping motors...')
@@ -155,20 +137,7 @@ class PyMove():
                     print 'stoping autopilot...'
                     break
 
-    def head_x(self, pos): 
-        if pos >= 2.5 and pos <=12.5:
-            print "chaging pos X to: {0}".format(pos)
-            pwm_X.ChangeDutyCycle(pos)
-        else:
-            print "Position X out of range: {0}".format(pos)
 
-    def head_y(self, pos):
-        if pos >= 2.5 and pos <=12.5:
-            print "chaging pos Y to: {0}".format(pos)
-            pwm_Y.ChangeDutyCycle(pos)   
-        else:
-            print "Position out of range: {0}".format(pos)
-        
 if __name__ == '__main__':
     move = PyMove
     move.autopilot_process()

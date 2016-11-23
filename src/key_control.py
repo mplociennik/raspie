@@ -88,6 +88,7 @@ class KeyControl:
                     autopilot_process = Process(target=PyMove().autopilot_process, args=(q_state, ))
                     autopilot_process.start()
                 if event.type == pygame.KEYUP and event.key == pygame.K_2:
+                    print "Stoping autopilot"
                     q_state.put('autopilot_stop')
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_8:
                     print 'Cleaning up gpio'

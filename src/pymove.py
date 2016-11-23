@@ -39,6 +39,10 @@ class PyMove():
     def __init__(self):
         self.data = []
     
+    def display_text(self, text):
+        print text
+        return
+    
     def gpio_cleanup(self):
         gpio.cleanup()
         return

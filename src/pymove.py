@@ -113,7 +113,7 @@ class PyMove():
         print int(cm)
         if int(cm) <= 30:
             self.display_text('Obstacle!')
-            self.play_sound('sounds/Processing_R2D2.mp3')
+#            self.play_sound('sounds/Processing_R2D2.mp3')
             self.stop_motors()
             time.sleep(1)
             self.run_down_start()

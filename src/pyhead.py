@@ -20,12 +20,13 @@ class PyHead():
     https://github.com/richardghirst/PiBits/tree/master/ServoBlaster
     """
     def __init__(self):
-        self.data = []
-        pwm_X.start(7.5)
-        pwm_Y.start(7.5)
-        time.sleep(1)
-        pwm_X.stop()
-        pwm_Y.stop()
+        pass
+#        self.data = []
+#        pwm_X.start(7.5)
+#        pwm_Y.start(7.5)
+#        time.sleep(1)
+#        pwm_X.stop()
+#        pwm_Y.stop()
 
     
     def gpio_cleanup(self):

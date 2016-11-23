@@ -62,18 +62,6 @@ class KeyControl:
 #        duty_cycle = float(((angle / 180.0) + 1.0) * 5.0)
 #        return duty_cycle
         
-    def autopilot_process(self, q_state):
-        while True:
-            self.search_free_road() 
-            if not q_state.empty():
-                q_state_value = q_state.get()
-                if q_state_value == 'autopilot_stop':
-                    print 'autopilot stop...'
-                    break
-                if q_state_value == 'exit':
-                    print 'stoping autopilot...'
-                    break
-        
     def key_control(self, q_state):
         q_state.put('open')
         while True:
@@ -97,7 +85,7 @@ class KeyControl:
                     subprocess.call(['.././start.sh'])
                     sys.exit()
                 if event.type == pygame.KEYUP and event.key == pygame.K_1:
-                    autopilot_process = Process(target=self.autopilot_process, args=(q_state, ))
+                    autopilot_process = Process(target=PyMove().autopilot_process, args=(q_state, ))
                     autopilot_process.start()
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_8:
                     print 'Cleaning up gpio'

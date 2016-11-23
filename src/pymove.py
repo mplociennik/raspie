@@ -128,7 +128,18 @@ class PyMove():
         else:
             self.display_text('run!')
             self.run_up_start()
-
+            
+    def autopilot_process(self, q_state):
+        while True:
+            self.search_free_road() 
+            if not q_state.empty():
+                q_state_value = q_state.get()
+                if q_state_value == 'autopilot_stop':
+                    print 'autopilot stop...'
+                    break
+                if q_state_value == 'exit':
+                    print 'stoping autopilot...'
+                    break
 
 if __name__ == '__main__':
     move = PyMove()

@@ -67,12 +67,13 @@ class KeyControl:
         return duty_cycle
 
     def run_robot_move_process(self, move_type):
-        lock = threading.Lock()
-        lock.acquire()
+#        lock = threading.Lock()
+#        lock.acquire()
         try:
             getattr(self.move, move_type)()
         finally:
-            lock.release()
+#            lock.release()
+            print "test"
         return False
 
     def run_robot_head_process(self, move_type, value):

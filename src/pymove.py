@@ -139,6 +139,7 @@ class PyMove():
 
 
 if __name__ == '__main__':
+    time.sleep(1)
     PyMove.run_up_start()
     time.sleep(1)
     PyMove.run_up_stop()

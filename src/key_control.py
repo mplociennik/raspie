@@ -185,6 +185,7 @@ class KeyControl:
                     self.run_robot_body_process('run_right_stop')
 
     def start(self):
+        raise Exception('dupa')
         q_state = Queue()
         key_control = Process(target=self.key_control, args=(q_state, ))
         key_control.start()  

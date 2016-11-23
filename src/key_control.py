@@ -30,8 +30,7 @@ class KeyControl:
     def __init__(self):
         self.data = []
         pygame.key.set_repeat(100, 100)
-        self.head = PyHead()
-        self.move = PyMove()
+#        self.head = PyHead()
         
         
     def restart_raspie(self):
@@ -67,23 +66,24 @@ class KeyControl:
         return duty_cycle
 
     def run_robot_move_process(self, move_type):
-#        lock = threading.Lock()
-#        lock.acquire()
-        try:
-            getattr(self.move, move_type)()
-        finally:
-#            lock.release()
-            print "test"
-        return False
-
-    def run_robot_head_process(self, move_type, value):
         lock = threading.Lock()
         lock.acquire()
         try:
-            getattr(self.move, move_type)(value)
+            move = PyMove()
+            getattr(move, move_type)()
         finally:
+            pass
             lock.release()
         return False
+
+#    def run_robot_head_process(self, move_type, value):
+#        lock = threading.Lock()
+#        lock.acquire()
+#        try:
+#            getattr(self.move, move_type)(value)
+#        finally:
+#            lock.release()
+#        return False
         
     def key_control(self, q_state):
         q_state.put('open')

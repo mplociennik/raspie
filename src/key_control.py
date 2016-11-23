@@ -107,7 +107,6 @@ class KeyControl:
                 else:
                     pass
             for event in pygame.event.get():
-                raise Exception('dupa')
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_POWER:
                     self.shutdown()
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_0:

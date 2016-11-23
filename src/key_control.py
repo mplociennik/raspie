@@ -11,7 +11,6 @@ from pyhead import PyHead
 from speech import Speech
 import subprocess
 import sys
-import threading
 import time
 
 

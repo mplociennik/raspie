@@ -6,7 +6,7 @@ from multiprocessing import Queue
 import os
 import pygame
 from pygame.locals import *
-from pymove import PyMove
+from pymove import PyMove as move
 #from pyhead import PyHead
 from speech import Speech
 import subprocess
@@ -93,7 +93,7 @@ class KeyControl:
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_9:
                     self.display_text('Restarting raspie...')
                     q_state.put('exit')
-                    self.run_robot_body_process('gpio_cleanup')
+                    move.gpio_cleanup()
                     time.sleep(2)
                     subprocess.call(['.././start.sh'])
                     sys.exit()
@@ -102,7 +102,7 @@ class KeyControl:
                     autopilot_process.start()
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_8:
                     print 'Cleaning up gpio'
-                    self.run_robot_body_process('gpio_cleanup')
+                    move.gpio_cleanup()
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_2:
                     text = "Co słychać?"
                     speech = Speech()
@@ -113,18 +113,18 @@ class KeyControl:
                     speech = Speech()
                     speech.create_voice(text)
                     self.display_text(text)
-                    PyMove.run_left_start()
+                    move.run_left_start()
                     time.sleep(1)
-                    PyMove.run_left_stop()
-                    PyMove.run_right_start()
+                    move.run_left_stop()
+                    move.run_right_start()
                     time.sleep(1)
-                    PyMove.run_right_stop()
-                    PyMove.run_up_start()
+                    move.run_right_stop()
+                    move.run_up_start()
                     time.sleep(1)
-                    PyMove.run_up_stop()
-                    PyMove.run_down_start()
+                    move.run_up_stop()
+                    move.run_down_start()
                     time.sleep(1)
-                    PyMove.run_down_stop()
+                    move.run_down_stop()
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_4:
                     self.play_sound('sounds/Very_Excited_R2D2.mp3')
 #                if event.type == pygame.KEYDOWN and event.key == pygame.K_a:
@@ -147,21 +147,21 @@ class KeyControl:
 #                        head_pos = self.calculate_servo_position(self.turn_y_ANGLE)
 #                        self.run_robot_head_process('turn_y', head_pos)                                  
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
-                    PyMove.run_up_start()
+                    move.run_up_start()
                 elif event.type == pygame.KEYUP and event.key == pygame.K_UP:
-                    PyMove.run_up_stop()
+                    move.run_up_stop()
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
-                    PyMove.run_down_start()
+                    move.run_down_start()
                 elif event.type == pygame.KEYUP and event.key == pygame.K_DOWN:
-                    PyMove.run_down_stop()
+                    move.run_down_stop()
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_LEFT:
-                    PyMove.run_left_start()
+                    move.run_left_start()
                 elif event.type == pygame.KEYUP and event.key == pygame.K_LEFT:
-                    PyMove.run_left_stop()
+                    move.run_left_stop()
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_RIGHT:
-                    PyMove.run_right_start()
+                    move.run_right_start()
                 elif event.type == pygame.KEYUP and event.key == pygame.K_RIGHT:
-                    PyMove.run_right_stop()
+                    move.run_right_stop()
 
     def start(self):
         q_state = Queue()

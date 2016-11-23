@@ -139,20 +139,19 @@ class PyMove():
 
 
 if __name__ == '__main__':
-    move = PyMove
-    move.run_up_start()
+    PyMove.run_up_start()
     time.sleep(1)
-    move.run_up_stop()
+    PyMove.run_up_stop()
     time.sleep(1)
-    move.run_down_start()
+    PyMove.run_down_start()
     time.sleep(1)
-    move.run_down_stop()
+    PyMove.run_down_stop()
     time.sleep(1)
-    move.run_right_start()
+    PyMove.run_right_start()
     time.sleep(1)
-    move.run_right_stop()
+    PyMove.run_right_stop()
     time.sleep(1)
-    move.run_left_start()
+    PyMove.run_left_start()
     time.sleep(1)
-    move.run_left_stop()
+    PyMove.run_left_stop()
     time.sleep(1)

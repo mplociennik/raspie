@@ -65,16 +65,16 @@ class KeyControl:
         duty_cycle = float(((angle / 180.0) + 1.0) * 5.0)
         return duty_cycle
 
-    def run_robot_move_process(self, move_type):
-        lock = threading.Lock()
-        lock.acquire()
-        try:
-            move = PyMove()
-            getattr(move, move_type)()
-        finally:
-            pass
-            lock.release()
-        return False
+#    def run_robot_move_process(self, move_type):
+#        lock = threading.Lock()
+#        lock.acquire()
+#        try:
+#            move = PyMove()
+#            getattr(move, move_type)()
+#        finally:
+#            pass
+#            lock.release()
+#        return False
 
 #    def run_robot_head_process(self, move_type, value):
 #        lock = threading.Lock()
@@ -123,18 +123,18 @@ class KeyControl:
                     speech = Speech()
                     speech.create_voice(text)
                     self.display_text(text)
-                    self.run_robot_body_process('run_left_start')
+                    PyMove.run_left_start()
                     time.sleep(1)
-                    self.run_robot_body_process('run_left_stop')
-                    self.run_robot_body_process('run_right_start')
+                    PyMove.run_left_stop()
+                    PyMove.run_right_start()
                     time.sleep(1)
-                    self.run_robot_body_process('run_right_stop')
-                    self.run_robot_body_process('run_up_start')
+                    PyMove.run_right_stop()
+                    PyMove.run_up_start()
                     time.sleep(1)
-                    self.run_robot_body_process('run_up_stop')
-                    self.run_robot_body_process('run_down_start')
+                    PyMove.run_up_stop()
+                    PyMove.run_down_start()
                     time.sleep(1)
-                    self.run_robot_body_process('run_down_stop')
+                    PyMove.run_down_stop()
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_4:
                     self.play_sound('sounds/Very_Excited_R2D2.mp3')
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_a:
@@ -157,21 +157,21 @@ class KeyControl:
                         head_pos = self.calculate_servo_position(self.turn_y_ANGLE)
                         self.run_robot_head_process('turn_y', head_pos)                                  
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
-                    self.run_robot_body_process('run_up_start')
+                    PyMove.run_up_start()
                 elif event.type == pygame.KEYUP and event.key == pygame.K_UP:
-                    self.run_robot_body_process('run_up_stop')
+                    PyMove.run_up_stop()
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
-                    self.run_robot_body_process('run_down_start')
+                    PyMove.run_down_start()
                 elif event.type == pygame.KEYUP and event.key == pygame.K_DOWN:
-                    self.run_robot_body_process('run_down_stop')
+                    PyMove.run_down_stop()
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_LEFT:
-                    self.run_robot_body_process('run_left_start')
+                    PyMove.run_left_start()
                 elif event.type == pygame.KEYUP and event.key == pygame.K_LEFT:
-                    self.run_robot_body_process('run_left_stop')
+                    PyMove.run_left_stop()
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_RIGHT:
-                    self.run_robot_body_process('run_right_start')
+                    PyMove.run_right_start()
                 elif event.type == pygame.KEYUP and event.key == pygame.K_RIGHT:
-                    self.run_robot_body_process('run_right_stop')
+                    PyMove.run_right_stop()
 
     def start(self):
         q_state = Queue()

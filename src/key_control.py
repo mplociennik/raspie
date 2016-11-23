@@ -7,7 +7,7 @@ import os
 import pygame
 from pygame.locals import *
 from pymove import PyMove
-from pyhead import PyHead
+#from pyhead import PyHead
 from speech import Speech
 import subprocess
 import sys
@@ -20,19 +20,16 @@ class KeyControl:
     For controlling motors by gpio raspberry and keyboard.
     """
     
-    turn_x_ANGLE = 90
-    turn_y_ANGLE = 90
-    HEAD_POS_CHUNK = 15
+#    turn_x_ANGLE = 90
+#    turn_y_ANGLE = 90
+#    HEAD_POS_CHUNK = 15
     pygame.init()
     screen = pygame.display.set_mode((640, 480))
-    font = pygame.font.SysFont('monospace', 22)
+#    font = pygame.font.SysFont('monospace', 22)
     
     def __init__(self):
         self.data = []
         pygame.key.set_repeat(100, 100)
-        self.head = PyHead()
-        self.move = PyMove()
-        
         
     def restart_raspie(self):
         self.play_sound('sounds/Very_Excited_R2D2.mp3')
@@ -70,7 +67,7 @@ class KeyControl:
         lock = threading.Lock()
         lock.acquire()
         try:
-            getattr(self.move, move_type)()
+            getattr(move, move_type)()
         finally:
             lock.release()
         return False

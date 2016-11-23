@@ -140,4 +140,19 @@ class PyMove():
 
 if __name__ == '__main__':
     move = PyMove
-    move.autopilot_process()
+    move.run_up_start()
+    time.sleep(1)
+    move.run_up_stop()
+    time.sleep(1)
+    move.run_down_start()
+    time.sleep(1)
+    move.run_down_stop()
+    time.sleep(1)
+    move.run_right_start()
+    time.sleep(1)
+    move.run_right_stop()
+    time.sleep(1)
+    move.run_left_start()
+    time.sleep(1)
+    move.run_left_stop()
+    time.sleep(1)

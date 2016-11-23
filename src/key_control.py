@@ -84,6 +84,18 @@ class KeyControl:
             lock.release()
         return False
         
+    def autopilot_process(self, q_state):
+        while True:
+            self.search_free_road() 
+            if not q_state.empty():
+                q_state_value = q_state.get()
+                if q_state_value == 'autopilot_stop':
+                    print 'autopilot stop...'
+                    break
+                if q_state_value == 'exit':
+                    print 'stoping autopilot...'
+                    break
+        
     def key_control(self, q_state):
         q_state.put('open')
         while True:
@@ -136,25 +148,25 @@ class KeyControl:
                     self.run_robot_body_process('run_down_stop')
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_4:
                     self.play_sound('sounds/Very_Excited_R2D2.mp3')
-                if event.type == pygame.KEYDOWN and event.key == pygame.K_a:
-                    self.turn_x_ANGLE = self.turn_x_ANGLE - self.HEAD_POS_CHUNK
-                    head_pos = self.calculate_servo_position(self.turn_x_ANGLE)
-                    self.run_robot_head_process('turn_x', head_pos)
-                if event.type == pygame.KEYDOWN and event.key == pygame.K_d:
-                    self.turn_x_ANGLE = self.turn_x_ANGLE + self.HEAD_POS_CHUNK
-                    head_pos = self.calculate_servo_position(self.turn_x_ANGLE)
-                    self.run_robot_head_process('turn_x', head_pos) 
-                if event.type == pygame.KEYDOWN and event.key == pygame.K_w:
-                    self.display_text('Head up...')
-                    if self.turn_y_ANGLE >= 0 and self.turn_y_ANGLE <= 180:
-                        self.turn_y_ANGLE = self.turn_y_ANGLE + self.HEAD_POS_CHUNK
-                        head_pos = self.calculate_servo_position(self.turn_y_ANGLE)
-                        self.run_robot_head_process('turn_y', head_pos)
-                if event.type == pygame.KEYDOWN and event.key == pygame.K_s:
-                    if self.turn_y_ANGLE >= 0 and self.turn_y_ANGLE <= 180:
-                        self.turn_y_ANGLE = self.turn_y_ANGLE - self.HEAD_POS_CHUNK
-                        head_pos = self.calculate_servo_position(self.turn_y_ANGLE)
-                        self.run_robot_head_process('turn_y', head_pos)                                  
+#                if event.type == pygame.KEYDOWN and event.key == pygame.K_a:
+#                    self.turn_x_ANGLE = self.turn_x_ANGLE - self.HEAD_POS_CHUNK
+#                    head_pos = self.calculate_servo_position(self.turn_x_ANGLE)
+#                    self.run_robot_head_process('turn_x', head_pos)
+#                if event.type == pygame.KEYDOWN and event.key == pygame.K_d:
+#                    self.turn_x_ANGLE = self.turn_x_ANGLE + self.HEAD_POS_CHUNK
+#                    head_pos = self.calculate_servo_position(self.turn_x_ANGLE)
+#                    self.run_robot_head_process('turn_x', head_pos) 
+#                if event.type == pygame.KEYDOWN and event.key == pygame.K_w:
+#                    self.display_text('Head up...')
+#                    if self.turn_y_ANGLE >= 0 and self.turn_y_ANGLE <= 180:
+#                        self.turn_y_ANGLE = self.turn_y_ANGLE + self.HEAD_POS_CHUNK
+#                        head_pos = self.calculate_servo_position(self.turn_y_ANGLE)
+#                        self.run_robot_head_process('turn_y', head_pos)
+#                if event.type == pygame.KEYDOWN and event.key == pygame.K_s:
+#                    if self.turn_y_ANGLE >= 0 and self.turn_y_ANGLE <= 180:
+#                        self.turn_y_ANGLE = self.turn_y_ANGLE - self.HEAD_POS_CHUNK
+#                        head_pos = self.calculate_servo_position(self.turn_y_ANGLE)
+#                        self.run_robot_head_process('turn_y', head_pos)                                  
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
                     self.run_robot_body_process('run_up_start')
                 elif event.type == pygame.KEYUP and event.key == pygame.K_UP:

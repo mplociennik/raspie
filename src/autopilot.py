@@ -18,6 +18,19 @@ class RaspieAutopilotProcess(multiprocessing.Process):
         sub = now_distance - last_distance
         return sub <= self.DIST_TOLERANCE
         
+    def skip_obstacle(self):
+        print "Skiping obstacle!"
+        PyMove().stop_motors()
+        time.sleep(1)
+        PyMove().run_down_start()
+        time.sleep(0.3)
+        PyMove().run_down_stop()
+        time.sleep(0.3)
+        PyMove().run_right_start()
+        time.sleep(0.3)
+        PyMove().run_right_stop()
+        
+        
     def search_free_road(self, last_distance=None):
         text = 'Looking for free road...'
         print text
@@ -26,18 +39,9 @@ class RaspieAutopilotProcess(multiprocessing.Process):
         print int(cm)
         if last_distance is not None:
             if self.detect_no_movement(int(cm), last_distance):
-                self.search_free_road(int(cm))
+                self.skip_obstacle()
         if int(cm) <= self.OBSTACLE_DISTANCE:
-            print "Obstacle!"
-            PyMove().stop_motors()
-            time.sleep(1)
-            PyMove().run_down_start()
-            time.sleep(0.3)
-            PyMove().run_down_stop()
-            time.sleep(0.3)
-            PyMove().run_right_start()
-            time.sleep(0.3)
-            PyMove().run_right_stop()
+            self.skip_obstacle()
             self.search_free_road(last_distance)
         else:
             print "Run!"

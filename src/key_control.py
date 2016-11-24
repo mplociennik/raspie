@@ -92,6 +92,7 @@ class KeyControl:
                         autopilot_process = RaspieAutopilotProcess()
                         autopilot_process.start()
                     else:
+                        print "termintating..."
                         autopilot_process.terminate()
                     
                     autopilot_process.start()

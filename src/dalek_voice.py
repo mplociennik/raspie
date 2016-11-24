@@ -17,8 +17,6 @@ try:
 except:
     print "Speech: connection not found!"
     
-#os.system('say -v Albert -o exterminate.aiff --data-format=BEI16@44100 \
-exterminate, exterminate, exterminate!#')
 time.sleep(0.001)
 os.system('play voice_file.ogg stretch 1.2 133.33 lin 0.2 0.4 \
 overdrive 30 30 echo 0.4 0.8 15 0.8 \

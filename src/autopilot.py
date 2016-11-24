@@ -8,7 +8,7 @@ from distance import Distance
 
 class RaspieAutopilotProcess(multiprocessing.Process):
 
-    DIST_TOLERANCE = 2
+    DIST_TOLERANCE = 4
     OBSTACLE_DISTANCE = 50
     def __init__(self, ):
         multiprocessing.Process.__init__(self)

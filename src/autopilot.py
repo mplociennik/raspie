@@ -3,6 +3,7 @@
 import multiprocessing
 import time
 from pymove import PyMove
+from distance import Distance
 
 
 class RaspieAutopilotProcess(multiprocessing.Process):

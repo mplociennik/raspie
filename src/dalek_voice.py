@@ -6,7 +6,7 @@ import pyvona
 IVONA_ACCESS_KEY = 'GDNAIKZKKGPM3SPFPZGA'
 IVONA_SECRET_KEY = 'PXnXmq3aV1qYsV4jxG4WtoVhESq4gZaXGjrDTBke'
 
-name = 'Eric'
+name = 'Joey'
 region = 'eu-east'
 text = "exterminate! exterminate! exterminate!"
 v = pyvona.create_voice(IVONA_ACCESS_KEY, IVONA_SECRET_KEY)

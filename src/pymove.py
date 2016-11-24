@@ -102,44 +102,6 @@ class PyMove():
         self.display_text(text)
         gpio.output(MOTOR_LEFT_UP, False)
         gpio.output(MOTOR_RIGHT_DOWN, False)
-        
-    def search_free_road(self):
-        text = 'Looking for free road...'
-        self.display_text(text)
-        distance = Distance()
-        cm = distance.detect()
-        self.display_text('Distance:')
-        self.display_text(cm)
-        print int(cm)
-        if int(cm) <= 30:
-            self.display_text('Obstacle!')
-#            self.play_sound('sounds/Processing_R2D2.mp3')
-            self.stop_motors()
-            time.sleep(1)
-            self.run_down_start()
-            time.sleep(0.3)
-            self.run_down_stop()
-            time.sleep(0.3)
-            self.run_right_start()
-            time.sleep(0.3)
-            self.run_right_stop()
-            print 'end obstacle'
-            self.search_free_road()
-        else:
-            self.display_text('run!')
-            self.run_up_start()
-            
-    def autopilot_process(self, q_state):
-        while True:
-            self.search_free_road() 
-            if not q_state.empty():
-                q_state_value = q_state.get()
-                if q_state_value == 'autopilot_stop':
-                    print 'autopilot stop...'
-                    break
-                if q_state_value == 'exit':
-                    print 'stoping autopilot...'
-                    break
 
 if __name__ == '__main__':
     move = PyMove()

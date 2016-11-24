@@ -1,7 +1,22 @@
 import os
 import sys
 import time
+import pyvona
 
+IVONA_ACCESS_KEY = 'GDNAIKZKKGPM3SPFPZGA'
+IVONA_SECRET_KEY = 'PXnXmq3aV1qYsV4jxG4WtoVhESq4gZaXGjrDTBke'
+
+name = 'Eric'
+region = 'eu-east'
+text = "exterminate! exterminate! exterminate!"
+v = pyvona.create_voice(IVONA_ACCESS_KEY, IVONA_SECRET_KEY)
+v.voice_name = name
+v.region = region
+try:
+    v.fetch_voice(text, 'voice_file.aiff')
+except:
+    print "Speech: connection not found!"
+    
 os.system('say -v Albert -o exterminate.aiff --data-format=BEI16@44100 \
 exterminate, exterminate, exterminate!')
 time.sleep(0.001)

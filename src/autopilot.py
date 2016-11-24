@@ -41,7 +41,7 @@ class RaspieAutopilotProcess(multiprocessing.Process):
             print "Run!"
             PyMove().run_up_start()
             
-    def run(self):
+    def start(self):
         while not self.exit.is_set():
             self.search_free_road()
         print "Autopilot stoped!"

@@ -18,7 +18,7 @@ class RaspieAutopilotProcess(multiprocessing.Process):
         
     def search_free_road(self, last_distance=None):
         text = 'Looking for free road...'
-        self.display_text(text)
+        print text
         distance = Distance()
         cm = distance.detect()
         print int(cm)

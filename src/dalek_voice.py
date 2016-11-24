@@ -8,7 +8,7 @@ import pyvona
 IVONA_ACCESS_KEY = 'GDNAIKZKKGPM3SPFPZGA'
 IVONA_SECRET_KEY = 'PXnXmq3aV1qYsV4jxG4WtoVhESq4gZaXGjrDTBke'
 
-name = 'Joey'
+name = 'Jacek'
 region = 'eu-east'
 text = "Witaj, jestem Raspi Bot. Asystent pokladowy Ju Es Es Enterprajs"
 v = pyvona.create_voice(IVONA_ACCESS_KEY, IVONA_SECRET_KEY)

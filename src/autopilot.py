@@ -9,6 +9,7 @@ from distance import Distance
 class RaspieAutopilotProcess(multiprocessing.Process):
 
     DIST_TOLERANCE = 2
+    OBSTACLE_DISTANCE = 50
     def __init__(self, ):
         multiprocessing.Process.__init__(self)
         self.exit = multiprocessing.Event()
@@ -26,17 +27,17 @@ class RaspieAutopilotProcess(multiprocessing.Process):
         if last_distance is not None:
             if self.detect_no_movement(int(cm), last_distance):
                 self.search_free_road(int(cm))
-        if int(cm) <= 30:
+        if int(cm) <= self.OBSTACLE_DISTANCE:
             print "Obstacle!"
-            self.stop_motors()
+            PyMove().stop_motors()
             time.sleep(1)
-            self.run_down_start()
+            PyMove().run_down_start()
             time.sleep(0.3)
-            self.run_down_stop()
+            PyMove().run_down_stop()
             time.sleep(0.3)
-            self.run_right_start()
+            PyMove().run_right_start()
             time.sleep(0.3)
-            self.run_right_stop()
+            PyMove().run_right_stop()
             self.search_free_road(last_distance)
         else:
             print "Run!"

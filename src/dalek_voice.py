@@ -8,7 +8,7 @@ IVONA_SECRET_KEY = 'PXnXmq3aV1qYsV4jxG4WtoVhESq4gZaXGjrDTBke'
 
 name = 'Joey'
 region = 'eu-east'
-text = "exterminate! exterminate! exterminate!"
+text = "Witaj, jestem Raspi Bot. Asystent pok³adowy Ju Es Es Enterprajs"
 v = pyvona.create_voice(IVONA_ACCESS_KEY, IVONA_SECRET_KEY)
 v.voice_name = name
 v.region = region

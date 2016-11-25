@@ -25,11 +25,13 @@ class KeyControl:
 #    HEAD_POS_CHUNK = 15
     pygame.init()
     screen = pygame.display.set_mode((640, 480))
+    RUNNING_AUTOPILOT = False
 #    font = pygame.font.SysFont('monospace', 22)
     
     def __init__(self):
         self.data = []
         pygame.key.set_repeat(100, 100)
+        self.autopilot_process = RaspieAutopilotProcess()
         
     def restart_raspie(self):
         self.play_sound('sounds/Very_Excited_R2D2.mp3')
@@ -54,7 +56,17 @@ class KeyControl:
         return
     
     def play_sound(self, music_file):
-        Audio(music_file, 1.0)
+        audio = Audio(music_file, 1.0)
+        audio_process = multiprocessing.Process(target=audio)
+        audio_process.start()
+
+    def run_autopilot(self):
+        if self.autopilot_process.is_alive():
+            print "Termintating..."
+            self.autopilot_process.terminate()
+        else:
+            print "Runing autopilot!"
+            self.autopilot_process.start()
         
 #    def calculate_servo_position(self, angle):
 #        0 stopni = 2.5
@@ -86,14 +98,7 @@ class KeyControl:
                     subprocess.call(['.././start.sh'])
                     sys.exit()
                 if event.type == pygame.KEYUP and event.key == pygame.K_1:
-                    try:
-                        autopilot_process
-                    except NameError:
-                        autopilot_process = RaspieAutopilotProcess()
-                        autopilot_process.start()
-                    else:
-                        print "termintating..."
-                        autopilot_process.terminate()
+                    self.run_autopilot()
                     
                     autopilot_process.start()
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_8:

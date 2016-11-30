@@ -42,8 +42,8 @@ class VoiceControl():
         '''
 
         try:
-#            words = r.recognize_google(audio, None, 'pl-PL')
-            words = r.recognize_sphinx(audio)
+            words = r.recognize_google(audio, None, 'en-US')
+#            words = r.recognize_sphinx(audio)
             print("PocketSphinx Speech Recognition thinks you said: " + words)
             if 'Raspie' in words:
                 text = 'Listening you.'

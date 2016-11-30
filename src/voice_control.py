@@ -50,12 +50,12 @@ class VoiceControl():
                 speech = Speech()
                 speech.create_voice(text)
                 print text
-            else if 'autopilot' in words:
+            if 'autopilot' in words:
                 text = 'Starting autopilot'
                 speech = Speech()
                 speech.create_voice(text)
                 self.robot_autopilot()
-            else if 'about' in words:
+            if 'about' in words:
                 text = 'I\'m Raspie Robot version 1.0, home assistant created by Cieniu.'
                 speech = Speech()
                 speech.create_voice(text)

@@ -12,7 +12,7 @@ class Recorder():
         time.sleep(2)
         p.kill()
 #        subprocess.call('arecord -D plughw:1,0 -f cd tmp/chunk.wav')
-        subprocess.call('aplay tmp/chunk.wav')
+#        subprocess.call('aplay tmp/chunk.wav')
         return False
 
 if __name__ == "__main__":

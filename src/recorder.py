@@ -8,9 +8,9 @@ import time
 # and open the template in the editor.
 class Recorder():
     def record(self):
-        p = subprocess.Popen("arecord -D plughw:1,0 -f cd chunk.wav", shell=True)
+        process = subprocess.Popen("arecord -d 10 -D plughw:1,0 -f cd chunk.wav", shell=True)
         time.sleep(2)
-        p.kill()
+        subprocess.Popen("TASKKILL /F /PID {pid} /T".format(pid=process.pid))
 #        subprocess.call('arecord -D plughw:1,0 -f cd tmp/chunk.wav')
         subprocess.call('aplay chunk.wav')
         return False

@@ -11,10 +11,9 @@ import time
 class Recorder():
     def record(self):
         cmd = "arecord -D plughw:1,0 -f cd chunk.wav"
-        time.sleep(5)
         pro = subprocess.Popen(cmd, stdout=subprocess.PIPE, 
                        shell=True, preexec_fn=os.setsid) 
-
+        time.sleep(5)
         os.killpg(os.getpgid(pro.pid), signal.SIGTERM)
 #        subprocess.call('arecord -D plughw:1,0 -f cd tmp/chunk.wav')
         time.sleep(0.1)

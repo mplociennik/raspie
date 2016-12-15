@@ -14,7 +14,9 @@ class Recorder():
         time.sleep(5)
         os.killpg(os.getpgid(pro.pid), signal.SIGTERM)
         time.sleep(0.1)
-        subprocess.call('aplay chunk.wav')
+        cmd2 = 'aplay {0}chunk.wav'.format(os.path.realpath(__file__))
+        print cmd2
+        subprocess.call(cmd2)
         return False
 
 

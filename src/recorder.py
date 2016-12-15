@@ -18,7 +18,7 @@ class Recorder():
         os.killpg(os.getpgid(pro.pid), signal.SIGTERM)
 #        subprocess.call('arecord -D plughw:1,0 -f cd tmp/chunk.wav')
         time.sleep(0.1)
-        subprocess.call('aplay chunk.wav')
+#        subprocess.call('aplay chunk.wav')
         return False
 
 if __name__ == "__main__":

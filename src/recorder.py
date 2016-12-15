@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 #encoding: utf-8
+import os
+import signal
 import subprocess
 import time
 
@@ -8,9 +10,12 @@ import time
 # and open the template in the editor.
 class Recorder():
     def record(self):
-        process = subprocess.Popen("arecord -D plughw:1,0 -f cd chunk.wav", shell=True)
+        cmd = "arecord -D plughw:1,0 -f cd chunk.wav"
         time.sleep(5)
-        process.terminate()
+        pro = subprocess.Popen(cmd, stdout=subprocess.PIPE, 
+                       shell=True, preexec_fn=os.setsid) 
+
+        os.killpg(os.getpgid(pro.pid), signal.SIGTERM)
 #        subprocess.call('arecord -D plughw:1,0 -f cd tmp/chunk.wav')
         time.sleep(0.1)
         subprocess.call('aplay chunk.wav')

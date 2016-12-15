@@ -12,6 +12,7 @@ class Recorder():
         time.sleep(5.1)
         subprocess.Popen("TASKKILL /F /PID {pid} /T".format(pid=process.pid))
 #        subprocess.call('arecord -D plughw:1,0 -f cd tmp/chunk.wav')
+        time.sleep(0.1)
         subprocess.call('aplay chunk.wav')
         return False
 

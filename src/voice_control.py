@@ -44,7 +44,8 @@ class VoiceControl():
         '''
 
         try:
-            words = r.recognize_google('tmp/recorder.wav', None, 'en-US')
+            audio_file = open('tmp/recorder.wav', 'r')
+            words = r.recognize_google(audio_file, None, 'en-US')
 #            words = r.recognize_sphinx(audio)
             print("PocketSphinx Speech Recognition thinks you said: " + words)
             if 'Raspie' in words:

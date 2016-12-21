@@ -5,7 +5,7 @@ import subprocess
 
 
 class Recorder():
-    def record(self, seconds):
+    def record(self):
         command = 'rec record.wav rate 32k silence 1 0.1 3% 1 3.0 3'
         process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
         process.wait()

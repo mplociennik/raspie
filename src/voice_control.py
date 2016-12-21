@@ -29,9 +29,9 @@ class VoiceControl():
 #        print("Say something!")
 #        with m as source: audio = r.listen(source)
 #        print("Got it! Now to recognize it {0}").format(r.recognize_sphinx(audio))
-#        with sr.Microphone(device_index=2) as source:
-#            print("Say something!")
-#            audio = r.listen(source)
+        with open('tmp/recorder.wav', 'r') as source:
+            print("Say something!")
+            audio = r.listen(source)
 
         '''
         # recognize speech using Sphinx
@@ -44,8 +44,8 @@ class VoiceControl():
         '''
 
         try:
-            audio_file = open('tmp/recorder.wav', 'r')
-            words = r.recognize_google(audio_file, None, 'en-US')
+#            audio_file = open('tmp/recorder.wav', 'r')
+            words = r.recognize_google(audio, None, 'en-US')
 #            words = r.recognize_sphinx(audio)
             print("PocketSphinx Speech Recognition thinks you said: " + words)
             if 'Raspie' in words:

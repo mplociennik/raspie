@@ -1,22 +1,18 @@
 #!/usr/bin/env python
 #encoding: utf-8
 import os
-import signal
 import subprocess
-import time
 
 
 class Recorder():
-    def record(self):
-        cmd = "arecord -D plughw:1,0 -f cd chunk.wav"
-        pro = subprocess.Popen(cmd, stdout=subprocess.PIPE, 
-                       shell=True, preexec_fn=os.setsid) 
-        time.sleep(5)
-        os.killpg(os.getpgid(pro.pid), signal.SIGTERM)
-        return 'Record has been saved!'
+    def record(self, seconds):
+        command = 'rec record.wav rate 32k silence 1 0.1 3% 1 3.0 3'
+        process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
+        process.wait()
+        print process.returncode
+#        p = subprocess.call('rec record.wav rate 32k silence 1 0.1 3% 1 3.0 3%',shell=True)
 
 
 if __name__ == "__main__":
     recorder = Recorder()
-    test = recorder.record()
-    print test
+    recorder.record()

@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import speech_recognition as sr
+from recorder import Recorder
 from multiprocessing import Process, Queue
 from pymove import PyMove
 from speech import Speech
@@ -20,13 +21,14 @@ class VoiceControl():
 
     def listen_commands(self):
         r = sr.Recognizer()
-        m = sr.Microphone(2, sample_rate = 48000, device_index = 2, chunk_size = 1024)
+        recorder = Recorder()
+        recorder.record()
 
-        with m as source: r.adjust_for_ambient_noise(source)
-        print("Set minimum energy threshold to {}".format(r.energy_threshold))
-        print("Say something!")
-        with m as source: audio = r.listen(source)
-        print("Got it! Now to recognize it {0}").format(r.recognize_sphinx(audio))
+#        with m as source: r.adjust_for_ambient_noise(source)
+#        print("Set minimum energy threshold to {}".format(r.energy_threshold))
+#        print("Say something!")
+#        with m as source: audio = r.listen(source)
+#        print("Got it! Now to recognize it {0}").format(r.recognize_sphinx(audio))
 #        with sr.Microphone(device_index=2) as source:
 #            print("Say something!")
 #            audio = r.listen(source)
@@ -42,7 +44,7 @@ class VoiceControl():
         '''
 
         try:
-            words = r.recognize_google(audio, None, 'en-US')
+            words = r.recognize_google('tmp/recorder.wav', None, 'en-US')
 #            words = r.recognize_sphinx(audio)
             print("PocketSphinx Speech Recognition thinks you said: " + words)
             if 'Raspie' in words:

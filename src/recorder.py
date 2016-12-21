@@ -2,6 +2,7 @@
 #encoding: utf-8
 import os
 import subprocess
+import time
 
 
 class Recorder():
@@ -12,6 +13,7 @@ class Recorder():
         process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
         process.wait()
         print 'Recording finished!'
+        time.sleep(0.2)
 #        p = subprocess.call('rec record.wav rate 32k silence 1 0.1 3% 1 3.0 3%',shell=True)
 
 

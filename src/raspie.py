@@ -5,7 +5,7 @@ import os
 import time
 from key_control import KeyControl
 from audio import Audio
-from voice_control import VoiceControl
+# from voice_control import VoiceControl
 
 def webapi():
     os.system('venv/bin/python webapi/manage.py runserver 0.0.0.0:8000')
@@ -16,7 +16,7 @@ def key_control():
     return key_control
 
 def voice_commands():
-    VoiceControl().listen_commands()
+    # VoiceControl().listen_commands()
 
 def cam_recording():
     print "cam_recording"
@@ -37,6 +37,7 @@ if __name__ == '__main__':
     jobs.append(voice_commands)
     jobs.append(cam_recording)
     jobs.append(welcome)
+    
 #    webapi.start()
     key_control.start()
 #    voice_commands.start()

@@ -20,6 +20,6 @@ except:
     print "Speech: connection not found!"
     
 time.sleep(0.001)
-os.system('play voice_file.ogg stretch 1.2 133.33 lin 0.2 0.4 \
+os.system('play tmp/recorder.wav stretch 1.2 133.33 lin 0.2 0.4 \
 overdrive 30 30 echo 0.4 0.8 15 0.8 \
 synth sine fmod 30 echo 0.8 0.8 29 0.8')

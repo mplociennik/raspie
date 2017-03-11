@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from speech_recognizer import Recognizer
+from speech_recognizer import SpeechRecognizer
 from multiprocessing import Process, Queue
 from pymove import PyMove
 from speech import Speech
@@ -31,7 +31,7 @@ class VoiceControl():
         return True
     
     def listen_commands(self):
-        r = Recognizer()
+        r = SpeechRecognizer()
         command = (r.recognize()).lower()
         if 'weatcher' in command:
             self.command_weatcher()
@@ -41,7 +41,7 @@ class VoiceControl():
             self.command_dance()
             
     def listen_text(self):
-        r = Recognizer()
+        r = SpeechRecognizer()
         text = r.recognize()
         if text == 'shadow':
             self.listen_commands()

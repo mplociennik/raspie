@@ -43,6 +43,7 @@ class VoiceControl():
     def listen_text(self):
         r = SpeechRecognizer()
         text = r.recognize()
+        print 'recognized text: {0}'.format(text)
         if text == 'shadow':
             self.listen_commands()
             

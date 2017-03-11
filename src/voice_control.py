@@ -33,6 +33,7 @@ class VoiceControl():
     def listen_commands(self):
         r = SpeechRecognizer()
         command = (r.recognize()).lower()
+        print 'Recognized command: {}'.format(command)
         if 'weatcher' in command:
             self.command_weatcher()
         if 'autopilot' in command:
@@ -43,7 +44,7 @@ class VoiceControl():
     def listen_text(self):
         r = SpeechRecognizer()
         text = (r.recognize()).lower()
-        print 'recognized text: {0}'.format(text)
+        print 'Recognized text: {0}'.format(text)
         if 'shadow' in text:
             self.listen_commands()
             

@@ -11,7 +11,7 @@ IVONA_SECRET_KEY = 'PXnXmq3aV1qYsV4jxG4WtoVhESq4gZaXGjrDTBke'
 class Speech(object):
     """Class to making connection to voice webapi."""
 
-    name = 'Jacek'
+    name = 'Joey'
     region = 'eu-east'
 
     def __init__(self, name=None, region=None):

@@ -8,7 +8,6 @@ from speech import Speech
 
 
 class VoiceControl():
-    '''want to install pyaudio https://www.raspberrypi.org/forums/viewtopic.php?t=25173 '''
     def robot_autopilot(self):
         text = 'Starting autopilot'
         speech = Speech()
@@ -19,15 +18,21 @@ class VoiceControl():
         autopilot_process.start()
     
     def command_weatcher(self):
-        print "Weatcher!"
+        text = "Weatcher!"
+        speech = Speech()
+        speech.create_voice(text)
         return True
     
     def command_autopilot(self):
-        print 'Autopilot!'
+        text = 'Autopilot!'
+        speech = Speech()
+        speech.create_voice(text)
         return True
     
     def command_dance(self):
-        print 'Lets Dance!'
+        text = 'Lets Dance!'
+        speech = Speech()
+        speech.create_voice(text)
         return True
     
     def listen_commands(self):

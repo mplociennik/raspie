@@ -14,7 +14,7 @@ class VoiceControl():
         speech.create_voice(text)
         autopilot = PyMove()
         q_state = Queue()
-        autopilot_process = Process(target=autopilot.autopilot_process, args=(q_state,))
+        autopilot_process = Process(target=autopilot.autopilot_process, args=(q_state, ))
         autopilot_process.start()
     
     def command_weatcher(self):
@@ -36,6 +36,9 @@ class VoiceControl():
         return True
     
     def listen_commands(self):
+        text = "I am listening your commands."
+        speech = Speech()
+        speech.create_voice(text)
         r = SpeechRecognizer()
         command = (r.recognize()).lower()
         print 'Recognized command: {}'.format(command)

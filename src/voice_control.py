@@ -5,17 +5,10 @@ from speech_recognizer import SpeechRecognizer
 from multiprocessing import Process, Queue
 from pymove import PyMove
 from speech import Speech
+from autopilot import RaspieAutopilotProcess
 
 
 class VoiceControl():
-    def robot_autopilot(self):
-        text = 'Starting autopilot'
-        speech = Speech()
-        speech.create_voice(text)
-        autopilot = PyMove()
-        q_state = Queue()
-        autopilot_process = Process(target=autopilot.autopilot_process, args=(q_state, ))
-        autopilot_process.start()
     
     def command_weatcher(self):
         text = "Weatcher!"
@@ -24,9 +17,11 @@ class VoiceControl():
         return True
     
     def command_autopilot(self):
-        text = 'Autopilot!'
+        text = 'Runing autopilot!'
         speech = Speech()
         speech.create_voice(text)
+        process = RaspieAutopilotProcess()
+        process.start()
         return True
     
     def command_dance(self):

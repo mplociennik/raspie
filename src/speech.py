@@ -15,8 +15,10 @@ class Speech(object):
     region = 'eu-east'
 
     def __init__(self, name=None, region=None):
-        self.name = name
-        self.region = region
+        if name:
+            self.name = name
+        if region:
+            self.region = region
 
     def hello(self, text):
         self.create_voice(text)
@@ -38,4 +40,4 @@ class Speech(object):
 
 if __name__ == "__main__":
     speech = Speech()
-    speech.hello('Witaj świecie!')
+    speech.hello('Hello world!')

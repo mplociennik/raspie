@@ -29,7 +29,8 @@ if __name__ == '__main__':
     jobs = []
 #    webapi = multiprocessing.Process(target=webapi)
     key_control = multiprocessing.Process(target=key_control)
-    voice_control = VoiceControl.start()
+    voice_control = VoiceControl()
+    voice_control.start()
 #    cam_recording = multiprocessing.Process(target=cam_recording)
     welcome = multiprocessing.Process(target=welcome)
 #    jobs.append(webapi)

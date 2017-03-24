@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from speech_recognizer import SpeechRecognizer
-from multiprocessing
+import multiprocessing
 from pymove import PyMove
 from speech import Speech
 from autopilot import RaspieAutopilotProcess

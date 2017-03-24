@@ -6,7 +6,7 @@ from multiprocessing import Process, Queue
 from pymove import PyMove
 from speech import Speech
 from autopilot import RaspieAutopilotProcess
-from weatcher import Weatcher
+#from weatcher import Weatcher
 
 
 class VoiceControl(Process):

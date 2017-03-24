@@ -6,10 +6,14 @@ from multiprocessing import Process, Queue
 from pymove import PyMove
 from speech import Speech
 from autopilot import RaspieAutopilotProcess
-from weatcher import Weatcher()
+from weatcher import Weatcher
 
 
-class VoiceControl():
+class VoiceControl(Process):
+    
+    def __init__(self, ):
+        multiprocessing.Process.__init__(self)
+        self.exit = multiprocessing.Event()
     
     def command_weatcher(self):
         weather = Weather().check_weather()
@@ -61,6 +65,14 @@ class VoiceControl():
         if 'shadow' in text:
             self.listen_commands()
             
+    def start(self):
+        while not self.exit.is_set():
+            self.listen_text()
+        print "Voice listening stoped!"
+
+    def terminate(self):
+        print "Terminating autopilot..."
+        self.exit.set() 
             
 if __name__ == '__main__':
-    VoiceControl().listen_text()
+    VoiceControl().start()

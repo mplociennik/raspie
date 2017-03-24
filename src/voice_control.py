@@ -9,7 +9,7 @@ from autopilot import RaspieAutopilotProcess
 #from weatcher import Weatcher
 
 
-class VoiceControl(Process):
+class VoiceControl(multiprocessing.Process):
     
     def __init__(self, ):
         multiprocessing.Process.__init__(self)

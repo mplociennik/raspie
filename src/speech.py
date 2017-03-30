@@ -9,7 +9,7 @@ from audio import Audio
 IVONA_ACCESS_KEY = 'GDNAIKZKKGPM3SPFPZGA'
 IVONA_SECRET_KEY = 'PXnXmq3aV1qYsV4jxG4WtoVhESq4gZaXGjrDTBke'
 
-class Speech(object):
+class Speech(multiprocessing.Process):
     """Class to making connection to voice webapi."""
 
     name = 'Joey'

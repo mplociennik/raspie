@@ -3,7 +3,6 @@
 
 from speech_recognizer import SpeechRecognizer
 import multiprocessing
-from pymove import PyMove
 from speech import Speech
 from autopilot import RaspieAutopilotProcess
 #from weatcher import Weatcher

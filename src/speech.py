@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 import urllib2
 import pyvona
+import multiprocessing
 from audio import Audio
 
 
@@ -13,13 +14,21 @@ class Speech(object):
 
     name = 'Joey'
     region = 'eu-east'
-
+        
     def __init__(self, name=None, region=None):
+        multiprocessing.Process.__init__(self)
+        self.exit = multiprocessing.Event()
         if name:
             self.name = name
         if region:
             self.region = region
-
+            
+    def start(self, text):
+        self.crate_voice(text)
+        
+    def terminate(self):
+        self.exit.set() 
+        
     def hello(self, text):
         self.create_voice(text)
 

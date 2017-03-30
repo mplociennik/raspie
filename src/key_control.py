@@ -109,6 +109,7 @@ class KeyControl:
                     self.display_text(text)
                     speech = Speech()
                     speech.create_voice(text)
+                    print 'end voice'
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_3:
                     text = "Let's dance!"
                     speech = Speech()

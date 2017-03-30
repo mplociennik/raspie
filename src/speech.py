@@ -27,6 +27,7 @@ class Speech(object):
         return text.replace(" ", "%20")
 
     def create_voice(self, text):
+        print 'creating voice'
         v = pyvona.create_voice(IVONA_ACCESS_KEY, IVONA_SECRET_KEY)
         v.voice_name = self.name
         v.region = self.region

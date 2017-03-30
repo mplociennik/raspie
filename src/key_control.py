@@ -106,9 +106,9 @@ class KeyControl:
                     PyMove().gpio_cleanup()
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_2:
                     text = "Good Morning! My name is Shadow. I am prototype of home asistant robot. I was programmed to listen to your commands."
+                    self.display_text(text)
                     speech = Speech()
                     speech.create_voice(text)
-                    self.display_text(text)
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_3:
                     text = "Let's dance!"
                     speech = Speech()

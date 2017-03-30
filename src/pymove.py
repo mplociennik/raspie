@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 import time
 import RPi.GPIO as gpio
-from distance import Distance
 
 gpio.setmode(gpio.BOARD)
 gpio.setwarnings(False)

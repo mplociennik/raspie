@@ -105,7 +105,7 @@ class KeyControl:
                     print 'Cleaning up gpio'
                     PyMove().gpio_cleanup()
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_2:
-                    text = "Co słychać?"
+                    text = "Good Morning! My name is Shadow. I am prototype of home asistant robot. I was programmed to listen to your commands."
                     speech = Speech()
                     speech.create_voice(text)
                     self.display_text(text)

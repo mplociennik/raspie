@@ -104,13 +104,13 @@ class KeyControl:
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_8:
                     print 'Cleaning up gpio'
                     PyMove().gpio_cleanup()
-                if event.type == pygame.KEYDOWN and event.key == pygame.K_2:
+                if event.type == pygame.KEYUP and event.key == pygame.K_2:
                     text = "Good Morning! My name is Shadow. I am prototype of home asistant robot. I was programmed to listen to your commands."
                     self.display_text(text)
                     speech = Speech()
                     speech.create_voice(text)
                     print 'end voice'
-                if event.type == pygame.KEYDOWN and event.key == pygame.K_3:
+                if event.type == pygame.KEYUP and event.key == pygame.K_3:
                     text = "Let's dance!"
                     speech = Speech()
                     speech.create_voice(text)

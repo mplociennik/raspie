@@ -22,9 +22,6 @@ class Speech(multiprocessing.Process):
             self.name = name
         if region:
             self.region = region
-            
-    def start(self, text):
-        self.crate_voice(text)
         
     def terminate(self):
         self.exit.set() 

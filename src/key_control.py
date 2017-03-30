@@ -107,7 +107,7 @@ class KeyControl:
                 if event.type == pygame.KEYUP and event.key == pygame.K_2:
                     text = "Good Morning! My name is Shadow. I am prototype of home asistant robot. I was programmed to listen to your commands."
                     self.display_text(text)
-                    Speech().start(text)
+                    Speech().create_voice(text)
                 if event.type == pygame.KEYUP and event.key == pygame.K_3:
                     text = "Let's dance!"
                     speech = Speech()

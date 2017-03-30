@@ -41,4 +41,4 @@ class Speech(object):
 
 if __name__ == "__main__":
     speech = Speech()
-    speech.hello('Hello world!')
+    speech.hello('Good Morning! My name is Shadow. I am prototype of home asistant robot. I was programmed to listen to your commands.')

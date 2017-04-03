@@ -1,9 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import multiprocessing
 import os
 import time
-from key_control import KeyControl
+from key_control import KeyControlProcess
 from audio import Audio
 from voice_control import VoiceControl
 
@@ -13,10 +12,10 @@ def webapi():
 def key_control():
     key_control = KeyControl()
     key_control.start()
-    return key_control
 
 def voice_commands():
-    voice_control_process = VoiceControl().start()
+    voice_control_process = VoiceControl()
+    voice_control_process.start()
 
 def cam_recording():
     print "cam_recording"
@@ -26,17 +25,6 @@ def welcome():
     Audio('sounds/Processing_R2D2.mp3', 1.0)
 
 if __name__ == '__main__':
-    jobs = []
-#    webapi = multiprocessing.Process(target=webapi)
-    key_control = multiprocessing.Process(target=key_control)
-    voice_control()
-#    cam_recording = multiprocessing.Process(target=cam_recording)
-    welcome = multiprocessing.Process(target=welcome)
-#    jobs.append(webapi)
-    jobs.append(key_control)
-    jobs.append(cam_recording)
-    jobs.append(welcome)
-#    webapi.start()
-    key_control.start()
-#    cam_recording.start()
-    welcome.start()
+    self.welcome()
+    self.key_control()
+    self.voice_commands()
